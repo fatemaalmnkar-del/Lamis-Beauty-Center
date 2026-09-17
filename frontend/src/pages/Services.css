@@ -1,0 +1,221 @@
+.services-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 40px;
+  background-color: #faf7fb;
+}
+
+
+/* ===== HEADER ===== */
+
+.services-header {
+  max-width: 750px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.services-header > p:first-child {
+  margin-bottom: 8px;
+  color: #b08a3c;
+  font-size: 16px;
+}
+
+.services-header h1 {
+  margin-bottom: 15px;
+  color: #6d3f73;
+  font-size: 40px;
+}
+
+.services-intro {
+  color: #625866;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* ===== SERVICES GRID ===== */
+
+.services-container {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+
+/* ===== SERVICE CARD ===== */
+
+.service-card {
+  background-color: #ffffff;
+
+  padding: 30px 25px;
+
+  border: 1px solid #eadfeb;
+  border-radius: 12px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* ===== TITLE ===== */
+
+.service-card h2 {
+  margin-bottom: 15px;
+
+  color: #6d3f73;
+
+  font-size: 21px;
+}
+
+
+/* ===== DESCRIPTION ===== */
+
+.service-description {
+  margin-bottom: 18px;
+
+  color: #625866;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ===== PRICE ===== */
+
+.service-price {
+  margin-bottom: 10px;
+
+  color: #b08a3c;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* ===== DURATION ===== */
+
+.service-duration {
+  margin-bottom: 20px;
+
+  color: #817584;
+
+  font-size: 14px;
+}
+
+
+/* ===== BUTTON ===== */
+
+.service-button {
+  display: inline-block;
+
+  padding: 11px 22px;
+
+  background-color: #6d3f73;
+  color: #ffffff;
+
+  border-radius: 7px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition: 0.3s;
+}
+
+.service-button:hover {
+  background-color: #b08a3c;
+}
+
+
+/* ===== LOADING / ERROR ===== */
+
+.services-message {
+  margin-top: 80px;
+
+  text-align: center;
+ 
+  color: #6d3f73;
+
+  font-size: 18px;
+}
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+  .services-page {
+    padding: 50px 25px;
+  }
+
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .services-header h1 {
+    font-size: 34px;
+  }
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+  .services-page {
+    padding: 35px 18px;
+  }
+
+  .services-header {
+    margin-bottom: 30px;
+  }
+
+  .services-header > p:first-child {
+    font-size: 14px;
+  }
+
+  .services-header h1 {
+    font-size: 28px;
+  }
+
+  .services-intro {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .service-card {
+    padding: 24px 18px;
+  }
+
+  .service-card h2 {
+    font-size: 19px;
+  }
+
+  .service-description {
+    font-size: 14px;
+  }
+
+  .service-price {
+    font-size: 18px;
+  }
+
+  .service-button {
+    width: 100%;
+    padding: 12px 18px;
+  }
+}

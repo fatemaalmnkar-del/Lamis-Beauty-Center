@@ -1,0 +1,185 @@
+.register-page {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 20px;
+
+  background-color: #faf7fb;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 480px;
+
+  padding: 40px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #eadfeb;
+  border-radius: 12px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.register-small-title {
+  margin-bottom: 5px;
+
+  color: #b08a3c;
+
+  text-align: center;
+  font-size: 15px;
+}
+
+.register-container h1 {
+  margin-bottom: 10px;
+
+  color: #6d3f73;
+
+  text-align: center;
+  font-size: 34px;
+}
+
+.register-description {
+  margin-bottom: 30px;
+
+  color: #6f6571;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #514654;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d9cedb;
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #6d3f73;
+}
+
+.register-button {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 7px;
+
+  background-color: #6d3f73;
+  color: #ffffff;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.register-button:hover {
+  background-color: #b08a3c;
+}
+
+.register-error {
+  margin-bottom: 20px;
+  padding: 10px;
+
+  border-radius: 6px;
+
+  background-color: #fbecec;
+  color: #a33a3a;
+
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-link {
+  margin-top: 22px;
+
+  color: #6f6571;
+
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #b08a3c;
+
+  text-decoration: none;
+  font-weight: 600;
+}
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+  .register-page {
+    min-height: calc(100vh - 120px);
+    padding: 30px 15px;
+    align-items: flex-start;
+  }
+
+  .register-container {
+    max-width: 100%;
+    padding: 28px 20px;
+    border-radius: 10px;
+  }
+
+  .register-small-title {
+    font-size: 14px;
+  }
+
+  .register-container h1 {
+    font-size: 28px;
+  }
+
+  .register-description {
+    margin-bottom: 25px;
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group input {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .register-button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .login-link {
+    margin-top: 18px;
+    font-size: 13px;
+  }
+}

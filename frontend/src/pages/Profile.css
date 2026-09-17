@@ -1,0 +1,178 @@
+.profile-page {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 20px;
+
+  background-color: #faf7fb;
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 500px;
+
+  padding: 40px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #eadfeb;
+  border-radius: 12px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.profile-small-title {
+  margin-bottom: 5px;
+
+  text-align: center;
+
+  color: #b08a3c;
+  font-size: 15px;
+}
+
+.profile-container h1 {
+  margin-bottom: 30px;
+
+  text-align: center;
+
+  color: #6d3f73;
+  font-size: 34px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #514654;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d9cedb;
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #6d3f73;
+}
+
+.form-group input:disabled {
+  background-color: #f2eef3;
+  color: #8b818d;
+  cursor: not-allowed;
+}
+
+.profile-button {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 7px;
+
+  background-color: #6d3f73;
+  color: #ffffff;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.profile-button:hover {
+  background-color: #b08a3c;
+}
+
+.profile-success,
+.profile-error,
+.profile-message {
+  margin-bottom: 20px;
+
+  padding: 10px;
+
+  border-radius: 6px;
+
+  text-align: center;
+  font-size: 14px;
+}
+
+.profile-success {
+  background-color: #edf7ee;
+  color: #3f7a46;
+}
+
+.profile-error {
+  background-color: #fbecec;
+  color: #a33a3a;
+}
+
+.profile-message {
+  margin-top: 70px;
+
+  color: #6d3f73;
+}
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+  .profile-page {
+    min-height: calc(100vh - 120px);
+    padding: 30px 15px;
+    align-items: flex-start;
+  }
+
+  .profile-container {
+    max-width: 100%;
+    padding: 28px 20px;
+    border-radius: 10px;
+  }
+
+  .profile-small-title {
+    font-size: 14px;
+  }
+
+  .profile-container h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+  }
+
+  .profile-container .form-group {
+    margin-bottom: 16px;
+  }
+
+  .profile-container .form-group input {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .profile-button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .profile-success,
+  .profile-error,
+  .profile-message {
+    font-size: 13px;
+  }
+}

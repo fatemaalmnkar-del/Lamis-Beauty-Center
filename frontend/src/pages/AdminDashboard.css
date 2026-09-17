@@ -1,0 +1,356 @@
+.admin-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px 35px;
+  background-color: #faf7fb;
+}
+
+.admin-header {
+  max-width: 750px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.admin-header > p:first-child {
+  margin-bottom: 6px;
+  color: #b08a3c;
+  font-size: 15px;
+}
+
+.admin-header h1 {
+  margin-bottom: 10px;
+  color: #6d3f73;
+  font-size: 38px;
+}
+
+.admin-header p {
+  color: #6f6571;
+}
+
+.admin-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 60px;
+  padding: 35px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #eadfeb;
+  border-radius: 12px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-form-container h2 {
+  margin-bottom: 25px;
+
+  color: #6d3f73;
+
+  text-align: center;
+}
+
+.admin-form-group {
+  margin-bottom: 18px;
+}
+
+.admin-form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #514654;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-form-group input,
+.admin-form-group textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d9cedb;
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.admin-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus {
+  border-color: #6d3f73;
+}
+
+.admin-save-button {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 7px;
+
+  background-color: #6d3f73;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}
+
+.admin-save-button:hover {
+  background-color: #b08a3c;
+}
+
+.admin-cancel-button {
+  width: 100%;
+
+  margin-top: 10px;
+  padding: 11px;
+
+  border: 1px solid #6d3f73;
+  border-radius: 7px;
+
+  background-color: #ffffff;
+  color: #6d3f73;
+
+  cursor: pointer;
+}
+
+.admin-services {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-services > h2 {
+  margin-bottom: 30px;
+
+  color: #6d3f73;
+
+  text-align: center;
+  font-size: 30px;
+}
+
+.admin-services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 22px;
+}
+
+.admin-service-card {
+  padding: 25px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #eadfeb;
+  border-radius: 10px;
+}
+
+.admin-service-card h3 {
+  margin-bottom: 12px;
+
+  color: #6d3f73;
+}
+
+.admin-service-card p {
+  margin-bottom: 10px;
+
+  color: #625866;
+
+  line-height: 1.5;
+}
+
+.admin-service-card .admin-price {
+  color: #b08a3c;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+.edit-button,
+.delete-button {
+  flex: 1;
+
+  padding: 9px;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #6d3f73;
+  color: #ffffff;
+}
+
+.delete-button {
+  background-color: #f1e6e8;
+  color: #9a3f4a;
+}
+
+.admin-success,
+.admin-error,
+.admin-access {
+  padding: 11px;
+
+  border-radius: 6px;
+
+  text-align: center;
+}
+
+.admin-success {
+  margin-bottom: 20px;
+
+  background-color: #edf7ee;
+  color: #3f7a46;
+}
+
+.admin-error {
+  margin-bottom: 20px;
+
+  background-color: #fbecec;
+  color: #a33a3a;
+}
+
+.admin-access {
+  max-width: 500px;
+  margin: 80px auto;
+
+  background-color: #ffffff;
+  color: #6d3f73;
+
+  border: 1px solid #eadfeb;
+}
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+
+  .admin-page {
+    padding: 40px 25px;
+  }
+
+  .admin-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-header h1 {
+    font-size: 32px;
+  }
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+  .admin-page {
+    padding: 30px 15px;
+  }
+
+  .admin-header {
+    margin-bottom: 30px;
+  }
+
+  .admin-header > p:first-child {
+    font-size: 14px;
+  }
+
+  .admin-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-header p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .admin-form-container {
+    max-width: 100%;
+    margin-bottom: 45px;
+    padding: 25px 18px;
+  }
+
+  .admin-form-container h2 {
+    font-size: 23px;
+  }
+
+  .admin-form-group {
+    margin-bottom: 16px;
+  }
+
+  .admin-form-group input,
+  .admin-form-group textarea {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .admin-save-button,
+  .admin-cancel-button {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .admin-services > h2 {
+    margin-bottom: 22px;
+    font-size: 25px;
+  }
+
+  .admin-services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .admin-service-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .admin-service-card h3 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-service-card p {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 100%;
+    flex: none;
+    padding: 11px;
+  }
+
+  .admin-success,
+  .admin-error,
+  .admin-access {
+    font-size: 13px;
+  }
+
+  .admin-access {
+    margin: 50px auto;
+  }
+}

@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links {
+  width: 100%;
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 60px;
+
+  background-color: #6b3f6f;
+  border-bottom: 3px solid #c8a45d;
+}
+
+/* ===== BRAND ===== */
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  margin: 0;
+
+  color: #d4af63;
+
+  font-size: 40px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.brand p {
+  margin-top: 8px;
+  margin-left: 20px;
+
+  color: #f3e7c8;
+
+  font-size: 15px;
+  letter-spacing: 1.5px;
+
+  white-space: nowrap;
+}
+
+/* ===== LINKS ===== */
+
+.nav-links ul {
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  color: #e2c988;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ecdcb3;
+}
+.logout-button {
+  border: none;
+  background: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  color: #d4af63;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 16px 14px;
+  }
+
+  .brand {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .brand h1 {
+    font-size: 23px;
+    white-space: normal;
+  }
+
+  .brand p {
+    margin-top: 5px;
+    margin-left: 0;
+    font-size: 9px;
+    letter-spacing: 1px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .nav-links ul {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+
+  .nav-links a,
+  .logout-button {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    padding: 14px 10px;
+  }
+
+  .brand h1 {
+    font-size: 21px;
+  }
+
+  .brand p {
+    font-size: 8px;
+  }
+
+  .nav-links ul {
+    gap: 8px 12px;
+  }
+
+  .nav-links a,
+  .logout-button {
+    font-size: 12px;
+  }
+}
