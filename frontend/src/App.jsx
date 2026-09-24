@@ -24,8 +24,8 @@ function App() {
     <div className='app'>
       <nav className='nav-links'>
         <div className='brand'>
-          <h1>Lamis Beauty Center</h1>
-          <p>BEAUTY. AESTHETICS.TRAINING</p>  
+          <img src='/lamis-logo.png' alt='lamis-logo' className='brand-logo'/>
+
         </div>
     
        <ul>

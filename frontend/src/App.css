@@ -27,37 +27,22 @@ body,
 }
 
 /* ===== BRAND ===== */
-
+.brand-logo {
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+}
 .brand {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  
+  align-items: center;
 
   flex-shrink: 0;
 }
 
-.brand h1 {
-  margin: 0;
 
-  color: #d4af63;
 
-  font-size: 40px;
-  font-weight: 600;
 
-  white-space: nowrap;
-}
-
-.brand p {
-  margin-top: 8px;
-  margin-left: 20px;
-
-  color: #f3e7c8;
-
-  font-size: 15px;
-  letter-spacing: 1.5px;
-
-  white-space: nowrap;
-}
 
 /* ===== LINKS ===== */
 
@@ -120,20 +105,10 @@ body,
     align-items: center;
     text-align: center;
   }
+  .brand-logo {
+  width: 180px;
+ }
 
-  .brand h1 {
-    font-size: 23px;
-    white-space: normal;
-  }
-
-  .brand p {
-    margin-top: 5px;
-    margin-left: 0;
-    font-size: 9px;
-    letter-spacing: 1px;
-    white-space: normal;
-    text-align: center;
-  }
 
   .nav-links ul {
     width: 100%;
@@ -153,13 +128,9 @@ body,
     padding: 14px 10px;
   }
 
-  .brand h1 {
-    font-size: 21px;
-  }
-
-  .brand p {
-    font-size: 8px;
-  }
+ .brand-logo {
+  width: 150px;
+ }
 
   .nav-links ul {
     gap: 8px 12px;
