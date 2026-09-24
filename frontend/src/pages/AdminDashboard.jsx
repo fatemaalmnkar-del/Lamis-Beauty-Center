@@ -2,12 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import {
-  getServices,
-  createService,
-  updateService,
-  deleteService
-} from "../services/serviceService";
+import {getServices,createService,updateService,deleteService} from "../services/serviceService";
 import { getAllBookings ,  updateBookingStatus} from "../services/bookingService";
 
 import "./AdminDashboard.css";
@@ -23,6 +18,7 @@ const AdminDashboard = () => {
     price: "",
     duration: ""
   });
+ const [imageFile, setImageFile] = useState(null);
 
   const [editingId, setEditingId] = useState(null);
 
@@ -62,20 +58,30 @@ useEffect(() => {
       [e.target.name]: e.target.value
     });
   };
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setMessage("");
     setError("");
-
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+    data.append("price", formData.price);
+    data.append("duration", formData.duration);
+    if (imageFile) {
+      data.append("image", imageFile);
+    }
     try {
       if (editingId) {
-        await updateService(editingId, formData);
+        await updateService(editingId, data);
 
         setMessage("Behandlung erfolgreich aktualisiert.");
       } else {
-        await createService(formData);
+        await createService(data);
 
         setMessage("Behandlung erfolgreich hinzugefügt.");
       }
@@ -86,6 +92,7 @@ useEffect(() => {
         price: "",
         duration: ""
       });
+      setImageFile(null);
 
       setEditingId(null);
 
@@ -110,7 +117,7 @@ useEffect(() => {
     });
 
     setEditingId(service._id);
-
+    setImageFile(null);
     setMessage("");
     setError("");
   };
@@ -151,6 +158,7 @@ useEffect(() => {
       price: "",
       duration: ""
     });
+    setImageFile(null);
   };
   const handleStatusChange = async (bookingId, status) => {
   try {
@@ -274,6 +282,25 @@ useEffect(() => {
               placeholder="z. B. 60"
             />
           </div>
+          <div className="admin-form-group">
+            <label htmlFor="image">
+              Bild
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              onChange={handleImageChange}
+              accept="image/*"
+            /> 
+            {imageFile && (
+              <img
+                src={URL.createObjectURL(imageFile)}
+                alt="Preview"
+                className="admin-image-preview"
+              />
+            )}
+          </div>
 
           <button
             type="submit"
@@ -306,9 +333,14 @@ useEffect(() => {
           {services.map((service) => (
             <div
               className="admin-service-card"
-              key={service._id}
-            >
-
+              key={service._id}>
+              {service.image && (
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="admin-service-image"
+                />
+              )}
               <h3>{service.title}</h3>
 
               <p>{service.description}</p>
@@ -351,81 +383,65 @@ useEffect(() => {
       </section>
       
       
-        <section className="admin-services">
-            <h2>Alle Termine</h2>
+      <section className="admin-services">
+        <h2>Alle Termine</h2>
 
-            <div className="admin-services-grid">
+        <div className="admin-services-grid">
 
-                {bookings.map((booking) => (
-                <div className="admin-service-card" key={booking._id}>
+          {bookings.map((booking) => (
+            <div className="admin-service-card" key={booking._id}>
 
-                    <h3>
-                    {booking.service?.title}
-                    </h3>
+              <h3>{booking.service?.title}</h3>
+              <p><strong>Kunde:</strong>{" "}{booking.user?.name}</p>
 
-                    <p>
-                    <strong>Kunde:</strong>{" "}
-                    {booking.user?.name}
-                    </p>
+              <p><strong>Datum:</strong>{" "}{new Date(booking.date).toLocaleDateString("de-DE")}</p>
 
-                    <p>
-                    <strong>Datum:</strong>{" "}
-                    {new Date(booking.date).toLocaleDateString("de-DE")}
-                    </p>
+              <p><strong>Uhrzeit:</strong>{" "}{booking.time}</p>
 
-                    <p>
-                    <strong>Uhrzeit:</strong>{" "}
-                    {booking.time}
-                    </p>
+              <p><strong>Status:</strong>{" "} {booking.status}</p>
+              <div className="admin-actions">
 
-                    <p>
-                    <strong>Status:</strong>{" "}
-                    {booking.status}
-                    </p>
-                    <div className="admin-actions">
+                {booking.status === "pending" && (
+                  <button
+                  className="edit-button"
+                  onClick={() =>
+                    handleStatusChange(booking._id, "confirmed")
+                  }
+                  >
+                  Bestätigen
+                  </button>
+                )}
 
-                        {booking.status === "pending" && (
-                            <button
-                            className="edit-button"
-                            onClick={() =>
-                                handleStatusChange(booking._id, "confirmed")
-                            }
-                            >
-                            Bestätigen
-                            </button>
-                        )}
+                {booking.status === "confirmed" && (
+                  <button
+                  className="edit-button"
+                  onClick={() =>
+                    handleStatusChange(booking._id, "completed")
+                  }
+                  >
+                  Abschließen
+                  </button>
+                )}
 
-                        {booking.status === "confirmed" && (
-                            <button
-                            className="edit-button"
-                            onClick={() =>
-                                handleStatusChange(booking._id, "completed")
-                            }
-                            >
-                            Abschließen
-                            </button>
-                        )}
+                {booking.status !== "cancelled" &&
+                  booking.status !== "completed" && (
+                  <button
+                    className="delete-button"
+                    onClick={() =>
+                    handleStatusChange(booking._id, "cancelled")
+                    }>
+                    Stornieren
+                  </button>
+                )}
 
-                        {booking.status !== "cancelled" &&
-                            booking.status !== "completed" && (
-                            <button
-                                className="delete-button"
-                                onClick={() =>
-                                handleStatusChange(booking._id, "cancelled")
-                                }
-                            >
-                                Stornieren
-                            </button>
-                            )}
-
-                        </div>
-
-                </div>
-                ))}
+              </div>
 
             </div>
+          ))}
 
-        </section>
+        </div>
+
+      </section>
 
     </main>
   );

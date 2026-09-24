@@ -35,6 +35,12 @@ function App() {
           <li>
             <Link to="/services">Behandlungen</Link>
           </li>
+          <li>
+            <Link to="">vorher/nachher</Link>
+          </li>
+          <li>
+            <Link to="">kontakt</Link>
+          </li>
            
           {!user && (
             <>
