@@ -325,10 +325,12 @@ useEffect(() => {
       </section>
 
       <section className="admin-services">
+           <div className="behandlung-termine-bar">
+             <h2>Behandlungen</h2>
+           </div>
+        
 
-        <h2>Behandlungen</h2>
-
-        <div className="admin-services-grid">
+         <div className="admin-services-grid">
 
           {services.map((service) => (
             <div
@@ -384,7 +386,10 @@ useEffect(() => {
       
       
       <section className="admin-services">
-        <h2>Alle Termine</h2>
+        <div className="behandlung-termine-bar">
+          <h2>Alle Termine</h2>
+        </div>
+        
 
         <div className="admin-services-grid">
 

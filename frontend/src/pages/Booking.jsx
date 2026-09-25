@@ -1,6 +1,7 @@
 
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getServices } from "../services/serviceService";
 import {
   createBooking,
@@ -11,11 +12,13 @@ import {
 import "./Booking.css";
 
 const Booking = () => {
+  const [searchParams] = useSearchParams();
+  const serviceIdfromURL = searchParams.get("serviceId") || "";
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
 
   const [formData, setFormData] = useState({
-    service: "",
+    service: serviceIdfromURL,
     date: "",
     time: ""
   });
@@ -226,8 +229,10 @@ const Booking = () => {
 
 
       <section className="my-bookings">
-
-        <h2>Meine Termine</h2>
+        <div className="termine-bar">
+          <h1 >Meine Termine</h1>
+        </div>
+       
 
         {bookings.length === 0 ? (
           <p className="no-bookings">
