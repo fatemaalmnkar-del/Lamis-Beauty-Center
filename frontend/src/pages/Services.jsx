@@ -59,7 +59,13 @@ const Services = () => {
 
         {services.map((service) => (
           <div className="service-card" key={service._id}>
-
+            {service.image && (
+              <img
+                src={service.image}
+                alt={service.title}
+                className="service-image"
+              />
+            )}
             <h2>{service.title}</h2>
 
             <p className="service-description">
@@ -76,10 +82,9 @@ const Services = () => {
               </p>
             )}
 
-            <Link to="/booking" className="service-button">
+            <Link to={`/booking?serviceId=${service._id}`} className="service-button">
               Termin buchen
             </Link>
-
           </div>
         ))}
 
