@@ -1,4 +1,6 @@
 import { Routes,Route,Link } from 'react-router-dom'
+import { FaFacebookF, FaInstagram,FaEnvelope,FaPhoneAlt,FaMapMarkerAlt } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
 import './App.css'
 import Home from './pages/Home'
 import Services from './pages/Services'
@@ -31,6 +33,9 @@ function App() {
        <ul>
           <li>
             <Link to="/">Startseite</Link>
+          </li>
+          <li>
+            <Link to="/">Über Uns</Link>
           </li>
           <li>
             <Link to="/services">Behandlungen</Link>
@@ -87,6 +92,57 @@ function App() {
         <Route path='/booking' element={<Booking/>} />
         <Route path='/admin' element={<AdminDashboard/>} />
       </Routes>
+
+
+      <footer className='footer'>
+        <div className='footer-content'>
+           <div className='footer-brand'>
+             <img src='/lamis-logo.png' alt='lamis-logo' className='footer-brand-logo'/>
+             <p>  Schönheit, Pflege und Wohlbefinden in einer angenehmen Atmosphäre.</p>
+           </div>
+            <div className='footer-links'>
+               <h3>Schnelllinks</h3>
+               <Link to="/">Startseite</Link>
+               <Link to="/services">Behandlungen</Link>
+               <Link to="/booking">Termin buchen</Link>
+            </div>
+            <div className='footer-kontakt'>
+              <h3>Kontakt</h3>
+              <p> <a href="mailto:lamis1999.01.25@gmail.com"> <FaEnvelope/><span>E-Mail</span></a></p>
+             
+              <p> <a href="tel:+491629342752"> <FaPhoneAlt/><span>+491629342752</span></a></p>
+              <p><span className='kontakt-adresse'> <FaMapMarkerAlt />Pirmasenser Str. 24 - 26, 67655 Kaiserslautern</span></p>
+            </div>
+            <div className="footer-zeiten">
+              <h3>Öffnungszeiten</h3>
+              <p>Montag – Samstag: 10:30 – 19:00</p>
+              <p>Sonntag: Geschlossen</p>
+            </div>
+           
+            <div className='footer-social'>
+              <h3>Folgen Sie uns</h3>
+              <div className='social-links'>
+                <a href="https://www.facebook.com/share/1Gxyu2qdPy/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF />
+                   <span>Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/lamis__akademie?stkn=cmJrM2RjYjllbGdx&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram />
+                   <span>Instagram</span>
+                </a>
+                <a href="https://www.tiktok.com/@lamis.beauty1999?_r=1&_t=ZN-96AErvwxkMY " target="_blank" rel="noopener noreferrer">
+                  <FaTiktok />
+                   <span>TikTok</span>
+                </a>
+              </div>
+              
+            </div>
+        </div>
+        <div className='footer-bottom'>
+                <p>&copy; {new Date().getFullYear()} Lamis Beauty Center. Alle Rechte vorbehalten.</p>
+                <p>Website entwickelt von Fatema Almnkar</p>
+              </div>
+      </footer>
 
     </div>
 
