@@ -130,7 +130,7 @@ function App() {
                   <FaInstagram />
                    <span>Instagram</span>
                 </a>
-                <a href="https://www.tiktok.com/@lamis.beauty1999?_r=1&_t=ZN-96AErvwxkMY " target="_blank" rel="noopener noreferrer">
+                <a href="https://www.tiktok.com/@lamisakademie8?_r=1&_t=ZN-9AA8Z7TYJfy" target="_blank" rel="noopener noreferrer">
                   <FaTiktok />
                    <span>TikTok</span>
                 </a>
