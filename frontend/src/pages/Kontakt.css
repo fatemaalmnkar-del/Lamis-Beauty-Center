@@ -1,0 +1,419 @@
+/* =========================
+   KONTAKT PAGE
+========================= */
+
+.kontakt-page {
+  width: 100%;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.kontakt-hero {
+  text-align: center;
+  padding: 70px 20px 45px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.kontakt-label {
+  margin-bottom: 10px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8e44ad;
+  font-weight: 600;
+}
+
+.kontakt-hero h1 {
+  margin: 0 0 20px;
+  font-size: 42px;
+  font-weight: 500;
+  color: #b48a32;
+}
+
+.kontakt-hero > p:not(.kontakt-label) {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #666666;
+}
+
+.kontakt-divider {
+  width: 60px;
+  height: 2px;
+  margin: 25px auto 0;
+  background-color: #b48a32;
+}
+
+
+/* =========================
+   KONTAKT INFORMATIONEN
+========================= */
+
+.kontakt-info-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 30px 80px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.kontakt-info-card {
+  min-height: 190px;
+  padding: 30px 20px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #faf8fb;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kontakt-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.kontakt-icon {
+  margin-bottom: 15px;
+  font-size: 25px;
+  color: #b48a32;
+}
+
+.kontakt-info-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #8e44ad;
+}
+
+.kontakt-info-card p {
+  margin: 0;
+  line-height: 1.7;
+  color: #666666;
+}
+
+.kontakt-info-card a {
+  color: #555555;
+  text-decoration: none;
+  line-height: 1.7;
+}
+
+.kontakt-info-card a:hover {
+  color: #b48a32;
+}
+
+
+/* =========================
+   KONTAKTFORMULAR
+========================= */
+
+.kontakt-form-section {
+  padding: 80px 30px;
+  background-color: #faf8fb;
+}
+
+.kontakt-form-intro {
+  max-width: 750px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.kontakt-form-intro h2 {
+  margin: 8px 0 15px;
+  font-size: 34px;
+  font-weight: 500;
+  color: #b48a32;
+}
+
+.kontakt-form-intro > p:not(.kontakt-label) {
+  line-height: 1.8;
+  color: #666666;
+}
+
+.kontakt-form {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 40px;
+
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+}
+
+.kontakt-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.kontakt-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.kontakt-form-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+}
+
+.kontakt-form-group input,
+.kontakt-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  color: #333333;
+  background-color: #ffffff;
+
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  outline: none;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kontakt-form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.kontakt-form-group input:focus,
+.kontakt-form-group textarea:focus {
+  border-color: #8e44ad;
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.08);
+}
+
+.kontakt-submit-button {
+  display: block;
+  min-width: 190px;
+
+  margin: 10px auto 0;
+  padding: 14px 28px;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #8e44ad;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.kontakt-submit-button:hover {
+  background-color: #b48a32;
+  transform: translateY(-2px);
+}
+
+.kontakt-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   MELDUNGEN
+========================= */
+
+.kontakt-success {
+  margin: 0 0 20px;
+  padding: 12px;
+
+  text-align: center;
+
+  background-color: #eef8f0;
+  border-radius: 5px;
+  color: #26733a;
+}
+
+.kontakt-error {
+  margin: 0 0 20px;
+  padding: 12px;
+
+  text-align: center;
+
+  background-color: #fff0f0;
+  border-radius: 5px;
+  color: #a52a2a;
+}
+
+
+/* =========================
+   STANDORT / MAP
+========================= */
+
+.kontakt-location {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 30px;
+}
+
+.kontakt-location-heading {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.kontakt-location-heading h2 {
+  margin: 8px 0 15px;
+  font-size: 34px;
+  font-weight: 500;
+  color: #b48a32;
+}
+
+.kontakt-location-heading > p:not(.kontakt-label) {
+  color: #666666;
+}
+
+.kontakt-map {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.kontakt-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* =========================
+   TERMIN CTA
+========================= */
+
+.kontakt-booking {
+  padding: 75px 20px;
+  text-align: center;
+  background-color: #faf8fb;
+}
+
+.kontakt-booking h2 {
+  margin: 8px 0 15px;
+  font-size: 32px;
+  font-weight: 500;
+  color: #b48a32;
+}
+
+.kontakt-booking > p:not(.kontakt-label) {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+  color: #666666;
+}
+
+.kontakt-booking-button {
+  display: inline-block;
+  padding: 14px 30px;
+
+  background-color: #8e44ad;
+  color: #ffffff;
+
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.kontakt-booking-button:hover {
+  background-color: #b48a32;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .kontakt-info-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kontakt-hero h1 {
+    font-size: 36px;
+  }
+
+  .kontakt-form-intro h2,
+  .kontakt-location-heading h2 {
+    font-size: 30px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .kontakt-hero {
+    padding: 50px 20px 35px;
+  }
+
+  .kontakt-hero h1 {
+    font-size: 32px;
+  }
+
+  .kontakt-info-section {
+    grid-template-columns: 1fr;
+    padding: 20px 20px 55px;
+  }
+
+  .kontakt-form-section {
+    padding: 55px 20px;
+  }
+
+  .kontakt-form {
+    padding: 25px 20px;
+  }
+
+  .kontakt-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .kontakt-location {
+    padding: 55px 20px;
+  }
+
+  .kontakt-map {
+    height: 300px;
+  }
+
+  .kontakt-booking {
+    padding: 55px 20px;
+  }
+
+  .kontakt-booking h2 {
+    font-size: 27px;
+  }
+}

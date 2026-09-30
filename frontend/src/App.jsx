@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Booking from './pages/Booking'
 import Profile from './pages/Profile'
 import AdminDashboard from './pages/AdminDashboard'
+import Kontakt from './pages/Kontakt';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./store/authSlice";
 
@@ -44,7 +45,7 @@ function App() {
             <Link to="">vorher/nachher</Link>
           </li>
           <li>
-            <Link to="">kontakt</Link>
+            <Link to="/Kontakt">kontakt</Link>
           </li>
            
           {!user && (
@@ -91,6 +92,7 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/booking' element={<Booking/>} />
         <Route path='/admin' element={<AdminDashboard/>} />
+        <Route path='/Kontakt'element={<Kontakt/>}/>
       </Routes>
 
 
