@@ -1,7 +1,8 @@
 
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link,useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { getServices } from "../services/serviceService";
 import {
   createBooking,
@@ -12,6 +13,7 @@ import {
 import "./Booking.css";
 
 const Booking = () => {
+  const user = useSelector((state) => state.auth.user);
   const [searchParams] = useSearchParams();
   const serviceIdfromURL = searchParams.get("serviceId") || "";
   const [services, setServices] = useState([]);
@@ -33,7 +35,7 @@ const Booking = () => {
       setBookings(response.data.bookings);
     } catch (error) {
       console.error(error);
-      setError("Termine konnten nicht geladen werden.");
+      setError("Bitte melden Sie sich an, um Ihre Termine zu sehen und einen Termin zu buchen.");
     }
   };
 
@@ -121,6 +123,31 @@ const Booking = () => {
 
     return status;
   };
+
+  if (!user) {
+    return (
+      <main className="booking-page">
+        <section className="booking-form-container">
+
+          <p className="booking-small-title">
+            TERMINVEREINBARUNG
+          </p>
+
+          <h1>Termin buchen</h1>
+
+          <p className="booking-description">
+            Bitte melden Sie sich an, um einen Termin zu buchen
+            und Ihre Termine zu verwalten.
+          </p>
+
+          <Link to="/login" className="booking-button">
+            Jetzt anmelden
+          </Link>
+
+        </section>
+      </main>
+    );
+  }
 
   if (loading) {
     return (
