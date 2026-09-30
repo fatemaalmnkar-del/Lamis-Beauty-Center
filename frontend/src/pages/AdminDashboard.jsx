@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import {getServices,createService,updateService,deleteService} from "../services/serviceService";
 import { getAllBookings ,  updateBookingStatus} from "../services/bookingService";
+import {getGalleryImages, createGalleryImage,deleteGalleryImage} from "../services/galleryService";
 
 import "./AdminDashboard.css";
 
@@ -11,6 +12,9 @@ const AdminDashboard = () => {
   const user = useSelector((state) => state.auth.user);
   const [bookings, setBookings] = useState([]);
   const [services, setServices] = useState([]);
+
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryImageFile, setGalleryImageFile] = useState(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -41,9 +45,11 @@ useEffect(() => {
     try {
       const servicesResponse = await getServices();
       const bookingsResponse = await getAllBookings();
+      const galleryResponse = await getGalleryImages();
 
       setServices(servicesResponse.data);
       setBookings(bookingsResponse.data.bookings);
+      setGalleryImages(galleryResponse.galleryImages);
     } catch (error) {
       console.error(error);
     }
@@ -160,6 +166,7 @@ useEffect(() => {
     });
     setImageFile(null);
   };
+
   const handleStatusChange = async (bookingId, status) => {
   try {
     await updateBookingStatus(bookingId, status);
@@ -179,6 +186,75 @@ useEffect(() => {
     );
   }
 };
+const handleGalleryImageChange = (e) => {
+  setGalleryImageFile(e.target.files[0]);
+};
+
+
+const handleGallerySubmit = async (e) => {
+  e.preventDefault();
+
+  if (!galleryImageFile) {
+    setError("Bitte wählen Sie ein Bild aus.");
+    return;
+  }
+
+  try {
+    setMessage("");
+    setError("");
+
+    const data = new FormData();
+    data.append("image", galleryImageFile);
+
+    await createGalleryImage(data);
+
+    setMessage("Galeriebild erfolgreich hinzugefügt.");
+    setGalleryImageFile(null);
+
+    const response = await getGalleryImages();
+    setGalleryImages(response.galleryImages);
+
+  } catch (error) {
+    console.error(error);
+
+    setError(
+      error.response?.data?.message ||
+      "Galeriebild konnte nicht hinzugefügt werden."
+    );
+  }
+};
+
+
+const handleDeleteGalleryImage = async (imageId) => {
+  const confirmed = window.confirm(
+    "Möchten Sie dieses Bild wirklich löschen?"
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    setMessage("");
+    setError("");
+
+    await deleteGalleryImage(imageId);
+
+    setMessage("Galeriebild erfolgreich gelöscht.");
+
+    const response = await getGalleryImages();
+    setGalleryImages(response.galleryImages);
+
+  } catch (error) {
+    console.error(error);
+
+    setError(
+      error.response?.data?.message ||
+      "Galeriebild konnte nicht gelöscht werden."
+    );
+  }
+};
+
 
   if (!user || user.role !== "admin") {
     return (
@@ -378,6 +454,84 @@ useEffect(() => {
               </div>
 
             </div>
+          ))}
+
+        </div>
+
+      </section>
+
+
+            
+      <section className="admin-services">
+
+        <div className="behandlung-termine-bar">
+          <h2>Vorher/Nachher Galerie</h2>
+        </div>
+
+        <form onSubmit={handleGallerySubmit}>
+
+          <div className="admin-form-group">
+            <label htmlFor="galleryImage">
+              Neues Bild
+            </label>
+
+            <input
+              type="file"
+              id="galleryImage"
+              accept="image/*"
+              onChange={handleGalleryImageChange}
+            />
+
+            {galleryImageFile && (
+              <img
+                src={URL.createObjectURL(galleryImageFile)}
+                alt="Galerie Vorschau"
+                className="admin-image-preview"
+              />
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="admin-save-button"
+          >
+            Bild hinzufügen
+          </button>
+
+        </form>
+
+
+        <div className="admin-services-grid">
+
+          {galleryImages.map((galleryImage) => (
+
+            <div
+              className="admin-service-card"
+              key={galleryImage._id}
+            >
+
+              <img
+                src={galleryImage.image}
+                alt="Vorher und Nachher"
+                className="admin-service-image"
+              />
+
+              <div className="admin-actions">
+
+                <button
+                  type="button"
+                  className="delete-button"
+                  onClick={() =>
+                    handleDeleteGalleryImage(galleryImage._id)
+                  }
+                >
+                  Löschen
+                </button>
+
+              </div>
+
+            </div>
+
           ))}
 
         </div>

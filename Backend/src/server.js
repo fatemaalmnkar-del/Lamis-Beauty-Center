@@ -8,9 +8,12 @@ const userRoutes = require('./routes/userRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const galleryRoutes = require("./routes/galleryRoutes");
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/gallery", galleryRoutes);
 
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);

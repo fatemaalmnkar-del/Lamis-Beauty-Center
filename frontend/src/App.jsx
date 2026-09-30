@@ -10,6 +10,7 @@ import Booking from './pages/Booking'
 import Profile from './pages/Profile'
 import AdminDashboard from './pages/AdminDashboard'
 import Kontakt from './pages/Kontakt';
+import Gallery from './pages/Gallery'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./store/authSlice";
 
@@ -42,7 +43,7 @@ function App() {
             <Link to="/services">Behandlungen</Link>
           </li>
           <li>
-            <Link to="">vorher/nachher</Link>
+            <Link to="/gallery">vorher/nachher</Link>
           </li>
           <li>
             <Link to="/Kontakt">kontakt</Link>
@@ -93,6 +94,7 @@ function App() {
         <Route path='/booking' element={<Booking/>} />
         <Route path='/admin' element={<AdminDashboard/>} />
         <Route path='/Kontakt'element={<Kontakt/>}/>
+        <Route path='/gallery' element={<Gallery/>} />
       </Routes>
 
 
