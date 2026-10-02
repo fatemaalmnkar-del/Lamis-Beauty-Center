@@ -29,6 +29,8 @@ const AdminDashboard = () => {
   useAutoDismiss(message, setMessage);
   useAutoDismiss(error, setError);
 
+
+
   const [galleryMessage, setGalleryMessage] = useState("");
   const [galleryError, setGalleryError] = useState("");
   useAutoDismiss(galleryMessage, setGalleryMessage);
@@ -43,6 +45,7 @@ const AdminDashboard = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    category: "",
     price: "",
     duration: ""
   });
@@ -101,6 +104,7 @@ useEffect(() => {
     const data = new FormData();
     data.append("title", formData.title);
     data.append("description", formData.description);
+    data.append("category", formData.category);
     data.append("price", formData.price);
     data.append("duration", formData.duration);
     if (imageFile) {
@@ -120,6 +124,7 @@ useEffect(() => {
       setFormData({
         title: "",
         description: "",
+        category: "",
         price: "",
         duration: ""
       });
@@ -143,6 +148,7 @@ useEffect(() => {
     setFormData({
       title: service.title || "",
       description: service.description || "",
+      category: service.category || "",
       price: service.price || "",
       duration: service.duration || ""
     });
@@ -186,6 +192,7 @@ useEffect(() => {
     setFormData({
       title: "",
       description: "",
+        category: "",
       price: "",
       duration: ""
     });
@@ -427,6 +434,30 @@ return (
               required
             />
           </div>
+          <div className="admin-form-group">
+            <label htmlFor="category">
+              Kategorie
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+             >
+              <option value="">Kategorie auswählen</option>
+              <option value="Gesicht">Gesicht</option>
+              <option value="Laser">Laser</option>
+              <option value="Waxing">Waxing</option>
+              <option value="Augen & Wimpern">Augen & Wimpern</option>
+              <option value="Hände & Füße">Hände & Füße</option>
+              <option value="Weitere Behandlungen">
+                Weitere Behandlungen
+              </option>
+            </select>
+          </div>
+
 
           <div className="admin-form-group">
             <label htmlFor="price">

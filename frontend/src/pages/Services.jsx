@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { getServices } from "../services/serviceService";
 import "./Services.css";
 
+
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [activeCategory, setActiveCategory] = useState("Alle");
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -24,6 +26,13 @@ const Services = () => {
 
     fetchServices();
   }, []);
+
+  const filteredServices =
+  activeCategory === "Alle"
+    ? services
+    : services.filter(
+        (service) => service.category === activeCategory
+    );
 
   if (loading) {
     return (
@@ -54,10 +63,64 @@ const Services = () => {
           und finden Sie die passende Behandlung für Ihre Bedürfnisse.
         </p>
       </section>
+      <div className="services-categories">
+
+        <button
+          className={activeCategory === "Alle" ? "active" : ""}
+          onClick={() => setActiveCategory("Alle")}
+          >
+             
+          Alle
+        </button>
+
+        <button
+          className={activeCategory === "Gesicht" ? "active" : ""}
+          onClick={() => setActiveCategory("Gesicht")}
+        >
+          
+          Gesicht
+        </button>
+
+        <button
+         className={activeCategory === "Laser" ? "active" : ""}
+          onClick={() => setActiveCategory("Laser")}
+        >
+          Laser
+        </button>
+
+        <button
+         className={activeCategory === "Waxing" ? "active" : ""}
+          onClick={() => setActiveCategory("Waxing")}
+        >
+          Waxing
+        </button>
+
+        <button
+          className={activeCategory === "Augen & Wimpern" ? "active" : ""}
+          onClick={() => setActiveCategory("Augen & Wimpern")}
+        >
+          Augen & Wimpern
+        </button>
+
+        <button
+          className={activeCategory === "Hände & Füße" ? "active" : ""}
+          onClick={() => setActiveCategory("Hände & Füße")}
+        >
+          Hände & Füße
+        </button>
+
+        <button
+          className={activeCategory === "Weitere Behandlungen" ? "active" : ""}
+          onClick={() => setActiveCategory("Weitere Behandlungen")}
+        >
+          Weitere Behandlungen
+        </button>
+
+      </div>
 
       <section className="services-container">
 
-        {services.map((service) => (
+        {filteredServices.map((service) => (
           <div className="service-card" key={service._id}>
             {service.image && (
               <img

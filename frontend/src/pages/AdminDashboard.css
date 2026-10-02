@@ -107,7 +107,8 @@ h2 {
 }
 
 .admin-form-group input,
-.admin-form-group textarea {
+.admin-form-group textarea,
+.admin-form-group select{
   width: 100%;
 
   padding: 12px 14px;

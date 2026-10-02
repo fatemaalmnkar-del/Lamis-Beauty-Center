@@ -31,7 +31,7 @@ const createService=async(req,res)=>{
      let imageUrl="";
      let imagePublicId="";
     try {
-        const { title, description, price, duration} = req.body;
+        const { title, description,category,  price, duration} = req.body;
        
         if (req.file) {
             const uploadResult=await new Promise((resolve, reject) => {
@@ -47,7 +47,7 @@ const createService=async(req,res)=>{
             imageUrl=uploadResult.secure_url;
             imagePublicId=uploadResult.public_id;
         }
-        const service= await Service.create({ title, description, price, duration, image: imageUrl, imagePublicId: imagePublicId });
+        const service= await Service.create({ title, description,category,  price, duration, image: imageUrl, imagePublicId: imagePublicId });
         res.status(201).json({ message: "Die Dienstleistung wurde erfolgreich erstellt.", service });
     } catch (error) {
         if (imagePublicId) {
@@ -81,9 +81,10 @@ const updateService=async(req,res)=>{
             service.image = uploadResult.secure_url;
             service.imagePublicId = uploadResult.public_id;
         }
-        const { title, description, price, duration } = req.body;
+        const { title, description, category, price, duration } = req.body;
         service.title = title;
         service.description = description;
+        service.category = category;
         service.price = price;
         service.duration = duration;
         await service.save();

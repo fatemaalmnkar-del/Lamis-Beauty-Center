@@ -11,6 +11,20 @@ const serviceSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    category: {
+    type: String,
+    required: true,
+    trim: true,
+    enum: [
+        "Gesicht",
+        "Laser",
+        "Waxing",
+        "Augen & Wimpern",
+        "Hände & Füße",
+        "Weitere Behandlungen"
+    ]
+    },
+
     price: {
         type: Number,
         default:null,

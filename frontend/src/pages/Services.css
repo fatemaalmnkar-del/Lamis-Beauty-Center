@@ -174,6 +174,48 @@
   }
 }
 
+/* ===== CATEGORIES ===== */
+
+.services-categories {
+  max-width: 1100px;
+  margin: 0 auto 35px;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.services-categories button {
+  padding: 10px 18px;
+
+  background-color: #ffffff;
+  color: #6d3f73;
+
+  border: 1px solid #d8c6da;
+  border-radius: 25px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.services-categories button:hover {
+  background-color: #f3eaf4;
+  border-color: #6d3f73;
+}
+
+.services-categories button.active {
+  background-color: #6d3f73;
+  color: #ffffff;
+
+  border-color: #6d3f73;
+
+  box-shadow: 0 4px 12px rgba(109, 63, 115, 0.18);
+}
+
 
 /* ===== MOBILE ===== */
 
@@ -225,3 +267,4 @@
     padding: 12px 18px;
   }
 }
+
