@@ -4,7 +4,14 @@ const Booking= require('../models/booking');
 
 const createBooking=async(req,res)=>{
  try {
-    const { service, date, time } = req.body;
+    const { service, date, time ,  customerName,customerPhone,customerEmail } = req.body;
+    if (req.user.role === "admin") {
+    if (!customerName || !customerPhone) {
+      return res.status(400).json({
+        message: "Bitte geben Sie den Kundennamen und die Telefonnummer ein."
+      });
+    }
+   }
     const existingBooking = await Booking.findOne({date,time,
       status: { $ne: "cancelled" }
      });
@@ -14,8 +21,19 @@ const createBooking=async(req,res)=>{
         message: "Dieser Termin ist bereits vergeben. Bitte wählen Sie eine andere Uhrzeit."
       });
     }
-        const booking= await Booking.create({ user:req.user.id, service, date, time });
-        res.status(201).json({ message: "Ihr Termin wurde erfolgreich gebucht.", booking });
+    const bookingData = { service,date, time};
+
+    if (req.user.role === "admin") {
+      bookingData.user = null;
+      bookingData.customerName = customerName;
+      bookingData.customerPhone = customerPhone;
+      bookingData.customerEmail = customerEmail;
+    } else {
+      bookingData.user = req.user.id;
+    }
+
+    const booking = await Booking.create(bookingData);
+    res.status(201).json({ message: "Ihr Termin wurde erfolgreich gebucht.", booking });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error", error: error.message });

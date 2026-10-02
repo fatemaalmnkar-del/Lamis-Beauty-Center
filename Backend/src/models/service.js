@@ -33,7 +33,7 @@ const serviceSchema = new mongoose.Schema({
     },
     duration: {
         type: Number,
-        required: true,
+        default:null,
         min: 1
     },
     image: {

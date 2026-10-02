@@ -21,6 +21,9 @@ const Booking = () => {
   const [bookings, setBookings] = useState([]);
 
   const [formData, setFormData] = useState({
+    customerName: "",
+    customerPhone: "",
+    customerEmail: "",
     service: serviceIdfromURL,
     date: "",
     time: ""
@@ -80,6 +83,9 @@ const Booking = () => {
       setMessage("Termin erfolgreich gebucht.");
 
       setFormData({
+        customerName: "",
+        customerPhone: "",
+        customerEmail: "",
         service: "",
         date: "",
         time: ""
@@ -139,12 +145,11 @@ const Booking = () => {
           <h1>Termin buchen</h1>
 
           <p className="booking-description">
-            Bitte melden Sie sich an, um einen Termin zu buchen
-            und Ihre Termine zu verwalten.
+           Bitte registrieren Sie sich und melden Sie sich an, um einen Termin zu buchen und Ihre Termine zu verwalten.
           </p>
 
-          <Link to="/login" className="booking-button">
-            Jetzt anmelden
+          <Link to="/register" className="booking-button">
+            Jetzt registrieren
           </Link>
 
         </section>
@@ -179,6 +184,54 @@ const Booking = () => {
         
 
         <form onSubmit={handleSubmit}>
+
+          {user.role === "admin" && (
+          <>
+            <div className="booking-form-group">
+              <label htmlFor="customerName">
+                Kundenname
+              </label>
+
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                value={formData.customerName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="booking-form-group">
+              <label htmlFor="customerPhone">
+                Telefonnummer
+              </label>
+
+              <input
+                type="text"
+                id="customerPhone"
+                name="customerPhone"
+                value={formData.customerPhone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="booking-form-group">
+              <label htmlFor="customerEmail">
+                E-Mail
+              </label>
+
+              <input
+                type="email"
+                id="customerEmail"
+                name="customerEmail"
+                value={formData.customerEmail}
+                onChange={handleChange}
+              />
+            </div>
+          </>
+          )}
 
           <div className="booking-form-group">
             <label htmlFor="service">
@@ -247,75 +300,76 @@ const Booking = () => {
         </form>
       </section>
 
-
-      <section className="my-bookings">
-        <div className="termine-bar">
-          <h1 >Meine Termine</h1>
-        </div>
-        {message && (
-        <p className="booking-success">
-          {message}
-        </p>
-        )}
-
-        {error && (
-          <p className="booking-error">
-            {error}ok
-          </p>
-        )}
-       
-
-        {bookings.length === 0 ? (
-          <p className="no-bookings">
-            Sie haben noch keine Termine.
-          </p>
-        ) : (
-          <div className="bookings-list">
-
-            {bookings.map((booking) => (
-              <div
-                className="booking-card"
-                key={booking._id}
-              >
-
-                <h3>
-                  {booking.service?.title || "Behandlung"}
-                </h3>
-
-                <p>
-                  <strong>Datum:</strong>{" "}
-                  {new Date(booking.date).toLocaleDateString("de-DE")}
-                </p>
-
-                <p>
-                  <strong>Uhrzeit:</strong>{" "}
-                  {booking.time}
-                </p>
-
-                <p>
-                  <strong>Status:</strong>{" "}
-                  {getStatusText(booking.status)}
-                </p>
-
-                {booking.status !== "cancelled" &&
-                  booking.status !== "completed" && (
-                    <button
-                      className="cancel-button"
-                      onClick={() =>
-                        handleCancel(booking._id)
-                      }
-                    >
-                      Termin stornieren
-                    </button>
-                  )}
-
-              </div>
-            ))}
-
+      {user.role !== "admin" && (
+        <section className="my-bookings">
+          <div className="termine-bar">
+            <h1 >Meine Termine</h1>
           </div>
-        )}
+          {message && (
+          <p className="booking-success">
+            {message}
+          </p>
+          )}
 
-      </section>
+          {error && (
+            <p className="booking-error">
+              {error}
+            </p>
+          )}
+        
+
+          {bookings.length === 0 ? (
+            <p className="no-bookings">
+              Sie haben noch keine Termine.
+            </p>
+          ) : (
+            <div className="bookings-list">
+
+              {bookings.map((booking) => (
+                <div
+                  className="booking-card"
+                  key={booking._id}
+                >
+
+                  <h3>
+                    {booking.service?.title || "Behandlung"}
+                  </h3>
+
+                  <p>
+                    <strong>Datum:</strong>{" "}
+                    {new Date(booking.date).toLocaleDateString("de-DE")}
+                  </p>
+
+                  <p>
+                    <strong>Uhrzeit:</strong>{" "}
+                    {booking.time}
+                  </p>
+
+                  <p>
+                    <strong>Status:</strong>{" "}
+                    {getStatusText(booking.status)}
+                  </p>
+
+                  {booking.status !== "cancelled" &&
+                    booking.status !== "completed" && (
+                      <button
+                        className="cancel-button"
+                        onClick={() =>
+                          handleCancel(booking._id)
+                        }
+                      >
+                        Termin stornieren
+                      </button>
+                    )}
+
+                </div>
+              ))}
+
+            </div>
+          )}
+
+        </section>
+      )}
 
     </main>
   );

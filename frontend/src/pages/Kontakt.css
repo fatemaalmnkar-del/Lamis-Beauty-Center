@@ -25,7 +25,7 @@
   font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #8e44ad;
+  color: #6d3f73;
   font-weight: 600;
 }
 
@@ -96,7 +96,7 @@
 .kontakt-info-card h3 {
   margin: 0 0 12px;
   font-size: 18px;
-  color: #8e44ad;
+  color: #6d3f73;
 }
 
 .kontakt-info-card p {
@@ -199,7 +199,7 @@
 
 .kontakt-form-group input:focus,
 .kontakt-form-group textarea:focus {
-  border-color: #8e44ad;
+  border-color: #6d3f73;
   box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.08);
 }
 
@@ -213,7 +213,7 @@
   border: none;
   border-radius: 4px;
 
-  background-color: #8e44ad;
+  background-color:#6d3f73;
   color: #ffffff;
 
   font-size: 15px;
@@ -332,7 +332,7 @@
   display: inline-block;
   padding: 14px 30px;
 
-  background-color: #8e44ad;
+  background-color: #6d3f73;
   color: #ffffff;
 
   border-radius: 4px;

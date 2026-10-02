@@ -596,7 +596,7 @@ return (
       <section className="admin-services">
 
         <div className="behandlung-termine-bar">
-          <h2>Vorher/Nachher Galerie</h2>
+          <h2>Vorher/Nachher Ergebnisse</h2>
         </div>
 
         {galleryMessage && (
@@ -907,13 +907,26 @@ return (
             <div className="admin-service-card" key={booking._id}>
 
               <h3>{booking.service?.title}</h3>
-              <p><strong>Kunde:</strong>{" "}{booking.user?.name}</p>
+              <p><strong>Kunde:</strong>{" "}{booking.user?.name || booking.customerName || "Kunde"}</p>
+              {(booking.user?.phone || booking.customerPhone) && (
+              <p>
+                <strong>Telefon:</strong>{" "}
+                {booking.user?.phone || booking.customerPhone}
+              </p>
+              )}
 
+              {(booking.user?.email || booking.customerEmail) && (
+              <p>
+                <strong>E-Mail:</strong>{" "}
+                {booking.user?.email || booking.customerEmail}
+              </p>
+             )}
               <p><strong>Datum:</strong>{" "}{new Date(booking.date).toLocaleDateString("de-DE")}</p>
 
               <p><strong>Uhrzeit:</strong>{" "}{booking.time}</p>
 
               <p><strong>Status:</strong>{" "} {booking.status}</p>
+
               <div className="admin-actions">
 
                 {booking.status === "pending" && (
