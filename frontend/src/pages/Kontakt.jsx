@@ -1,4 +1,5 @@
-import { useState } from "react";
+import {  useState } from "react";
+import { useSelector } from "react-redux";
 import './kontakt.css';
 import { Link } from "react-router-dom";
 import {
@@ -8,9 +9,10 @@ import {
   FaClock,
 } from "react-icons/fa";
 
-// import { createContactMessage } from "../services/contactService";import "./Kontakt.css";
+import { createContactMessage } from "../services/contactService";
 
 function Kontakt() {
+  const user = useSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +20,7 @@ function Kontakt() {
     subject: "",
     message: "",
   });
+
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,19 +41,25 @@ function Kontakt() {
       setSuccessMessage("");
       setErrorMessage("");
 
-      //const response = await createContactMessage(formData);
+      const dataToSend = {
+     ...formData,
+     name: user?.name || formData.name,
+      email: user?.email || formData.email,
+     };
 
-      // setSuccessMessage(
-      //   response.message || "Ihre Nachricht wurde erfolgreich gesendet."
-      // );
+      const response = await createContactMessage(dataToSend);
 
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+      setSuccessMessage(
+        response.message || "Ihre Nachricht wurde erfolgreich gesendet."
+      );
+
+     setFormData({
+     name: user?.name || "",
+     email: user?.email || "",
+     phone: "",
+     subject: "",
+     message: "",
+     });
     } catch (error) {
       console.error("Fehler beim Senden der Nachricht:", error);
 
@@ -140,9 +149,10 @@ function Kontakt() {
                 type="text"
                 id="name"
                 name="name"
-                value={formData.name}
+                value={user ? user.name || "" : formData.name}
                 onChange={handleChange}
                 placeholder="Ihr Name"
+                readOnly={!!user}
                 required
               />
             </div>
@@ -153,9 +163,10 @@ function Kontakt() {
                 type="email"
                 id="email"
                 name="email"
-                value={formData.email}
+                 value={user ? user.email || "" : formData.email}
                 onChange={handleChange}
                 placeholder="Ihre E-Mail-Adresse"
+                readOnly={!!user}
                 required
               />
             </div>

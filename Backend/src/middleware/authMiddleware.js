@@ -21,4 +21,38 @@ const protect = (req, res, next) => {
         return res.status(401).json({ message: 'Ihre Sitzung ist ungültig oder abgelaufen. Bitte melden Sie sich erneut an.' });
     }
 };
-module.exports = { protect };
+
+const optionalProtect = (req, res, next) => {
+    try {
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader) {
+            req.user = null;
+            return next();
+        }
+
+        const parts = authHeader.split(" ");
+
+        if (parts.length !== 2 || parts[0] !== "Bearer") {
+            req.user = null;
+            return next();
+        }
+
+        const token = parts[1];
+
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
+
+        req.user = decoded;
+
+        next();
+
+    } catch (error) {
+        req.user = null;
+        next();
+    }
+};
+
+module.exports = { protect,optionalProtect };

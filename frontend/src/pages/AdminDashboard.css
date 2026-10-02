@@ -495,3 +495,63 @@ h2 {
     margin: 50px auto;
   }
 }
+
+
+.contact-message-card {
+  width: 100%;
+  max-width: 850px;
+  padding: 30px;
+  text-align: left;
+}
+
+.contact-message-card h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.contact-message-card p {
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.contact-reply-section {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.contact-reply-section label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.contact-reply-section textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.contact-message-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.contact-message-actions button {
+  width: auto;
+  min-width: 140px;
+}
+
+.contact-existing-reply {
+  margin-bottom: 20px;
+  padding: 18px;
+  border-radius: 8px;
+  background: #f7f7f7;
+}
