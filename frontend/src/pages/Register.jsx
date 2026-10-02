@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import "./Register.css";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
+  useAutoDismiss(error, setError);
 
   const navigate = useNavigate();
 

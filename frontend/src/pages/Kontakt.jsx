@@ -8,6 +8,7 @@ import {
   FaEnvelope,
   FaClock,
 } from "react-icons/fa";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 
 import { createContactMessage } from "../services/contactService";
 
@@ -24,6 +25,8 @@ function Kontakt() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  useAutoDismiss(successMessage, setSuccessMessage);
+  useAutoDismiss(errorMessage, setErrorMessage);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {

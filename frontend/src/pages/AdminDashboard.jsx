@@ -6,6 +6,7 @@ import {getServices,createService,updateService,deleteService} from "../services
 import { getAllBookings ,  updateBookingStatus} from "../services/bookingService";
 import {getGalleryImages, createGalleryImage,deleteGalleryImage} from "../services/galleryService";
 import {getContactMessages,deleteContactMessage,replyToContactMessage} from "../services/contactService";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -20,7 +21,24 @@ const AdminDashboard = () => {
   const [replyTexts, setReplyTexts] = useState({});
 
   const [contactSuccess, setContactSuccess] = useState("");
-const [contactError, setContactError] = useState("");
+  const [contactError, setContactError] = useState(""); 
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  useAutoDismiss(contactSuccess, setContactSuccess);
+  useAutoDismiss(contactError, setContactError);
+  useAutoDismiss(message, setMessage);
+  useAutoDismiss(error, setError);
+
+  const [galleryMessage, setGalleryMessage] = useState("");
+  const [galleryError, setGalleryError] = useState("");
+  useAutoDismiss(galleryMessage, setGalleryMessage);
+  useAutoDismiss(galleryError, setGalleryError);
+
+ const [bookingMessage, setBookingMessage] = useState("");
+ const [bookingError, setBookingError] = useState("");
+  useAutoDismiss(bookingMessage, setBookingMessage);
+  useAutoDismiss(bookingError, setBookingError);
+ 
 
   const [formData, setFormData] = useState({
     title: "",
@@ -32,8 +50,7 @@ const [contactError, setContactError] = useState("");
 
   const [editingId, setEditingId] = useState(null);
 
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  
 
   const fetchServices = async () => {
     try {
@@ -182,13 +199,13 @@ useEffect(() => {
     const response = await getAllBookings();
     setBookings(response.data.bookings);
 
-    setMessage("Terminstatus erfolgreich aktualisiert.");
-    setError("");
+    setBookingMessage("Terminstatus erfolgreich aktualisiert.");
+    setBookingError("");
 
   } catch (error) {
     console.error(error);
 
-    setError(
+    setBookingError(
       error.response?.data?.message ||
       "Terminstatus konnte nicht aktualisiert werden."
     );
@@ -203,20 +220,20 @@ const handleGallerySubmit = async (e) => {
   e.preventDefault();
 
   if (!galleryImageFile) {
-    setError("Bitte wählen Sie ein Bild aus.");
+   setGalleryError("Bitte wählen Sie ein Bild aus.");
     return;
   }
 
   try {
-    setMessage("");
-    setError("");
+    setGalleryMessage("");
+    setGalleryError("");
 
     const data = new FormData();
     data.append("image", galleryImageFile);
 
     await createGalleryImage(data);
 
-    setMessage("Galeriebild erfolgreich hinzugefügt.");
+    setGalleryMessage("Galeriebild erfolgreich hinzugefügt.");
     setGalleryImageFile(null);
 
     const response = await getGalleryImages();
@@ -225,7 +242,7 @@ const handleGallerySubmit = async (e) => {
   } catch (error) {
     console.error(error);
 
-    setError(
+    setGalleryError(
       error.response?.data?.message ||
       "Galeriebild konnte nicht hinzugefügt werden."
     );
@@ -243,12 +260,12 @@ const handleDeleteGalleryImage = async (imageId) => {
   }
 
   try {
-    setMessage("");
-    setError("");
+    setGalleryMessage("");
+    setGalleryError("");
 
     await deleteGalleryImage(imageId);
 
-    setMessage("Galeriebild erfolgreich gelöscht.");
+    setGalleryMessage("Galeriebild erfolgreich gelöscht.");
 
     const response = await getGalleryImages();
     setGalleryImages(response.galleryImages);
@@ -256,7 +273,7 @@ const handleDeleteGalleryImage = async (imageId) => {
   } catch (error) {
     console.error(error);
 
-    setError(
+    setGalleryError(
       error.response?.data?.message ||
       "Galeriebild konnte nicht gelöscht werden."
     );
@@ -551,6 +568,18 @@ return (
           <h2>Vorher/Nachher Galerie</h2>
         </div>
 
+        {galleryMessage && (
+       <p className="admin-success">
+         {galleryMessage}
+       </p>
+       )}
+
+       {galleryError && (
+       <p className="admin-error">
+          {galleryError}
+       </p>
+        )}
+
         <form onSubmit={handleGallerySubmit}>
 
           <div className="admin-form-group">
@@ -829,7 +858,17 @@ return (
         <div className="behandlung-termine-bar">
           <h2>Alle Termine</h2>
         </div>
-        
+        {bookingMessage && (
+        <p className="admin-success">
+          {bookingMessage}
+        </p>
+        )}
+
+        {bookingError && (
+          <p className="admin-error">
+            {bookingError}
+          </p>
+        )}
 
         <div className="admin-services-grid">
 

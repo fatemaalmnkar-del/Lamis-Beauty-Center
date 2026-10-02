@@ -9,6 +9,7 @@ import {
   getMyBookings,
   cancelBooking
 } from "../services/bookingService";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 
 import "./Booking.css";
 
@@ -28,6 +29,8 @@ const Booking = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  useAutoDismiss(message, setMessage);
+  useAutoDismiss(error, setError);
 
   const fetchBookings = async () => {
     try {
@@ -173,17 +176,7 @@ const Booking = () => {
           und eine passende Uhrzeit.
         </p>
 
-        {message && (
-          <p className="booking-success">
-            {message}
-          </p>
-        )}
-
-        {error && (
-          <p className="booking-error">
-            {error}
-          </p>
-        )}
+        
 
         <form onSubmit={handleSubmit}>
 
@@ -259,6 +252,17 @@ const Booking = () => {
         <div className="termine-bar">
           <h1 >Meine Termine</h1>
         </div>
+        {message && (
+        <p className="booking-success">
+          {message}
+        </p>
+        )}
+
+        {error && (
+          <p className="booking-error">
+            {error}ok
+          </p>
+        )}
        
 
         {bookings.length === 0 ? (

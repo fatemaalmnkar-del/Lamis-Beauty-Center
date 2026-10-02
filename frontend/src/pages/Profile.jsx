@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getProfile, updateProfile } from "../services/userService";
 import { getMyContactMessages } from "../services/contactService";
 import { loginSuccess } from "../store/authSlice";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 import "./Profile.css";
 
 import {
@@ -24,6 +25,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  useAutoDismiss(message, setMessage);
+  useAutoDismiss(error, setError); 
 
   const [contactMessages, setContactMessages] = useState([]);
 

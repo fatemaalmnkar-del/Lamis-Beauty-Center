@@ -4,11 +4,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import "./Login.css";
+import useAutoDismiss from "../hooks/useAutoDismiss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  useAutoDismiss(error, setError);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,7 +86,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="password"> Passwort</label>
 
-            <input type="password" id="password "value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Passwort" required />
+            <input type="password" id="password"value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Passwort" required />
           </div>
 
          <button type="submit" className="login-button"> Anmelden</button>
