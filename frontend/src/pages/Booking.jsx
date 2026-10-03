@@ -7,8 +7,19 @@ import { getServices } from "../services/serviceService";
 import {
   createBooking,
   getMyBookings,
-  cancelBooking
+  cancelBooking,
+   getBookedTimes
 } from "../services/bookingService";
+import {
+  FiCalendar,
+  FiClock,
+  FiUser,
+  FiPhone,
+  FiMail,
+ 
+ 
+} from "react-icons/fi";
+import { HiOutlineSparkles } from "react-icons/hi2";
 import useAutoDismiss from "../hooks/useAutoDismiss";
 
 import "./Booking.css";
@@ -19,6 +30,7 @@ const Booking = () => {
   const serviceIdfromURL = searchParams.get("serviceId") || "";
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [bookedTimes, setBookedTimes] = useState([]);
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -45,6 +57,19 @@ const Booking = () => {
     }
   };
 
+  const [dateOffset, setDateOffset] = useState(0);
+
+  const availableTimes = [  "10:00",
+  "11:00",
+  "12:00",
+  "13:00",
+  "14:00",
+  "15:00",
+  "16:00",
+  "17:00",
+  "18:00"
+ ];
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -63,6 +88,27 @@ const Booking = () => {
 
     loadData();
   }, []);
+
+
+  useEffect(() => {
+  const fetchBookedTimes = async () => {
+    if (!formData.date) {
+      setBookedTimes([]);
+      return;
+    }
+
+    try {
+      const response = await getBookedTimes(formData.date);
+
+      setBookedTimes(response.data.bookedTimes);
+    } catch (error) {
+      console.error(error);
+      setBookedTimes([]);
+    }
+  };
+
+  fetchBookedTimes();
+ }, [formData.date]);
 
   const handleChange = (e) => {
     setFormData({
@@ -165,6 +211,41 @@ const Booking = () => {
     );
   }
 
+
+  const formatDateValue = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+const getDateOptions = () => {
+  const options = [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  for (let i = 0; i < 7; i++) {
+    const currentDate = new Date(today);
+    currentDate.setDate(today.getDate() + dateOffset + i);
+
+    options.push({
+      value: formatDateValue(currentDate),
+      dayName: currentDate.toLocaleDateString("de-DE", {
+        weekday: "short"
+      }),
+      dayNumber: currentDate.getDate(),
+      monthName: currentDate.toLocaleDateString("de-DE", {
+        month: "long"
+      }),
+      isSunday: currentDate.getDay() === 0,
+    });
+  }
+
+  return options;
+};
+const dateOptions = getDateOptions();
+
+
   return (
     <main className="booking-page">
 
@@ -185,58 +266,13 @@ const Booking = () => {
 
         <form onSubmit={handleSubmit}>
 
-          {user.role === "admin" && (
-          <>
-            <div className="booking-form-group">
-              <label htmlFor="customerName">
-                Kundenname
-              </label>
-
-              <input
-                type="text"
-                id="customerName"
-                name="customerName"
-                value={formData.customerName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="booking-form-group">
-              <label htmlFor="customerPhone">
-                Telefonnummer
-              </label>
-
-              <input
-                type="text"
-                id="customerPhone"
-                name="customerPhone"
-                value={formData.customerPhone}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="booking-form-group">
-              <label htmlFor="customerEmail">
-                E-Mail
-              </label>
-
-              <input
-                type="email"
-                id="customerEmail"
-                name="customerEmail"
-                value={formData.customerEmail}
-                onChange={handleChange}
-              />
-            </div>
-          </>
-          )}
+        
 
           <div className="booking-form-group">
-            <label htmlFor="service">
-              Behandlung
-            </label>
+            <div className="booking-section-title">
+              <HiOutlineSparkles className="section-icon" />
+              <span>Behandlung</span>
+            </div>
 
             <select
               id="service"
@@ -261,34 +297,151 @@ const Booking = () => {
           </div>
 
           <div className="booking-form-group">
-            <label htmlFor="date">
-              Datum
-            </label>
+            <div className="booking-section-title">
+              <FiCalendar className="section-icon" />
+              <span>Datum auswählen</span>
+            </div>
 
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
+            <div className="booking-date-nav">
+              <button
+                type="button"
+                className="date-nav-button"
+                onClick={() => setDateOffset(Math.max(0, dateOffset - 7))}
+                disabled={dateOffset === 0}
+              >
+                ‹
+              </button>
+
+              <span className="booking-date-month">
+                {dateOptions[0]?.monthName}
+              </span>
+
+              <button
+                type="button"
+                className="date-nav-button"
+                onClick={() => setDateOffset(dateOffset + 7)}
+              >
+                ›
+              </button>
+            </div>
+
+            <div className="booking-date-list">
+              {dateOptions.map((item) => (
+                <button
+                  type="button"
+                  key={item.value}
+                  disabled={item.isSunday}
+                  className={`date-button ${
+                    formData.date === item.value ? "active" : ""
+                  }`}
+                  onClick={() =>
+                    setFormData({
+                      ...formData,
+                      date: item.value,
+                      time: ""
+                    })
+                  }
+                >
+                  <span>{item.dayName}</span>
+                  <strong>{item.dayNumber}</strong>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="booking-form-group">
-            <label htmlFor="time">
-              Uhrzeit
-            </label>
+              <div className="booking-section-title">
+                <FiClock className="section-icon" />
+                <span>Uhrzeit auswählen</span>
+              </div>
+             <div className="booking-times">
+              {availableTimes.map((time) => {
+                const isBooked = bookedTimes.includes(time);
 
-            <input
-              type="time"
-              id="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-            />
+                return (
+                  <button
+                    key={time}
+                    type="button"
+                    disabled={isBooked}
+                    className={
+                      formData.time === time
+                        ? "time-button active"
+                        : "time-button"
+                    }
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        time
+                      })
+                    }
+                  >
+                    {time}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {user.role === "admin" && (
+            <div className="customer-data-section">
+              <div className="booking-section-title">
+                <FiUser className="section-icon" />
+                <span>Kundendaten</span>
+              </div>
+
+              <div className="booking-form-group">
+                <label htmlFor="customerName" className="icon-label">
+                  <FiUser className="label-icon" />
+                  <span>Kundenname</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="customerName"
+                  name="customerName"
+                  value={formData.customerName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="customer-contact-row">
+
+                <div className="booking-form-group">
+                  <label htmlFor="customerPhone" className="icon-label">
+                    <FiPhone className="label-icon" />
+                    <span>Telefonnummer</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    id="customerPhone"
+                    name="customerPhone"
+                    value={formData.customerPhone}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="booking-form-group">
+                  <label htmlFor="customerEmail" className="icon-label">
+                    <FiMail className="label-icon" />
+                    <span>E-Mail</span>
+                  </label>
+
+                  <input
+                    type="email"
+                    id="customerEmail"
+                    name="customerEmail"
+                    value={formData.customerEmail}
+                    onChange={handleChange}
+                  />
+                </div>
+
+              </div>
+
+            </div>
+          )}
 
           <button
             type="submit"

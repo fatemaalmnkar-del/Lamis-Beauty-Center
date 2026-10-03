@@ -17,3 +17,7 @@ export const getAllBookings = () => {
 export const updateBookingStatus = (bookingId, status) => {
   return api.patch(`/bookings/status/${bookingId}`, { status });
 };
+
+export const getBookedTimes = (date) => {
+  return api.get(`/bookings/booked-times?date=${date}`);
+};

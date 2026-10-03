@@ -5,6 +5,14 @@ const Booking= require('../models/booking');
 const createBooking=async(req,res)=>{
  try {
     const { service, date, time ,  customerName,customerPhone,customerEmail } = req.body;
+    const bookingDate = new Date(date);
+
+    if (bookingDate.getDay() === 0) {
+      return res.status(400).json({
+        message: "Am Sonntag sind keine Termine verfügbar."
+      });
+    }
+
     if (req.user.role === "admin") {
     if (!customerName || !customerPhone) {
       return res.status(400).json({
@@ -129,9 +137,41 @@ const updateBookingStatus = async (req, res) => {
   }
 };
 
+const getBookedTimes = async (req, res) => {
+  try {
+    const { date } = req.query;
+
+    if (!date) {
+      return res.status(400).json({
+        message: "Bitte wählen Sie ein Datum aus."
+      });
+    }
+
+    const bookings = await Booking.find({
+      date: new Date(date),
+      status: { $ne: "cancelled" }
+    }).select("time");
+
+    const bookedTimes = bookings.map((booking) => booking.time);
+
+    res.status(200).json({
+      bookedTimes
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Die gebuchten Uhrzeiten konnten nicht geladen werden.",
+      error: error.message
+    });
+  }
+};
+
 module.exports={
     createBooking,
     getMyBookings,
     cancelBooking,getAllBookings,
-    updateBookingStatus
+    updateBookingStatus,
+    getBookedTimes
 };
