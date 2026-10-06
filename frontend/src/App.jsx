@@ -12,8 +12,9 @@ import AdminDashboard from './pages/AdminDashboard'
 import Kontakt from './pages/Kontakt';
 import Gallery from './pages/Gallery'
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "./store/authSlice";
+import { logout } from "./store/authSlice"
 
+import About from './pages/About';
 
 function App() {
 
@@ -37,7 +38,7 @@ function App() {
             <Link to="/">Startseite</Link>
           </li>
           <li>
-            <Link to="/">Über Uns</Link>
+            <Link to="/about">Über Uns</Link>
           </li>
           <li>
             <Link to="/services">Behandlungen</Link>
@@ -95,6 +96,7 @@ function App() {
         <Route path='/admin' element={<AdminDashboard/>} />
         <Route path='/Kontakt'element={<Kontakt/>}/>
         <Route path='/gallery' element={<Gallery/>} />
+        <Route path='/about' element={<About/>} />
       </Routes>
 
 
