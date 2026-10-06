@@ -13,7 +13,7 @@ import Kontakt from './pages/Kontakt';
 import Gallery from './pages/Gallery'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./store/authSlice"
-
+import Reviews from "./pages/Reviews";
 import About from './pages/About';
 
 function App() {
@@ -97,6 +97,7 @@ function App() {
         <Route path='/Kontakt'element={<Kontakt/>}/>
         <Route path='/gallery' element={<Gallery/>} />
         <Route path='/about' element={<About/>} />
+        <Route path="/reviews" element={<Reviews />} />
       </Routes>
 
 
