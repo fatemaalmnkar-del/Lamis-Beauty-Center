@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ImageGallery from "react-image-gallery";
+
 import { getGalleryImages } from "../services/galleryService";
+
+import "react-image-gallery/styles/image-gallery.css";
 import "./Gallery.css";
 
 function Gallery() {
@@ -11,7 +15,8 @@ function Gallery() {
     const loadGalleryImages = async () => {
       try {
         const data = await getGalleryImages();
-        setGalleryImages(data.galleryImages);
+
+        setGalleryImages(data.galleryImages || []);
       } catch (error) {
         console.error("Fehler beim Laden der Galerie:", error);
       } finally {
@@ -22,17 +27,78 @@ function Gallery() {
     loadGalleryImages();
   }, []);
 
+  /*
+    كل صورتين يصيروا زوج:
+    الصورة الأولى = Vorher
+    الصورة الثانية = Nachher
+  */
+
+  const imagePairs = [];
+
+  for (let i = 0; i < galleryImages.length; i += 2) {
+    imagePairs.push({
+      before: galleryImages[i],
+      after: galleryImages[i + 1] || null,
+    });
+  }
+
+  const images = imagePairs.map((pair) => ({
+    original: pair.before.image,
+    thumbnail: pair.before.image,
+
+    renderItem: () => (
+      <div className="before-after-slide">
+
+        <div className="before-after-image">
+          <img
+            src={pair.before.image}
+            alt="Vorher"
+          />
+
+          <span className="before-after-label">
+            Vorher
+          </span>
+        </div>
+
+        {pair.after && (
+          <div className="before-after-image">
+            <img
+              src={pair.after.image}
+              alt="Nachher"
+            />
+
+            <span className="before-after-label">
+              Nachher
+            </span>
+          </div>
+        )}
+
+      </div>
+    ),
+  }));
+
   if (loading) {
-    return <p className="gallery-loading">Galerie wird geladen...</p>;
+    return (
+      <p className="gallery-loading">
+        Galerie wird geladen...
+      </p>
+    );
   }
 
   return (
     <main className="gallery-page">
 
-      <section className="gallery-hero">
-        <p className="gallery-label">ECHTE ERGEBNISSE</p>
+      {/* ===== Hero ===== */}
 
-        <h1>Vorher & Nachher</h1>
+      <section className="gallery-hero">
+
+        <p className="gallery-label">
+          ECHTE ERGEBNISSE
+        </p>
+
+        <h1>
+          Vorher & Nachher
+        </h1>
 
         <p className="gallery-intro">
           Schönheit zeigt sich in den Details.
@@ -41,31 +107,51 @@ function Gallery() {
         </p>
 
         <div className="gallery-divider"></div>
+
       </section>
 
+
+      {/* ===== Gallery ===== */}
+
       <section className="gallery-section">
+
         {galleryImages.length === 0 ? (
+
           <p className="gallery-empty">
             Derzeit sind noch keine Bilder verfügbar.
           </p>
+
         ) : (
-          <div className="gallery-grid">
-            {galleryImages.map((galleryImage) => (
-              <div className="gallery-item" key={galleryImage._id}>
-                <img
-                  src={galleryImage.image}
-                  alt="Vorher und Nachher Ergebnis"
-                />
-              </div>
-            ))}
+
+          <div className="gallery-slider">
+
+            <ImageGallery
+              items={images}
+              showPlayButton={false}
+              showFullscreenButton={true}
+              showThumbnails={true}
+              showNav={true}
+              slideDuration={400}
+            />
+
           </div>
+
         )}
+
       </section>
 
-      <section className="gallery-cta">
-        <p className="gallery-label">LAMIS BEAUTY CENTER</p>
 
-        <h2>Ihre Schönheit. Unsere Leidenschaft.</h2>
+      {/* ===== CTA ===== */}
+
+      <section className="gallery-cta">
+
+        <p className="gallery-label">
+          LAMIS BEAUTY CENTER
+        </p>
+
+        <h2>
+          Ihre Schönheit. Unsere Leidenschaft.
+        </h2>
 
         <p>
           Sie möchten Ihr persönliches Ergebnis erleben?
@@ -73,19 +159,28 @@ function Gallery() {
         </p>
 
         <div className="gallery-actions">
-          <Link to="/services" className="gallery-button">
+
+          <Link
+            to="/services"
+            className="gallery-button"
+          >
             Behandlungen entdecken
           </Link>
 
-          <Link to="/booking" className="gallery-button gallery-button-outline">
+          <Link
+            to="/booking"
+            className="gallery-button gallery-button-outline"
+          >
             Termin buchen
           </Link>
+
         </div>
 
         <p className="gallery-note">
           Hinweis: Die dargestellten Ergebnisse sind individuell.
           Behandlungsergebnisse können von Person zu Person variieren.
         </p>
+
       </section>
 
     </main>
