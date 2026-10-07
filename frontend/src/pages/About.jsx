@@ -7,12 +7,16 @@ import {
   FiBookOpen,
   FiUsers,
   FiMapPin,
-  FiClock,
+  FiClock
 } from "react-icons/fi";
 
 const About = () => {
   return (
     <main className="about-page">
+      {/* =========================
+          HERO
+      ========================= */}
+
       <section className="about-hero">
         <img
           src="/images/lamis.png"
@@ -54,9 +58,15 @@ const About = () => {
         </div>
       </section>
 
+      {/* =========================
+          ÜBER LAMIS
+      ========================= */}
+
       <section className="about-lamis-info">
         <div className="about-lamis-text">
-          <p className="section-label">ÜBER LAMIS</p>
+          <p className="section-label">
+            ÜBER LAMIS
+          </p>
 
           <h2>
             Fachwissen. Erfahrung. <span>Leidenschaft.</span>
@@ -82,7 +92,10 @@ const About = () => {
             </div>
 
             <h3>5 Jahre Erfahrung</h3>
-            <p>Fundiertes Fachwissen und praktische Erfahrung.</p>
+
+            <p>
+              Fundiertes Fachwissen und praktische Erfahrung.
+            </p>
           </div>
 
           <div className="qualification-card">
@@ -91,7 +104,10 @@ const About = () => {
             </div>
 
             <h3>Moderne Geräte</h3>
-            <p>Professionelle Technik für hochwertige Behandlungen.</p>
+
+            <p>
+              Professionelle Technik für hochwertige Behandlungen.
+            </p>
           </div>
 
           <div className="qualification-card">
@@ -100,7 +116,10 @@ const About = () => {
             </div>
 
             <h3>NiSV-Zertifizierung</h3>
-            <p>Zertifizierte Fachkenntnisse im Bereich NiSV.</p>
+
+            <p>
+              Zertifizierte Fachkenntnisse im Bereich NiSV.
+            </p>
           </div>
 
           <div className="qualification-card">
@@ -109,15 +128,24 @@ const About = () => {
             </div>
 
             <h3>Fachdozentin</h3>
-            <p>Fachwissen, Schulungen und praxisnahe Weiterbildung.</p>
+
+            <p>
+              Fachwissen, Schulungen und praxisnahe Weiterbildung.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* =========================
+          STUDIO
+      ========================= */}
+
       <section className="about-studio">
         <div className="about-studio-header">
           <div>
-            <p className="section-label">UNSERE RÄUMLICHKEITEN</p>
+            <p className="section-label">
+              UNSERE RÄUMLICHKEITEN
+            </p>
 
             <h2>
               Modern. Stilvoll. <span>Zum Wohlfühlen.</span>
@@ -133,27 +161,47 @@ const About = () => {
 
         <div className="studio-gallery">
           <div className="studio-item">
-            <img src="/images/reception.jpg" alt="Empfangsbereich" />
+            <img
+              src="/images/reception.jpg"
+              alt="Empfangsbereich"
+            />
+
             <p>Empfangsbereich</p>
           </div>
 
           <div className="studio-item">
-            <img src="/images/treatment.jpg" alt="Behandlungsbereich" />
+            <img
+              src="/images/treatment.jpg"
+              alt="Behandlungsbereich"
+            />
+
             <p>Behandlungsbereich</p>
           </div>
 
           <div className="studio-item">
-            <img src="/images/Wartebereich.jpg" alt="Wartebereich" />
+            <img
+              src="/images/Wartebereich.jpg"
+              alt="Wartebereich"
+            />
+
             <p>Wartebereich</p>
           </div>
 
           <div className="studio-item">
-            <img src="/images/bebe.jpg" alt="Wartebereich" />
+            <img
+              src="/images/bebe.jpg"
+              alt="Wartebereich"
+            />
+
             <p>Behandlungsraum</p>
           </div>
 
           <div className="studio-item">
-            <img src="/images/lll.jpg" alt="Wartebereich" />
+            <img
+              src="/images/lll.jpg"
+              alt="Wartebereich"
+            />
+
             <p>Unser Studio</p>
           </div>
 
@@ -162,19 +210,29 @@ const About = () => {
               src="/images/behandlungsbereich.jpg"
               alt="Behandlungsraum"
             />
+
             <p>Behandlungsraum</p>
           </div>
         </div>
       </section>
 
+      {/* =========================
+          CERTIFICATES
+      ========================= */}
+
       <section className="certificates-section">
         <div className="certificates-left">
-          <img src="/images/certificates.jpg" alt="Zertifikate" />
+          <img
+            src="/images/certificates.jpg"
+            alt="Zertifikate"
+          />
         </div>
 
         <div
           className="certificates-right"
-          style={{ backgroundImage: "url('/images/certificat.jpg')" }}
+          style={{
+            backgroundImage: "url('/images/certificat.jpg')"
+          }}
         >
           <div className="certificates-text">
             <p className="certificates-label">
@@ -218,8 +276,14 @@ const About = () => {
         </div>
       </section>
 
+      {/* =========================
+          MISSION
+      ========================= */}
+
       <section className="about-mission">
-        <p className="section-label">UNSERE MISSION</p>
+        <p className="section-label">
+          UNSERE MISSION
+        </p>
 
         <h2>
           Schönheit. Wissen. <span>Qualität.</span>
@@ -234,7 +298,9 @@ const About = () => {
 
         <div className="mission-points">
           <div className="mission-card">
-            <div className="mission-icon">✦</div>
+            <div className="mission-icon">
+              ✦
+            </div>
 
             <h3>Persönliche Beratung</h3>
 
@@ -244,7 +310,9 @@ const About = () => {
           </div>
 
           <div className="mission-card">
-            <div className="mission-icon">✧</div>
+            <div className="mission-icon">
+              ✧
+            </div>
 
             <h3>Moderne Technologien</h3>
 
@@ -255,7 +323,9 @@ const About = () => {
           </div>
 
           <div className="mission-card">
-            <div className="mission-icon">✦</div>
+            <div className="mission-icon">
+              ✦
+            </div>
 
             <h3>Kontinuierliche Weiterbildung</h3>
 
@@ -267,9 +337,15 @@ const About = () => {
         </div>
       </section>
 
+      {/* =========================
+          VISIT
+      ========================= */}
+
       <section className="visit-section">
         <div className="visit-content">
-          <p className="section-label">BESUCHEN SIE UNS</p>
+          <p className="section-label">
+            BESUCHEN SIE UNS
+          </p>
 
           <h2>
             Besuchen Sie <span>uns.</span>
@@ -287,7 +363,9 @@ const About = () => {
               </span>
 
               <div>
-                <strong>Lamis Kosmetik Akademie</strong>
+                <strong>
+                  Lamis Kosmetik Akademie
+                </strong>
 
                 <p>
                   <span style={{ color: "#8B6F47" }}>
@@ -303,7 +381,9 @@ const About = () => {
               </span>
 
               <div>
-                <strong>Öffnungszeiten</strong>
+                <strong>
+                  Öffnungszeiten
+                </strong>
 
                 <p style={{ color: "#8B6F47" }}>
                   Mo – Sa: 10:00 – 18:00 Uhr
@@ -312,14 +392,12 @@ const About = () => {
             </div>
           </div>
 
-       
-          
-        <Link
-          to="/booking"
-        className="visit-button"
-        >
-          Termin buchen
-        </Link>
+          <Link
+            to="/booking"
+            className="visit-button"
+          >
+            Termin buchen
+          </Link>
         </div>
 
         <div className="visit-image">
