@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes,Route,Link } from 'react-router-dom'
 import { FaFacebookF, FaInstagram,FaEnvelope,FaPhoneAlt,FaMapMarkerAlt } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
@@ -19,9 +20,12 @@ import About from './pages/About';
 function App() {
 
  const user = useSelector((state) => state.auth.user);
+
+ const [menuOpen, setMenuOpen] = useState(false);
  const dispatch = useDispatch();
  const handleLogout = () => {
   dispatch(logout());
+  setMenuOpen(false);
 };
 
   return (
@@ -32,8 +36,15 @@ function App() {
           <img src='/lamis-logo.png' alt='lamis-logo' className='brand-logo'/>
 
         </div>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menü öffnen"
+        >
+          ☰
+        </button>
     
-       <ul>
+       <ul className={menuOpen ? "nav-menu active" : "nav-menu"}  onClick={() => setMenuOpen(false)}>
           <li>
             <Link to="/">Startseite</Link>
           </li>
