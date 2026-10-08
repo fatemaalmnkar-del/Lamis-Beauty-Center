@@ -32,6 +32,7 @@ const Booking = () => {
   const [bookingFilter, setBookingFilter] = useState("all");
   const [bookings, setBookings] = useState([]);
   const [bookedTimes, setBookedTimes] = useState([]);
+ const [serviceMenuOpen, setServiceMenuOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -123,6 +124,11 @@ const Booking = () => {
 
     setMessage("");
     setError("");
+
+    if (!formData.service) {
+      setError("Bitte wählen Sie eine Behandlung aus.");
+      return;
+    }
 
     try {
       await createBooking(formData);
@@ -253,6 +259,9 @@ const getDateOptions = () => {
 };
 const dateOptions = getDateOptions();
 
+const selectedService = services.find(
+  (service) => service._id === formData.service
+);
 
   return (
     <main className="booking-page">
@@ -282,26 +291,47 @@ const dateOptions = getDateOptions();
               <span>Behandlung</span>
             </div>
 
-            <select
-              id="service"
-              name="service"
-              value={formData.service}
-              onChange={handleChange}
-              required
+         <div className="custom-select">
+            <button
+              type="button"
+              className="custom-select-button"
+              onClick={() => setServiceMenuOpen(!serviceMenuOpen)}
             >
-              <option value="">
-                Behandlung auswählen
-              </option>
+              <span>
+                {selectedService
+                  ? `${selectedService.title} - ${selectedService.price} €`
+                  : "Behandlung auswählen"}
+              </span>
 
-              {services.map((service) => (
-                <option
-                  key={service._id}
-                  value={service._id}
-                >
-                  {service.title} - {service.price} €
-                </option>
-              ))}
-            </select>
+              <span className="custom-select-arrow">
+                {serviceMenuOpen ? "▲" : "▼"}
+              </span>
+            </button>
+
+            {serviceMenuOpen && (
+              <div className="custom-select-menu">
+                {services.map((service) => (
+                  <button
+                    type="button"
+                    key={service._id}
+                    className={`custom-select-option ${
+                      formData.service === service._id ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setFormData({
+                        ...formData,
+                        service: service._id
+                      });
+
+                      setServiceMenuOpen(false);
+                    }}
+                  >
+                    <span>{service.title}</span>
+                    <strong>{service.price} €</strong>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="booking-form-group">
@@ -331,6 +361,7 @@ const dateOptions = getDateOptions();
               >
                 ›
               </button>
+              </div>
             </div>
 
             <div className="booking-date-list">

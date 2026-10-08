@@ -80,9 +80,7 @@
 
 .section-icon {
   color: #b08a3c;
-
   font-size: 18px;
-
   flex-shrink: 0;
 }
 
@@ -90,6 +88,8 @@
 /* ===== FORM GROUPS ===== */
 
 .booking-form-group {
+  width: 100%;
+  min-width: 0;
   margin-bottom: 20px;
 }
 
@@ -111,15 +111,15 @@
 
 .label-icon {
   color: #6d3f73;
-
   font-size: 16px;
-
   flex-shrink: 0;
 }
 
 .booking-form-group input,
 .booking-form-group select {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 
   padding: 12px 14px;
 
@@ -132,13 +132,146 @@
   font-size: 14px;
 
   outline: none;
+  box-sizing: border-box;
 
   transition: 0.2s;
+}
+
+.booking-form-group select {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .booking-form-group input:focus,
 .booking-form-group select:focus {
   border-color: #6d3f73;
+}
+
+
+/* ===== CUSTOM SERVICE DROPDOWN ===== */
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-button {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d9cedb;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: #514654;
+
+  font-size: 14px;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.custom-select-button:hover,
+.custom-select-button:focus {
+  border-color: #6d3f73;
+}
+
+.custom-select-button span:first-child {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-arrow {
+  flex-shrink: 0;
+
+  color: #6d3f73;
+
+  font-size: 11px;
+}
+
+.custom-select-menu {
+  position: absolute;
+
+  top: calc(100% + 6px);
+  left: 0;
+
+  width: 100%;
+  max-height: 240px;
+
+  overflow-y: auto;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d9cedb;
+  border-radius: 8px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+  z-index: 100;
+}
+
+.custom-select-option {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  border: none;
+  border-bottom: 1px solid #eee5ef;
+
+  background-color: #ffffff;
+  color: #514654;
+
+  font-size: 14px;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.custom-select-option:last-child {
+  border-bottom: none;
+}
+
+.custom-select-option:hover {
+  background-color: #f7f0f8;
+}
+
+.custom-select-option.active {
+  background-color: #f2e9f4;
+  color: #6d3f73;
+}
+
+.custom-select-option span {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-option strong {
+  flex-shrink: 0;
+
+  color: #b08a3c;
+
+  font-size: 13px;
 }
 
 
@@ -242,7 +375,9 @@
   background-color: #f3f3f3;
   color: #aaa;
   border-color: #e3e3e3;
+
   cursor: not-allowed;
+
   opacity: 0.6;
 }
 
@@ -426,6 +561,11 @@
 }
 
 .booking-card {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
   padding: 25px;
 
   background-color: #ffffff;
@@ -434,20 +574,15 @@
   border-radius: 10px;
 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .booking-card h3 {
+  min-height: 46px;
   margin-bottom: 15px;
 
   color: #6d3f73;
 
   font-size: 19px;
-    min-height: 46px;
 }
 
 .booking-card p {
@@ -459,7 +594,7 @@
 }
 
 .cancel-button {
-  margin-top:auto;
+  margin-top: auto;
 
   padding: 10px 16px;
 
@@ -537,6 +672,15 @@
   .booking-form-group input,
   .booking-form-group select {
     font-size: 16px;
+  }
+
+  .custom-select-button,
+  .custom-select-option {
+    font-size: 14px;
+  }
+
+  .custom-select-menu {
+    max-height: 220px;
   }
 
   .booking-date-month {
