@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import {getServices,createService,updateService,deleteService} from "../services/serviceService";
 import { getAllBookings ,  updateBookingStatus} from "../services/bookingService";
 import {getGalleryImages, createGalleryImage,deleteGalleryImage} from "../services/galleryService";
-import {getContactMessages,deleteContactMessage,replyToContactMessage} from "../services/contactService";
+
 import useAutoDismiss from "../hooks/useAutoDismiss";
 import "./AdminDashboard.css";
 
@@ -17,15 +17,12 @@ const AdminDashboard = () => {
   const [galleryImages, setGalleryImages] = useState([]);
   const [galleryImageFile, setGalleryImageFile] = useState(null);
 
-  const [contactMessages, setContactMessages] = useState([]);
-  const [replyTexts, setReplyTexts] = useState({});
 
-  const [contactSuccess, setContactSuccess] = useState("");
-  const [contactError, setContactError] = useState(""); 
+
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  useAutoDismiss(contactSuccess, setContactSuccess);
-  useAutoDismiss(contactError, setContactError);
+
   useAutoDismiss(message, setMessage);
   useAutoDismiss(error, setError);
 
@@ -72,12 +69,12 @@ useEffect(() => {
       const servicesResponse = await getServices();
       const bookingsResponse = await getAllBookings();
       const galleryResponse = await getGalleryImages();
-      const contactResponse = await getContactMessages();
+    
 
       setServices(servicesResponse.data);
       setBookings(bookingsResponse.data.bookings);
       setGalleryImages(galleryResponse.galleryImages);
-      setContactMessages(contactResponse.contactMessages);
+      
     } catch (error) {
       console.error(error);
     }
@@ -286,82 +283,11 @@ const handleDeleteGalleryImage = async (imageId) => {
     );
   }
 };
-const handleDeleteContactMessage = async (messageId) => {
-  const confirmed = window.confirm(
-    "Möchten Sie diese Nachricht wirklich löschen?"
-  );
 
-  if (!confirmed) {
-    return;
-  }
 
-  try {
-    setContactSuccess("");
-    setContactError("");
 
-    await deleteContactMessage(messageId);
 
-    setContactSuccess("Nachricht erfolgreich gelöscht.");
 
-    const response = await getContactMessages();
-    setContactMessages(response.contactMessages);
-
-  } catch (error) {
-    console.error(error);
-
-    setContactError(
-      error.response?.data?.message ||
-      "Nachricht konnte nicht gelöscht werden."
-    );
-  }
-};
-
-const handleReplyChange = (messageId, value) => {
-  setReplyTexts({
-    ...replyTexts,
-    [messageId]: value
-  });
-};
-
-const handleReplyContactMessage = async (messageId) => {
-  const reply = replyTexts[messageId];
-
-  if (!reply || !reply.trim()) {
-    setContactError("Bitte schreiben Sie eine Antwort.");
-    return;
-  }
-
-  try {
-    setContactSuccess("");
-    setContactError("");
-
-    await replyToContactMessage(
-      messageId,
-      reply
-    );
-
-    setContactSuccess("Antwort wurde erfolgreich gesendet.");
-
-    setReplyTexts({
-      ...replyTexts,
-      [messageId]: ""
-    });
-
-    const response = await getContactMessages();
-
-    setContactMessages(
-      response.contactMessages
-    );
-
-  } catch (error) {
-    console.error(error);
-
-    setContactError(
-      error.response?.data?.message ||
-      "Antwort konnte nicht gesendet werden."
-    );
-  }
-};
 
 
 if (!user || user.role !== "admin") {
@@ -683,206 +609,6 @@ return (
 
       
 
-      <section className="admin-services">
-
-        <div className="behandlung-termine-bar">
-          <h2>Kontaktanfragen</h2>
-        </div>
-        {contactSuccess && (
-          <p className="admin-success">
-            {contactSuccess}
-          </p>
-          )}
-
-          {contactError && (
-            <p className="admin-error">
-              {contactError}
-            </p>
-          )}
-
-        {contactMessages.length === 0 ? (
-          <p>Es sind noch keine Kontaktanfragen vorhanden.</p>
-        ) : (
-          <div className="admin-services-grid">
-
-            {contactMessages.map((contactMessage) => (
-
-              <div
-                className="admin-service-card contact-message-card"
-                key={contactMessage._id}
-              >
-
-                <h3>{contactMessage.subject}</h3>
-
-                <p>
-                  <strong>Name:</strong>{" "}
-                  {contactMessage.name}
-                </p>
-
-                <p>
-                  <strong>E-Mail:</strong>{" "}
-                  <a href={`mailto:${contactMessage.email}`}>
-                    {contactMessage.email}
-                  </a>
-                </p>
-
-                {contactMessage.phone && (
-                  <p>
-                    <strong>Telefon:</strong>{" "}
-                    <a href={`tel:${contactMessage.phone}`}>
-                      {contactMessage.phone}
-                    </a>
-                  </p>
-                )}
-
-                <p>
-                  <strong>Nachricht:</strong>
-                </p>
-
-                <p>{contactMessage.message}</p>
-
-                <p>
-                  <strong>Erhalten am:</strong>{" "}
-                  {new Date(
-                    contactMessage.createdAt
-                  ).toLocaleString("de-DE")}
-                </p>
-
-
-                
-
-                {contactMessage.user ? (
-
-               <div className="contact-reply-section">
-                  {contactMessage.reply && (
-                    <div className="contact-existing-reply">
-
-                      <p>
-                        <strong>
-                          Antwort vom Lamis Beauty Center:
-                        </strong>
-                      </p>
-
-                      <p>{contactMessage.reply}</p>
-
-                      {contactMessage.repliedAt && (
-                        <p>
-                          <small>
-                            Beantwortet am:{" "}
-                            {new Date(
-                              contactMessage.repliedAt
-                            ).toLocaleString("de-DE")}
-                          </small>
-                        </p>
-                      )}
-
-                    </div>
-                  )}
-
-                  <label>
-                    <strong>
-                      {contactMessage.reply
-                        ? "Antwort bearbeiten"
-                        : "Antwort schreiben"}
-                    </strong>
-                  </label>
-
-                  <textarea
-                    value={replyTexts[contactMessage._id] || ""}
-                    onChange={(e) =>
-                      handleReplyChange(
-                        contactMessage._id,
-                        e.target.value
-                      )
-                    }
-                    placeholder="Antwort an die Kundin schreiben..."
-                    rows="4"
-                  />
-
-                  <div className="contact-message-actions">
-
-                    <button
-                      type="button"
-                      className="edit-button"
-                      onClick={() =>
-                        handleReplyContactMessage(
-                          contactMessage._id
-                        )
-                      }
-                    >
-                      {contactMessage.reply
-                        ? "Antwort aktualisieren"
-                        : "Antwort senden"}
-                    </button>
-
-                    <button
-                      type="button"
-                      className="delete-button"
-                      onClick={() =>
-                        handleDeleteContactMessage(
-                          contactMessage._id
-                        )
-                      }
-                    >
-                      Löschen
-                    </button>
-
-                  </div>
-
-                </div>
-
-               ) : (
-
-                <div className="contact-guest-info">
-
-                  <p>
-                    <strong>Gastanfrage</strong>
-                  </p>
-
-                  <p>
-                    Diese Anfrage wurde ohne Kundenkonto gesendet.
-                    Die Antwort erfolgt per E-Mail oder Telefon.
-                  </p>
-
-                  <div className="contact-message-actions">
-
-                    <a
-                      href={`mailto:${contactMessage.email}`}
-                      className="edit-button"
-                    >
-                      Per E-Mail antworten
-                    </a>
-
-                    <button
-                      type="button"
-                      className="delete-button"
-                      onClick={() =>
-                        handleDeleteContactMessage(
-                          contactMessage._id
-                        )
-                      }
-                    >
-                      Löschen
-                    </button>
-
-                  </div>
-
-                </div>
-
-              )}
-
-                
-
-              </div>
-
-            ))}
-
-          </div>
-        )}
-
-
-
-      </section>
       
       
       <section className="admin-services">

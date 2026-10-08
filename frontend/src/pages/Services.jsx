@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getServices } from "../services/serviceService";
 import "./Services.css";
 
-
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,11 +27,11 @@ const Services = () => {
   }, []);
 
   const filteredServices =
-  activeCategory === "Alle"
-    ? services
-    : services.filter(
-        (service) => service.category === activeCategory
-    );
+    activeCategory === "Alle"
+      ? services
+      : services.filter(
+          (service) => service.category === activeCategory
+        );
 
   if (loading) {
     return (
@@ -53,6 +52,8 @@ const Services = () => {
   return (
     <main className="services-page">
 
+      {/* ===== Header ===== */}
+
       <section className="services-header">
         <p>Unsere Leistungen</p>
 
@@ -63,13 +64,16 @@ const Services = () => {
           und finden Sie die passende Behandlung für Ihre Bedürfnisse.
         </p>
       </section>
+
+
+      {/* ===== Categories ===== */}
+
       <div className="services-categories">
 
         <button
           className={activeCategory === "Alle" ? "active" : ""}
           onClick={() => setActiveCategory("Alle")}
-          >
-             
+        >
           Alle
         </button>
 
@@ -77,19 +81,18 @@ const Services = () => {
           className={activeCategory === "Gesicht" ? "active" : ""}
           onClick={() => setActiveCategory("Gesicht")}
         >
-          
           Gesicht
         </button>
 
         <button
-         className={activeCategory === "Laser" ? "active" : ""}
+          className={activeCategory === "Laser" ? "active" : ""}
           onClick={() => setActiveCategory("Laser")}
         >
           Laser
         </button>
 
         <button
-         className={activeCategory === "Waxing" ? "active" : ""}
+          className={activeCategory === "Waxing" ? "active" : ""}
           onClick={() => setActiveCategory("Waxing")}
         >
           Waxing
@@ -110,18 +113,31 @@ const Services = () => {
         </button>
 
         <button
-          className={activeCategory === "Weitere Behandlungen" ? "active" : ""}
-          onClick={() => setActiveCategory("Weitere Behandlungen")}
+          className={
+            activeCategory === "Weitere Behandlungen"
+              ? "active"
+              : ""
+          }
+          onClick={() =>
+            setActiveCategory("Weitere Behandlungen")
+          }
         >
           Weitere Behandlungen
         </button>
 
       </div>
 
+
+      {/* ===== Services ===== */}
+
       <section className="services-container">
 
         {filteredServices.map((service) => (
-          <div className="service-card" key={service._id}>
+          <div
+            className="service-card"
+            key={service._id}
+          >
+
             {service.image && (
               <img
                 src={service.image}
@@ -129,25 +145,38 @@ const Services = () => {
                 className="service-image"
               />
             )}
-            <h2>{service.title}</h2>
 
-            <p className="service-description">
-              {service.description}
-            </p>
+            <div className="service-card-content">
 
-            <p className="service-price">
-              {service.price} €
-            </p>
+              <h2>{service.title}</h2>
 
-            {service.duration && (
-              <p className="service-duration">
-                Dauer: {service.duration}
+              <p className="service-description">
+                {service.description}
               </p>
-            )}
 
-            <Link to={`/booking?serviceId=${service._id}`} className="service-button">
-              Termin buchen
-            </Link>
+              <div className="service-card-footer">
+
+                <p className="service-price">
+                  {service.price} €
+                </p>
+
+                {service.duration && (
+                  <p className="service-duration">
+                    Dauer: {service.duration}
+                  </p>
+                )}
+
+                <Link
+                  to={`/booking?serviceId=${service._id}`}
+                  className="service-button"
+                >
+                  Termin buchen
+                </Link>
+
+              </div>
+
+            </div>
+
           </div>
         ))}
 

@@ -8,9 +8,9 @@ import {
   FaEnvelope,
   FaClock,
 } from "react-icons/fa";
-import useAutoDismiss from "../hooks/useAutoDismiss";
 
-import { createContactMessage } from "../services/contactService";
+
+
 
 function Kontakt() {
   const user = useSelector((state) => state.auth.user);
@@ -23,12 +23,6 @@ function Kontakt() {
   });
 
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  useAutoDismiss(successMessage, setSuccessMessage);
-  useAutoDismiss(errorMessage, setErrorMessage);
-  const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -36,44 +30,33 @@ function Kontakt() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    try {
-      setLoading(true);
-      setSuccessMessage("");
-      setErrorMessage("");
+  const name = user?.name || formData.name;
+  const email = user?.email || formData.email;
 
-      const dataToSend = {
-     ...formData,
-     name: user?.name || formData.name,
-      email: user?.email || formData.email,
-     };
+  const whatsappMessage = `
+Hallo Lamis Beauty Center,
 
-      const response = await createContactMessage(dataToSend);
+Name: ${name}
+E-Mail: ${email}
+Telefon: ${formData.phone || "-"}
+Betreff: ${formData.subject}
 
-      setSuccessMessage(
-        response.message || "Ihre Nachricht wurde erfolgreich gesendet."
-      );
+Nachricht:
+${formData.message}
+  `.trim();
 
-     setFormData({
-     name: user?.name || "",
-     email: user?.email || "",
-     phone: "",
-     subject: "",
-     message: "",
-     });
-    } catch (error) {
-      console.error("Fehler beim Senden der Nachricht:", error);
+  const whatsappNumber = "491629342752";
 
-      setErrorMessage(
-        error.response?.data?.message ||
-          "Die Nachricht konnte nicht gesendet werden."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  const whatsappUrl =
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+
+  window.open(whatsappUrl, "_blank");
+};
 
   return (
     <main className="kontakt-page">
@@ -219,24 +202,12 @@ function Kontakt() {
             ></textarea>
           </div>
 
-          {successMessage && (
-            <p className="kontakt-success">
-              {successMessage}
-            </p>
-          )}
-
-          {errorMessage && (
-            <p className="kontakt-error">
-              {errorMessage}
-            </p>
-          )}
-
+    
           <button
             type="submit"
             className="kontakt-submit-button"
-            disabled={loading}
           >
-            {loading ? "Wird gesendet..." : "Nachricht senden"}
+              Nachricht über WhatsApp senden
           </button>
 
         </form>

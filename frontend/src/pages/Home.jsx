@@ -487,7 +487,7 @@ const Home = () => {
         <div className="reviews-grid">
           {reviews.length > 0 ? (
             reviews
-              .slice(0, 3)
+              .slice(0,5)
               .map((review) => (
                 <div
                   className="review-card"

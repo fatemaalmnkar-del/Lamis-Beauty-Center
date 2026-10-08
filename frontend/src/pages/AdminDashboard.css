@@ -5,6 +5,11 @@
   background-color: #faf7fb;
 }
 
+
+/* =========================
+   IMAGES
+========================= */
+
 .admin-image-preview {
   width: 100%;
   max-height: 220px;
@@ -22,30 +27,40 @@
 }
 
 
+/* =========================
+   SECTION BAR
+========================= */
+
 .behandlung-termine-bar {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px;
-  margin-top: 70px;
+
   width: 100%;
   height: 100px;
-  
-  background-color: #6d3f73;
+
+  margin-top: 70px;
+  margin-bottom: 70px;
+
   padding: 15px 0;
-  border-radius: 8px;
-  border-color: #b08a3c;
+
+  background-color: #6d3f73;
+
   border: 4px solid #b08a3c;
-
-
+  border-radius: 8px;
 }
-h2 {
+
+.admin-page h2 {
   color: #bd9123;
   font-size: 30px;
   text-align: center;
-  font-family: 'poppins', sans-serif;
-  
+  font-family: "Poppins", sans-serif;
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 .admin-header {
   max-width: 750px;
@@ -69,9 +84,15 @@ h2 {
   color: #6f6571;
 }
 
+
+/* =========================
+   FORM CONTAINER
+========================= */
+
 .admin-form-container {
   width: 100%;
   max-width: 600px;
+
   margin: 0 auto 60px;
   padding: 35px;
 
@@ -91,6 +112,11 @@ h2 {
   text-align: center;
 }
 
+
+/* =========================
+   FORM GROUPS
+========================= */
+
 .admin-form-group {
   margin-bottom: 18px;
 }
@@ -108,7 +134,7 @@ h2 {
 
 .admin-form-group input,
 .admin-form-group textarea,
-.admin-form-group select{
+.admin-form-group select {
   width: 100%;
 
   padding: 12px 14px;
@@ -128,9 +154,15 @@ h2 {
 }
 
 .admin-form-group input:focus,
-.admin-form-group textarea:focus {
+.admin-form-group textarea:focus,
+.admin-form-group select:focus {
   border-color: #6d3f73;
 }
+
+
+/* =========================
+   FORM BUTTONS
+========================= */
 
 .admin-save-button {
   width: 100%;
@@ -167,6 +199,11 @@ h2 {
   cursor: pointer;
 }
 
+
+/* =========================
+   SERVICES
+========================= */
+
 .admin-services {
   width: 100%;
   max-width: 1100px;
@@ -184,11 +221,14 @@ h2 {
 
 .admin-services-grid {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 22px;
 }
+
+
+/* =========================
+   SERVICE CARD
+========================= */
 
 .admin-service-card {
   padding: 25px;
@@ -219,6 +259,11 @@ h2 {
   font-weight: bold;
 }
 
+
+/* =========================
+   ACTIONS
+========================= */
+
 .admin-actions {
   display: flex;
   gap: 10px;
@@ -248,6 +293,11 @@ h2 {
   color: #9a3f4a;
 }
 
+
+/* =========================
+   MESSAGES
+========================= */
+
 .admin-success,
 .admin-error,
 .admin-access {
@@ -274,6 +324,7 @@ h2 {
 
 .admin-access {
   max-width: 500px;
+
   margin: 80px auto;
 
   background-color: #ffffff;
@@ -281,6 +332,7 @@ h2 {
 
   border: 1px solid #eadfeb;
 }
+
 
 /* =========================
    VORHER / NACHHER GALERIE
@@ -292,27 +344,34 @@ h2 {
 
 .admin-gallery-form {
   max-width: 600px;
+
   margin: 30px auto 40px;
   padding: 25px;
 
   background-color: #ffffff;
+
   border-radius: 8px;
+
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .admin-gallery-preview {
   display: block;
+
   width: 180px;
   height: 180px;
 
   margin-top: 20px;
 
   object-fit: contain;
+
   border-radius: 6px;
 }
 
 
-/* الصور الموجودة */
+/* =========================
+   GALLERY GRID
+========================= */
 
 .admin-gallery-grid {
   display: grid;
@@ -324,10 +383,13 @@ h2 {
 
 .admin-gallery-card {
   overflow: hidden;
+
   padding: 12px;
 
   background-color: #ffffff;
+
   border-radius: 8px;
+
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -338,11 +400,9 @@ h2 {
   height: 180px;
 
   object-fit: contain;
+
   border-radius: 5px;
 }
-
-
-/* زر الحذف */
 
 .admin-gallery-card .delete-button {
   width: 100%;
@@ -350,7 +410,9 @@ h2 {
 }
 
 
-/* Tablet */
+/* =========================
+   GALLERY RESPONSIVE
+========================= */
 
 @media (max-width: 1000px) {
   .admin-gallery-grid {
@@ -358,17 +420,11 @@ h2 {
   }
 }
 
-
-/* Small Tablet */
-
 @media (max-width: 750px) {
   .admin-gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-
-/* Mobile */
 
 @media (max-width: 500px) {
   .admin-gallery-grid {
@@ -380,10 +436,12 @@ h2 {
   }
 }
 
-/* ===== TABLET ===== */
+
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 900px) {
-
   .admin-page {
     padding: 40px 25px;
   }
@@ -398,10 +456,11 @@ h2 {
 }
 
 
-/* ===== MOBILE ===== */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
-
   .admin-page {
     padding: 30px 15px;
   }
@@ -425,6 +484,7 @@ h2 {
 
   .admin-form-container {
     max-width: 100%;
+
     margin-bottom: 45px;
     padding: 25px 18px;
   }
@@ -438,7 +498,8 @@ h2 {
   }
 
   .admin-form-group input,
-  .admin-form-group textarea {
+  .admin-form-group textarea,
+  .admin-form-group select {
     padding: 12px;
     font-size: 16px;
   }
@@ -495,64 +556,4 @@ h2 {
   .admin-access {
     margin: 50px auto;
   }
-}
-
-
-.contact-message-card {
-  width: 100%;
-  max-width: 850px;
-  padding: 30px;
-  text-align: left;
-}
-
-.contact-message-card h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-.contact-message-card p {
-  line-height: 1.7;
-  margin-bottom: 10px;
-}
-
-.contact-reply-section {
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-}
-
-.contact-reply-section label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.contact-reply-section textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: vertical;
-  font-family: inherit;
-  font-size: 15px;
-  box-sizing: border-box;
-}
-
-.contact-message-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  align-items: center;
-}
-
-.contact-message-actions button {
-  width: auto;
-  min-width: 140px;
-}
-
-.contact-existing-reply {
-  margin-bottom: 20px;
-  padding: 18px;
-  border-radius: 8px;
-  background: #f7f7f7;
 }

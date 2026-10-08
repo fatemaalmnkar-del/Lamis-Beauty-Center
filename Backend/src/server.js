@@ -9,14 +9,14 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const galleryRoutes = require("./routes/galleryRoutes");
-const contactRoutes = require('./routes/contactRoutes');
+
 
 app.use(cors());
 app.use(express.json());
 
 
 app.use("/api/gallery", galleryRoutes);
-app.use('/api/contact', contactRoutes);
+
 
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);

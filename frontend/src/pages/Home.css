@@ -677,7 +677,7 @@
   max-width: 1000px;
   margin: 35px auto 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(5, minmax(240px, 1fr));
   gap: 24px;
   justify-content: center;
 }

@@ -1,8 +1,6 @@
-
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProfile, updateProfile } from "../services/userService";
-import { getMyContactMessages } from "../services/contactService";
 import { loginSuccess } from "../store/authSlice";
 import useAutoDismiss from "../hooks/useAutoDismiss";
 import "./Profile.css";
@@ -11,7 +9,7 @@ import {
   FaUser,
   FaEnvelope,
   FaPhoneAlt,
-  FaCalendarAlt,  FaCommentDots
+  FaCalendarAlt
 } from "react-icons/fa";
 
 const Profile = () => {
@@ -25,10 +23,9 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  useAutoDismiss(message, setMessage);
-  useAutoDismiss(error, setError); 
 
-  const [contactMessages, setContactMessages] = useState([]);
+  useAutoDismiss(message, setMessage);
+  useAutoDismiss(error, setError);
 
   const dispatch = useDispatch();
 
@@ -54,18 +51,8 @@ const Profile = () => {
         setLoading(false);
       }
     };
-    const fetchContactMessages = async () => {
-   try {
-    const response = await getMyContactMessages();
-
-    setContactMessages(response.contactMessages);
-   } catch (error) {
-    console.error("Fehler beim Laden der Nachrichten:", error);
-   }
-   };
 
     fetchProfile();
-    fetchContactMessages();
   }, []);
 
   const handleChange = (e) => {
@@ -116,14 +103,16 @@ const Profile = () => {
 
   return (
     <main className="profile-page">
+
       <div className="profile-section-bar profile-bar">
         <h1>Mein Profil</h1>
       </div>
 
       <div className="profile-container">
+
         <p className="profile-small-title">
-         Persönliche Daten
-       </p>
+          Persönliche Daten
+        </p>
 
         {message && (
           <p className="profile-success">
@@ -140,7 +129,7 @@ const Profile = () => {
         <form onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label htmlFor="name"  >
+            <label htmlFor="name">
               <FaUser />
               Name
             </label>
@@ -207,64 +196,8 @@ const Profile = () => {
 
         </form>
 
-
       </div>
-      
-        <div className="profile-messages">
-          <div className="profile-section-bar">
-            <h2>Meine Nachrichten</h2>
-          </div>
 
-         
-
-
-          {contactMessages.length === 0 ? (
-            <p className="profile-no-messages">
-              Sie haben noch keine Nachrichten.
-            </p>
-          ) : (
-            contactMessages.map((contactMessage) => (
-              <div
-                className="profile-message-card"
-                key={contactMessage._id}
-              >
-                <h3>  <FaCommentDots />  {contactMessage.subject}</h3>
-                <p>
-                  <strong>Gesendet am: </strong>
-                  {new Date(contactMessage.createdAt).toLocaleDateString("de-DE")}
-                </p>
-
-                <p>
-                  <strong>Meine Nachricht:</strong>
-                </p>
-
-                <p>{contactMessage.message}</p>
-
-                <p>
-                  <strong>Status: </strong>
-                  <span
-                    className={
-                      contactMessage.reply
-                        ? "message-status answered"
-                        : "message-status waiting"
-                    }
-                  >
-                    {contactMessage.reply
-                      ? "✓ Beantwortet"
-                      : "Noch keine Antwort"}
-                  </span>
-                </p>
-
-                {contactMessage.reply && (
-                  <div className="profile-admin-reply">
-                    <strong>Antwort vom Lamis Beauty Center:</strong>
-                    <p>{contactMessage.reply}</p>
-                  </div>
-                )}
-              </div>
-            ))
-          )}
-        </div>
     </main>
   );
 };
