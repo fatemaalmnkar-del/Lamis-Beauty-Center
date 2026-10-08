@@ -1,38 +1,43 @@
-
-
 import { useEffect, useState } from "react";
-import { Link,useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import { getServices } from "../services/serviceService";
+
 import {
   createBooking,
   getMyBookings,
   cancelBooking,
-   getBookedTimes
+  getBookedTimes
 } from "../services/bookingService";
+
 import {
   FiCalendar,
   FiClock,
   FiUser,
   FiPhone,
-  FiMail,
- 
- 
+  FiMail
 } from "react-icons/fi";
+
 import { HiOutlineSparkles } from "react-icons/hi2";
+
 import useAutoDismiss from "../hooks/useAutoDismiss";
 
 import "./Booking.css";
 
 const Booking = () => {
   const user = useSelector((state) => state.auth.user);
+
   const [searchParams] = useSearchParams();
+
   const serviceIdfromURL = searchParams.get("serviceId") || "";
+
   const [services, setServices] = useState([]);
   const [bookingFilter, setBookingFilter] = useState("all");
   const [bookings, setBookings] = useState([]);
   const [bookedTimes, setBookedTimes] = useState([]);
- const [serviceMenuOpen, setServiceMenuOpen] = useState(false);
+
+  const [serviceMenuOpen, setServiceMenuOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     customerName: "",
@@ -44,33 +49,40 @@ const Booking = () => {
   });
 
   const [loading, setLoading] = useState(true);
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
   useAutoDismiss(message, setMessage);
   useAutoDismiss(error, setError);
 
   const fetchBookings = async () => {
     try {
       const response = await getMyBookings();
+
       setBookings(response.data.bookings);
     } catch (error) {
       console.error(error);
-      setError("Bitte melden Sie sich an, um Ihre Termine zu sehen und einen Termin zu buchen.");
+
+      setError(
+        "Bitte melden Sie sich an, um Ihre Termine zu sehen und einen Termin zu buchen."
+      );
     }
   };
 
   const [dateOffset, setDateOffset] = useState(0);
 
-  const availableTimes = [  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-  "18:00"
- ];
+  const availableTimes = [
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00"
+  ];
 
   useEffect(() => {
     const loadData = async () => {
@@ -82,6 +94,7 @@ const Booking = () => {
         await fetchBookings();
       } catch (error) {
         console.error(error);
+
         setError("Daten konnten nicht geladen werden.");
       } finally {
         setLoading(false);
@@ -91,26 +104,26 @@ const Booking = () => {
     loadData();
   }, []);
 
-
   useEffect(() => {
-  const fetchBookedTimes = async () => {
-    if (!formData.date) {
-      setBookedTimes([]);
-      return;
-    }
+    const fetchBookedTimes = async () => {
+      if (!formData.date) {
+        setBookedTimes([]);
+        return;
+      }
 
-    try {
-      const response = await getBookedTimes(formData.date);
+      try {
+        const response = await getBookedTimes(formData.date);
 
-      setBookedTimes(response.data.bookedTimes);
-    } catch (error) {
-      console.error(error);
-      setBookedTimes([]);
-    }
-  };
+        setBookedTimes(response.data.bookedTimes);
+      } catch (error) {
+        console.error(error);
 
-  fetchBookedTimes();
- }, [formData.date]);
+        setBookedTimes([]);
+      }
+    };
+
+    fetchBookedTimes();
+  }, [formData.date]);
 
   const handleChange = (e) => {
     setFormData({
@@ -145,13 +158,12 @@ const Booking = () => {
       });
 
       await fetchBookings();
-
     } catch (error) {
       console.error(error);
 
       setError(
         error.response?.data?.message ||
-        "Termin konnte nicht gebucht werden."
+          "Termin konnte nicht gebucht werden."
       );
     }
   };
@@ -166,13 +178,12 @@ const Booking = () => {
       setMessage("Termin erfolgreich storniert.");
 
       await fetchBookings();
-
     } catch (error) {
       console.error(error);
 
       setError(
         error.response?.data?.message ||
-        "Termin konnte nicht storniert werden."
+          "Termin konnte nicht storniert werden."
       );
     }
   };
@@ -187,17 +198,16 @@ const Booking = () => {
   };
 
   const filteredBookings =
-  bookingFilter === "all"
-    ? bookings
-    : bookings.filter(
-        (booking) => booking.status === bookingFilter
-      );
+    bookingFilter === "all"
+      ? bookings
+      : bookings.filter(
+          (booking) => booking.status === bookingFilter
+        );
 
   if (!user) {
     return (
       <main className="booking-page">
         <section className="booking-form-container">
-
           <p className="booking-small-title">
             TERMINVEREINBARUNG
           </p>
@@ -205,13 +215,13 @@ const Booking = () => {
           <h1>Termin buchen</h1>
 
           <p className="booking-description">
-           Bitte registrieren Sie sich und melden Sie sich an, um einen Termin zu buchen und Ihre Termine zu verwalten.
+            Bitte registrieren Sie sich und melden Sie sich an,
+            um einen Termin zu buchen und Ihre Termine zu verwalten.
           </p>
 
           <Link to="/register" className="booking-button">
             Jetzt registrieren
           </Link>
-
         </section>
       </main>
     );
@@ -225,49 +235,65 @@ const Booking = () => {
     );
   }
 
-
   const formatDateValue = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
+    const year = date.getFullYear();
 
-const getDateOptions = () => {
-  const options = [];
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+    const month = String(date.getMonth() + 1).padStart(2, "0");
 
-  for (let i = 0; i < 7; i++) {
-    const currentDate = new Date(today);
-    currentDate.setDate(today.getDate() + dateOffset + i);
+    const day = String(date.getDate()).padStart(2, "0");
 
-    options.push({
-      value: formatDateValue(currentDate),
-      dayName: currentDate.toLocaleDateString("de-DE", {
-        weekday: "short"
-      }),
-      dayNumber: currentDate.getDate(),
-      monthName: currentDate.toLocaleDateString("de-DE", {
-        month: "long"
-      }),
-      isSunday: currentDate.getDay() === 0,
-    });
-  }
+    return `${year}-${month}-${day}`;
+  };
 
-  return options;
-};
-const dateOptions = getDateOptions();
+  const getDateOptions = () => {
+    const options = [];
 
-const selectedService = services.find(
-  (service) => service._id === formData.service
-);
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    for (let i = 0; i < 7; i++) {
+      const currentDate = new Date(today);
+
+      currentDate.setDate(
+        today.getDate() + dateOffset + i
+      );
+
+      options.push({
+        value: formatDateValue(currentDate),
+
+        dayName: currentDate.toLocaleDateString(
+          "de-DE",
+          {
+            weekday: "short"
+          }
+        ),
+
+        dayNumber: currentDate.getDate(),
+
+        monthName: currentDate.toLocaleDateString(
+          "de-DE",
+          {
+            month: "long"
+          }
+        ),
+
+        isSunday: currentDate.getDay() === 0
+      });
+    }
+
+    return options;
+  };
+
+  const dateOptions = getDateOptions();
+
+  const selectedService = services.find(
+    (service) => service._id === formData.service
+  );
 
   return (
     <main className="booking-page">
-
       <section className="booking-form-container">
-
         <p className="booking-small-title">
           Terminvereinbarung
         </p>
@@ -279,64 +305,73 @@ const selectedService = services.find(
           und eine passende Uhrzeit.
         </p>
 
-        
-
         <form onSubmit={handleSubmit}>
-
-        
+          {/* ===== BEHANDLUNG ===== */}
 
           <div className="booking-form-group">
             <div className="booking-section-title">
               <HiOutlineSparkles className="section-icon" />
+
               <span>Behandlung</span>
             </div>
 
-         <div className="custom-select">
-            <button
-              type="button"
-              className="custom-select-button"
-              onClick={() => setServiceMenuOpen(!serviceMenuOpen)}
-            >
-              <span>
-                {selectedService
-                  ? `${selectedService.title} - ${selectedService.price} €`
-                  : "Behandlung auswählen"}
-              </span>
+            <div className="custom-select">
+              <button
+                type="button"
+                className="custom-select-button"
+                onClick={() =>
+                  setServiceMenuOpen(!serviceMenuOpen)
+                }
+              >
+                <span>
+                  {selectedService
+                    ? `${selectedService.title} - ${selectedService.price} €`
+                    : "Behandlung auswählen"}
+                </span>
 
-              <span className="custom-select-arrow">
-                {serviceMenuOpen ? "▲" : "▼"}
-              </span>
-            </button>
+                <span className="custom-select-arrow">
+                  {serviceMenuOpen ? "▲" : "▼"}
+                </span>
+              </button>
 
-            {serviceMenuOpen && (
-              <div className="custom-select-menu">
-                {services.map((service) => (
-                  <button
-                    type="button"
-                    key={service._id}
-                    className={`custom-select-option ${
-                      formData.service === service._id ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      setFormData({
-                        ...formData,
-                        service: service._id
-                      });
+              {serviceMenuOpen && (
+                <div className="custom-select-menu">
+                  {services.map((service) => (
+                    <button
+                      type="button"
+                      key={service._id}
+                      className={`custom-select-option ${
+                        formData.service === service._id
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() => {
+                        setFormData({
+                          ...formData,
+                          service: service._id
+                        });
 
-                      setServiceMenuOpen(false);
-                    }}
-                  >
-                    <span>{service.title}</span>
-                    <strong>{service.price} €</strong>
-                  </button>
-                ))}
-              </div>
-            )}
+                        setServiceMenuOpen(false);
+                      }}
+                    >
+                      <span>{service.title}</span>
+
+                      <strong>
+                        {service.price} €
+                      </strong>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
+
+          {/* ===== DATUM ===== */}
 
           <div className="booking-form-group">
             <div className="booking-section-title">
               <FiCalendar className="section-icon" />
+
               <span>Datum auswählen</span>
             </div>
 
@@ -344,7 +379,11 @@ const selectedService = services.find(
               <button
                 type="button"
                 className="date-nav-button"
-                onClick={() => setDateOffset(Math.max(0, dateOffset - 7))}
+                onClick={() =>
+                  setDateOffset(
+                    Math.max(0, dateOffset - 7)
+                  )
+                }
                 disabled={dateOffset === 0}
               >
                 ‹
@@ -357,11 +396,12 @@ const selectedService = services.find(
               <button
                 type="button"
                 className="date-nav-button"
-                onClick={() => setDateOffset(dateOffset + 7)}
+                onClick={() =>
+                  setDateOffset(dateOffset + 7)
+                }
               >
                 ›
               </button>
-              </div>
             </div>
 
             <div className="booking-date-list">
@@ -371,7 +411,9 @@ const selectedService = services.find(
                   key={item.value}
                   disabled={item.isSunday}
                   className={`date-button ${
-                    formData.date === item.value ? "active" : ""
+                    formData.date === item.value
+                      ? "active"
+                      : ""
                   }`}
                   onClick={() =>
                     setFormData({
@@ -382,20 +424,28 @@ const selectedService = services.find(
                   }
                 >
                   <span>{item.dayName}</span>
-                  <strong>{item.dayNumber}</strong>
+
+                  <strong>
+                    {item.dayNumber}
+                  </strong>
                 </button>
               ))}
             </div>
           </div>
 
+          {/* ===== UHRZEIT ===== */}
+
           <div className="booking-form-group">
-              <div className="booking-section-title">
-                <FiClock className="section-icon" />
-                <span>Uhrzeit auswählen</span>
-              </div>
-             <div className="booking-times">
+            <div className="booking-section-title">
+              <FiClock className="section-icon" />
+
+              <span>Uhrzeit auswählen</span>
+            </div>
+
+            <div className="booking-times">
               {availableTimes.map((time) => {
-                const isBooked = bookedTimes.includes(time);
+                const isBooked =
+                  bookedTimes.includes(time);
 
                 return (
                   <button
@@ -421,16 +471,23 @@ const selectedService = services.find(
             </div>
           </div>
 
+          {/* ===== ADMIN CUSTOMER DATA ===== */}
+
           {user.role === "admin" && (
             <div className="customer-data-section">
               <div className="booking-section-title">
                 <FiUser className="section-icon" />
+
                 <span>Kundendaten</span>
               </div>
 
               <div className="booking-form-group">
-                <label htmlFor="customerName" className="icon-label">
+                <label
+                  htmlFor="customerName"
+                  className="icon-label"
+                >
                   <FiUser className="label-icon" />
+
                   <span>Kundenname</span>
                 </label>
 
@@ -445,10 +502,13 @@ const selectedService = services.find(
               </div>
 
               <div className="customer-contact-row">
-
                 <div className="booking-form-group">
-                  <label htmlFor="customerPhone" className="icon-label">
+                  <label
+                    htmlFor="customerPhone"
+                    className="icon-label"
+                  >
                     <FiPhone className="label-icon" />
+
                     <span>Telefonnummer</span>
                   </label>
 
@@ -463,8 +523,12 @@ const selectedService = services.find(
                 </div>
 
                 <div className="booking-form-group">
-                  <label htmlFor="customerEmail" className="icon-label">
+                  <label
+                    htmlFor="customerEmail"
+                    className="icon-label"
+                  >
                     <FiMail className="label-icon" />
+
                     <span>E-Mail</span>
                   </label>
 
@@ -476,9 +540,7 @@ const selectedService = services.find(
                     onChange={handleChange}
                   />
                 </div>
-
               </div>
-
             </div>
           )}
 
@@ -488,19 +550,21 @@ const selectedService = services.find(
           >
             Termin buchen
           </button>
-
         </form>
       </section>
+
+      {/* ===== MY BOOKINGS ===== */}
 
       {user.role !== "admin" && (
         <section className="my-bookings">
           <div className="termine-bar">
-            <h1 >Meine Termine</h1>
+            <h1>Meine Termine</h1>
           </div>
+
           {message && (
-          <p className="booking-success">
-            {message}
-          </p>
+            <p className="booking-success">
+              {message}
+            </p>
           )}
 
           {error && (
@@ -508,104 +572,135 @@ const selectedService = services.find(
               {error}
             </p>
           )}
-        
 
           {bookings.length === 0 ? (
             <p className="no-bookings">
               Sie haben noch keine Termine.
             </p>
           ) : (
-             <>
-            <div className="booking-filter-bar">
-              <button
-                type="button"
-                className={bookingFilter === "all" ? "active" : ""}
-                onClick={() => setBookingFilter("all")}
-              >
-                Alle
-              </button>
-
-              <button
-                type="button"
-                className={bookingFilter === "pending" ? "active" : ""}
-                onClick={() => setBookingFilter("pending")}
-              >
-                Ausstehend
-              </button>
-
-              <button
-                type="button"
-                className={bookingFilter === "confirmed" ? "active" : ""}
-                onClick={() => setBookingFilter("confirmed")}
-              >
-                Bestätigt
-              </button>
-
-              <button
-                type="button"
-                className={bookingFilter === "completed" ? "active" : ""}
-                onClick={() => setBookingFilter("completed")}
-              >
-                Abgeschlossen
-              </button>
-
-              <button
-                type="button"
-                className={bookingFilter === "cancelled" ? "active" : ""}
-                onClick={() => setBookingFilter("cancelled")}
-              >
-                Storniert
-              </button>
-            </div>
-            <div className="bookings-list">
-
-              {filteredBookings.map((booking) => (
-                <div
-                  className="booking-card"
-                  key={booking._id}
+            <>
+              <div className="booking-filter-bar">
+                <button
+                  type="button"
+                  className={
+                    bookingFilter === "all"
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setBookingFilter("all")
+                  }
                 >
+                  Alle
+                </button>
 
-                  <h3>
-                    {booking.service?.title || "Behandlung"}
-                  </h3>
+                <button
+                  type="button"
+                  className={
+                    bookingFilter === "pending"
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setBookingFilter("pending")
+                  }
+                >
+                  Ausstehend
+                </button>
 
-                  <p>
-                    <strong>Datum:</strong>{" "}
-                    {new Date(booking.date).toLocaleDateString("de-DE")}
-                  </p>
+                <button
+                  type="button"
+                  className={
+                    bookingFilter === "confirmed"
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setBookingFilter("confirmed")
+                  }
+                >
+                  Bestätigt
+                </button>
 
-                  <p>
-                    <strong>Uhrzeit:</strong>{" "}
-                    {booking.time}
-                  </p>
+                <button
+                  type="button"
+                  className={
+                    bookingFilter === "completed"
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setBookingFilter("completed")
+                  }
+                >
+                  Abgeschlossen
+                </button>
 
-                  <p>
-                    <strong>Status:</strong>{" "}
-                    {getStatusText(booking.status)}
-                  </p>
+                <button
+                  type="button"
+                  className={
+                    bookingFilter === "cancelled"
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() =>
+                    setBookingFilter("cancelled")
+                  }
+                >
+                  Storniert
+                </button>
+              </div>
 
-                  {booking.status !== "cancelled" &&
-                    booking.status !== "completed" && (
-                      <button
-                        className="cancel-button"
-                        onClick={() =>
-                          handleCancel(booking._id)
-                        }
-                      >
-                        Termin stornieren
-                      </button>
-                    )}
+              <div className="bookings-list">
+                {filteredBookings.map((booking) => (
+                  <div
+                    className="booking-card"
+                    key={booking._id}
+                  >
+                    <h3>
+                      {booking.service?.title ||
+                        "Behandlung"}
+                    </h3>
 
-                </div>
-              ))}
+                    <p>
+                      <strong>Datum:</strong>{" "}
+                      {new Date(
+                        booking.date
+                      ).toLocaleDateString("de-DE")}
+                    </p>
 
-            </div>
+                    <p>
+                      <strong>Uhrzeit:</strong>{" "}
+                      {booking.time}
+                    </p>
+
+                    <p>
+                      <strong>Status:</strong>{" "}
+                      {getStatusText(
+                        booking.status
+                      )}
+                    </p>
+
+                    {booking.status !== "cancelled" &&
+                      booking.status !== "completed" && (
+                        <button
+                          className="cancel-button"
+                          onClick={() =>
+                            handleCancel(
+                              booking._id
+                            )
+                          }
+                        >
+                          Termin stornieren
+                        </button>
+                      )}
+                  </div>
+                ))}
+              </div>
             </>
           )}
-
         </section>
       )}
-
     </main>
   );
 };
