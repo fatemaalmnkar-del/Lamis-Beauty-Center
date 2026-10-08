@@ -168,10 +168,74 @@ const getBookedTimes = async (req, res) => {
   }
 };
 
+
+const deleteBooking = async (req, res) => {
+  try {
+    const booking = await Booking.findByIdAndDelete(req.params.id);
+
+    if (!booking) {
+      return res.status(404).json({
+        message: "Die Buchung wurde nicht gefunden."
+      });
+    }
+
+    res.status(200).json({
+      message: "Der Termin wurde erfolgreich gelöscht."
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Der Termin konnte nicht gelöscht werden.",
+      error: error.message
+    });
+  }
+};
+
+
+const deleteBookingsByStatus = async (req, res) => {
+  try {
+    const { status } = req.params;
+
+    const allowedStatuses = [
+      "cancelled",
+      "completed"
+    ];
+
+    if (!allowedStatuses.includes(status)) {
+      return res.status(400).json({
+        message:
+          "Es dürfen nur stornierte oder abgeschlossene Termine gelöscht werden."
+      });
+    }
+
+    const result = await Booking.deleteMany({
+      status
+    });
+
+    res.status(200).json({
+      message:
+        `${result.deletedCount} Termine wurden erfolgreich gelöscht.`,
+      deletedCount: result.deletedCount
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Die Termine konnten nicht gelöscht werden.",
+      error: error.message
+    });
+  }
+};
+
 module.exports={
     createBooking,
     getMyBookings,
     cancelBooking,getAllBookings,
     updateBookingStatus,
-    getBookedTimes
+    getBookedTimes,
+    deleteBooking,
+    deleteBookingsByStatus
 };

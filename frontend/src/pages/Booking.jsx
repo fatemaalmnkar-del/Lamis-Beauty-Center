@@ -29,6 +29,7 @@ const Booking = () => {
   const [searchParams] = useSearchParams();
   const serviceIdfromURL = searchParams.get("serviceId") || "";
   const [services, setServices] = useState([]);
+  const [bookingFilter, setBookingFilter] = useState("all");
   const [bookings, setBookings] = useState([]);
   const [bookedTimes, setBookedTimes] = useState([]);
 
@@ -178,6 +179,13 @@ const Booking = () => {
 
     return status;
   };
+
+  const filteredBookings =
+  bookingFilter === "all"
+    ? bookings
+    : bookings.filter(
+        (booking) => booking.status === bookingFilter
+      );
 
   if (!user) {
     return (
@@ -476,9 +484,51 @@ const dateOptions = getDateOptions();
               Sie haben noch keine Termine.
             </p>
           ) : (
+             <>
+            <div className="booking-filter-bar">
+              <button
+                type="button"
+                className={bookingFilter === "all" ? "active" : ""}
+                onClick={() => setBookingFilter("all")}
+              >
+                Alle
+              </button>
+
+              <button
+                type="button"
+                className={bookingFilter === "pending" ? "active" : ""}
+                onClick={() => setBookingFilter("pending")}
+              >
+                Ausstehend
+              </button>
+
+              <button
+                type="button"
+                className={bookingFilter === "confirmed" ? "active" : ""}
+                onClick={() => setBookingFilter("confirmed")}
+              >
+                Bestätigt
+              </button>
+
+              <button
+                type="button"
+                className={bookingFilter === "completed" ? "active" : ""}
+                onClick={() => setBookingFilter("completed")}
+              >
+                Abgeschlossen
+              </button>
+
+              <button
+                type="button"
+                className={bookingFilter === "cancelled" ? "active" : ""}
+                onClick={() => setBookingFilter("cancelled")}
+              >
+                Storniert
+              </button>
+            </div>
             <div className="bookings-list">
 
-              {bookings.map((booking) => (
+              {filteredBookings.map((booking) => (
                 <div
                   className="booking-card"
                   key={booking._id}
@@ -519,6 +569,7 @@ const dateOptions = getDateOptions();
               ))}
 
             </div>
+            </>
           )}
 
         </section>

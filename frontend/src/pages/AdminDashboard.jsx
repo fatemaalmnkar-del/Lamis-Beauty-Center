@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import {getServices,createService,updateService,deleteService} from "../services/serviceService";
-import { getAllBookings ,  updateBookingStatus} from "../services/bookingService";
+import { getAllBookings ,  updateBookingStatus,  deleteBooking, deleteBookingsByStatus} from "../services/bookingService";
 import {getGalleryImages, createGalleryImage,deleteGalleryImage} from "../services/galleryService";
 
 import useAutoDismiss from "../hooks/useAutoDismiss";
@@ -13,6 +13,7 @@ const AdminDashboard = () => {
   const user = useSelector((state) => state.auth.user);
   const [bookings, setBookings] = useState([]);
   const [services, setServices] = useState([]);
+   const [bookingFilter, setBookingFilter] = useState("all");
 
   const [galleryImages, setGalleryImages] = useState([]);
   const [galleryImageFile, setGalleryImageFile] = useState(null);
@@ -51,6 +52,20 @@ const AdminDashboard = () => {
   const [editingId, setEditingId] = useState(null);
 
   
+  const bookingStatusLabels = {
+  pending: "Bestätigung erforderlich",
+  confirmed: "Bestätigt",
+  completed: "Abgeschlossen",
+  cancelled: "Storniert"
+};
+
+const filteredBookings =
+  bookingFilter === "all"
+    ? bookings
+    : bookings.filter(
+        (booking) => booking.status === bookingFilter
+      );
+
 
   const fetchServices = async () => {
     try {
@@ -89,6 +104,66 @@ useEffect(() => {
       [e.target.name]: e.target.value
     });
   };
+
+
+  const handleDeleteBooking = async (bookingId) => {
+  const confirmed = window.confirm(
+    "Möchten Sie diesen Termin wirklich dauerhaft löschen?"
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await deleteBooking(bookingId);
+
+    const response = await getAllBookings();
+    setBookings(response.data.bookings);
+
+    setBookingMessage("Termin erfolgreich gelöscht.");
+    setBookingError("");
+  } catch (error) {
+    console.error(error);
+
+    setBookingError(
+      error.response?.data?.message ||
+      "Der Termin konnte nicht gelöscht werden."
+    );
+  }
+};
+
+
+const handleDeleteBookingsByStatus = async (status) => {
+  const statusLabel = bookingStatusLabels[status] || status;
+
+  const confirmed = window.confirm(
+    `Möchten Sie wirklich alle Termine mit dem Status "${statusLabel}" löschen?`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const response = await deleteBookingsByStatus(status);
+
+    const bookingsResponse = await getAllBookings();
+    setBookings(bookingsResponse.data.bookings);
+
+    setBookingMessage(
+      response.data?.message ||
+      "Termine erfolgreich gelöscht."
+    );
+
+    setBookingError("");
+  } catch (error) {
+    console.error(error);
+
+    setBookingError(
+      error.response?.data?.message ||
+      "Die Termine konnten nicht gelöscht werden."
+    );
+  }
+};
+
+
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
@@ -500,7 +575,7 @@ return (
                 </button>
 
                 <button
-                  className="delete-button"
+                className="delete-button"
                   onClick={() =>
                     handleDelete(service._id)
                   }
@@ -615,6 +690,66 @@ return (
         <div className="behandlung-termine-bar">
           <h2>Alle Termine</h2>
         </div>
+
+        <div className="booking-filter-bar">
+          <button
+            type="button"
+            className={bookingFilter === "all" ? "active" : ""}
+            onClick={() => setBookingFilter("all")}
+          >
+            Alle
+          </button>
+
+          <button
+            type="button"
+            className={bookingFilter === "pending" ? "active" : ""}
+            onClick={() => setBookingFilter("pending")}
+          >
+            Bestätigung erforderlich
+          </button>
+
+          <button
+            type="button"
+            className={bookingFilter === "confirmed" ? "active" : ""}
+            onClick={() => setBookingFilter("confirmed")}
+          >
+            Bestätigt
+          </button>
+
+          <button
+            type="button"
+            className={bookingFilter === "completed" ? "active" : ""}
+            onClick={() => setBookingFilter("completed")}
+          >
+            Abgeschlossen
+          </button>
+
+          <button
+            type="button"
+            className={bookingFilter === "cancelled" ? "active" : ""}
+            onClick={() => setBookingFilter("cancelled")}
+          >
+            Storniert
+          </button>
+        </div>
+
+        <div className="booking-delete-actions">
+          <button
+            type="button"
+            className="delete-button"
+            onClick={() => handleDeleteBookingsByStatus("cancelled")}
+          >
+            Stornierte Termine löschen
+          </button>
+
+          <button
+            type="button"
+            className="delete-button"
+            onClick={() => handleDeleteBookingsByStatus("completed")}
+          >
+            Abgeschlossene Termine löschen
+          </button>
+        </div>
         {bookingMessage && (
         <p className="admin-success">
           {bookingMessage}
@@ -629,7 +764,7 @@ return (
 
         <div className="admin-services-grid">
 
-          {bookings.map((booking) => (
+          {filteredBookings.map((booking) => (
             <div className="admin-service-card" key={booking._id}>
 
               <h3>{booking.service?.title}</h3>
@@ -651,7 +786,10 @@ return (
 
               <p><strong>Uhrzeit:</strong>{" "}{booking.time}</p>
 
-              <p><strong>Status:</strong>{" "} {booking.status}</p>
+              <p>
+                <strong>Status:</strong>{" "}
+                {bookingStatusLabels[booking.status] || booking.status}
+              </p>
 
               <div className="admin-actions">
 
@@ -687,6 +825,13 @@ return (
                     Stornieren
                   </button>
                 )}
+                <button
+                  type="button"
+                  className="cancel-booking-button"
+                  onClick={() => handleDeleteBooking(booking._id)}
+                >
+                  Löschen
+                </button>
 
               </div>
 

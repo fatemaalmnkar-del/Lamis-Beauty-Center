@@ -237,6 +237,9 @@
 
   border: 1px solid #eadfeb;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .admin-service-card h3 {
@@ -266,13 +269,15 @@
 
 .admin-actions {
   display: flex;
+  flex-wrap: nowrap;
   gap: 10px;
 
-  margin-top: 18px;
+   margin-top: auto;
 }
 
 .edit-button,
-.delete-button {
+.delete-button,
+.cancel-booking-button {
   flex: 1;
 
   padding: 9px;
@@ -291,6 +296,89 @@
 .delete-button {
   background-color: #f1e6e8;
   color: #9a3f4a;
+}
+
+.cancel-booking-button {
+  background-color: #f7f1e8;
+  color: #9a6a2f;
+}
+
+.cancel-booking-button:hover {
+  background-color: #efe3d2;
+}
+
+
+/* =========================
+   BOOKING FILTERS
+========================= */
+
+.booking-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 22px;
+}
+
+.booking-filter-bar button {
+  padding: 9px 16px;
+
+  border: 1px solid #d8c5dc;
+  border-radius: 20px;
+
+  background-color: #ffffff;
+  color: #6d3f73;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.booking-filter-bar button:hover {
+  border-color: #b08a3c;
+  color: #b08a3c;
+}
+
+.booking-filter-bar button.active {
+  background-color: #6d3f73;
+  color: #ffffff;
+  border-color: #6d3f73;
+}
+
+
+/* =========================
+   BOOKING DELETE ACTIONS
+========================= */
+
+.booking-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+.booking-delete-actions .delete-button {
+  flex: none;
+
+  padding: 10px 16px;
+
+  background-color: #fff5f6;
+  color: #9a3f4a;
+
+  border: 1px solid #dfb9bf;
+  border-radius: 7px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.booking-delete-actions .delete-button:hover {
+  background-color: #f1e6e8;
 }
 
 
@@ -541,7 +629,8 @@
   }
 
   .edit-button,
-  .delete-button {
+  .delete-button,
+  .cancel-booking-button {
     width: 100%;
     flex: none;
     padding: 11px;
@@ -555,5 +644,22 @@
 
   .admin-access {
     margin: 50px auto;
+  }
+
+  .booking-filter-bar {
+    justify-content: flex-start;
+  }
+
+  .booking-filter-bar button {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
+  .booking-delete-actions {
+    flex-direction: column;
+  }
+
+  .booking-delete-actions .delete-button {
+    width: 100%;
   }
 }

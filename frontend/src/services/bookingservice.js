@@ -21,3 +21,11 @@ export const updateBookingStatus = (bookingId, status) => {
 export const getBookedTimes = (date) => {
   return api.get(`/bookings/booked-times?date=${date}`);
 };
+
+export const deleteBooking = (bookingId) => {
+  return api.delete(`/bookings/${bookingId}`);
+};
+
+export const deleteBookingsByStatus = (status) => {
+  return api.delete(`/bookings/status/${status}`);
+};
