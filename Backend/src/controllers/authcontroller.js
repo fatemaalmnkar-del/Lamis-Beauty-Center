@@ -11,8 +11,12 @@ const registerUser = async (req, res) => {
     if (!name || !email || !password || !phone) {
       return res.status(400).json({ message: "Bitte füllen Sie alle Pflichtfelder aus." });
     }; 
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Das Passwort muss mindestens 6 Zeichen lang sein."
+      });
+     };
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         return res.status(400).json({ message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." });
       };

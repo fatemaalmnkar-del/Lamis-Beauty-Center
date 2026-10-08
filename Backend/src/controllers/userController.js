@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 
-const  gitProfile = async (req, res) => {
+const  getProfile = async (req, res) => {
   try {
     const user= await User.findById(req.user.id).select("-password");
     if (!user) {
@@ -14,7 +14,7 @@ const  gitProfile = async (req, res) => {
 };
  const updateProfile = async (req, res) => {
   try {
-    const {name,phone, dataofBirth,profileImage } = req.body;
+    const {name,phone, dataofBirth} = req.body;
 
     const user = await User.findById(req.user.id);
 
@@ -36,9 +36,7 @@ const  gitProfile = async (req, res) => {
       user.dataofBirth = dataofBirth;
     }
 
-    if (profileImage !== undefined) {
-      user.profileImage = profileImage;
-    }
+
 
     await user.save();
 
@@ -50,7 +48,7 @@ const  gitProfile = async (req, res) => {
         email: user.email,
         phone: user.phone,
         dataofBirth: user.dataofBirth,
-        profileImage: user.profileImage,
+       
         role: user.role
       }
     });
@@ -66,4 +64,4 @@ const  gitProfile = async (req, res) => {
 
 
 
-module.exports = { gitProfile , updateProfile};
+module.exports = { getProfile , updateProfile};
