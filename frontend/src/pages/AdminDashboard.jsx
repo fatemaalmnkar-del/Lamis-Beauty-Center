@@ -818,7 +818,7 @@ return (
                 {booking.status !== "cancelled" &&
                   booking.status !== "completed" && (
                   <button
-                    className="delete-button"
+                     className="cancel-booking-button"
                     onClick={() =>
                     handleStatusChange(booking._id, "cancelled")
                     }>
@@ -827,7 +827,7 @@ return (
                 )}
                 <button
                   type="button"
-                  className="cancel-booking-button"
+                  className="delete-button"
                   onClick={() => handleDeleteBooking(booking._id)}
                 >
                   Löschen

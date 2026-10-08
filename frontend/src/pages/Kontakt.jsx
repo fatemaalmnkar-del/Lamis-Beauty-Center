@@ -105,7 +105,7 @@ ${formData.message}
           <FaClock className="kontakt-icon" />
           <h3>Öffnungszeiten</h3>
             <p>
-              Montag – Samstag: 10:30 – 19:00
+              Montag – Samstag: 10:00 – 18:00
               <br />
               Sonntag: Geschlossen
            </p>

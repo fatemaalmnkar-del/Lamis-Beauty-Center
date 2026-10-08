@@ -108,6 +108,7 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Passwort"
+              minLength={6}
               required
             />
           </div>
