@@ -6,10 +6,6 @@
 }
 
 
-/* =========================
-   IMAGES
-========================= */
-
 .admin-image-preview {
   width: 100%;
   max-height: 220px;
@@ -27,9 +23,6 @@
 }
 
 
-/* =========================
-   SECTION BAR
-========================= */
 
 .behandlung-termine-bar {
   display: flex;
@@ -58,9 +51,6 @@
 }
 
 
-/* =========================
-   HEADER
-========================= */
 
 .admin-header {
   max-width: 750px;
@@ -85,9 +75,6 @@
 }
 
 
-/* =========================
-   FORM CONTAINER
-========================= */
 
 .admin-form-container {
   width: 100%;
@@ -112,10 +99,6 @@
   text-align: center;
 }
 
-
-/* =========================
-   FORM GROUPS
-========================= */
 
 .admin-form-group {
   margin-bottom: 18px;
@@ -160,9 +143,6 @@
 }
 
 
-/* =========================
-   FORM BUTTONS
-========================= */
 
 .admin-save-button {
   width: 100%;
@@ -200,9 +180,6 @@
 }
 
 
-/* =========================
-   SERVICES
-========================= */
 
 .admin-services {
   width: 100%;
@@ -226,9 +203,7 @@
 }
 
 
-/* =========================
-   SERVICE CARD
-========================= */
+
 
 .admin-service-card {
   padding: 25px;
@@ -262,11 +237,6 @@
   font-weight: bold;
 }
 
-
-/* =========================
-   ACTIONS
-========================= */
-
 .admin-actions {
   display: flex;
   flex-wrap: nowrap;
@@ -276,8 +246,7 @@
 }
 
 .edit-button,
-.delete-button,
-.cancel-booking-button {
+.delete-button{
   flex: 1;
 
   padding: 9px;
@@ -298,93 +267,6 @@
   color: #9a3f4a;
 }
 
-.cancel-booking-button {
-  background-color: #f7f1e8;
-  color: #9a6a2f;
-}
-
-.cancel-booking-button:hover {
-  background-color: #efe3d2;
-}
-
-
-/* =========================
-   BOOKING FILTERS
-========================= */
-
-.booking-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-
-  margin-bottom: 22px;
-}
-
-.booking-filter-bar button {
-  padding: 9px 16px;
-
-  border: 1px solid #d8c5dc;
-  border-radius: 20px;
-
-  background-color: #ffffff;
-  color: #6d3f73;
-
-  cursor: pointer;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  transition: all 0.25s ease;
-}
-
-.booking-filter-bar button:hover {
-  border-color: #b08a3c;
-  color: #b08a3c;
-}
-
-.booking-filter-bar button.active {
-  background-color: #6d3f73;
-  color: #ffffff;
-  border-color: #6d3f73;
-}
-
-
-/* =========================
-   BOOKING DELETE ACTIONS
-========================= */
-
-.booking-delete-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-
-  margin-bottom: 25px;
-}
-
-.booking-delete-actions .delete-button {
-  flex: none;
-
-  padding: 10px 16px;
-
-  background-color: #fff5f6;
-  color: #9a3f4a;
-
-  border: 1px solid #dfb9bf;
-  border-radius: 7px;
-
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.booking-delete-actions .delete-button:hover {
-  background-color: #f1e6e8;
-}
-
-
-/* =========================
-   MESSAGES
-========================= */
 
 .admin-success,
 .admin-error,
@@ -422,10 +304,6 @@
 }
 
 
-/* =========================
-   VORHER / NACHHER GALERIE
-========================= */
-
 .admin-gallery-section {
   margin-top: 50px;
 }
@@ -456,10 +334,6 @@
   border-radius: 6px;
 }
 
-
-/* =========================
-   GALLERY GRID
-========================= */
 
 .admin-gallery-grid {
   display: grid;
@@ -498,9 +372,7 @@
 }
 
 
-/* =========================
-   GALLERY RESPONSIVE
-========================= */
+
 
 @media (max-width: 1000px) {
   .admin-gallery-grid {
@@ -525,10 +397,6 @@
 }
 
 
-/* =========================
-   TABLET
-========================= */
-
 @media (max-width: 900px) {
   .admin-page {
     padding: 40px 25px;
@@ -544,9 +412,6 @@
 }
 
 
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 600px) {
   .admin-page {
@@ -629,8 +494,8 @@
   }
 
   .edit-button,
-  .delete-button,
-  .cancel-booking-button {
+  .delete-button
+ {
     width: 100%;
     flex: none;
     padding: 11px;
@@ -646,20 +511,4 @@
     margin: 50px auto;
   }
 
-  .booking-filter-bar {
-    justify-content: flex-start;
-  }
-
-  .booking-filter-bar button {
-    flex: 1 1 calc(50% - 8px);
-    text-align: center;
-  }
-
-  .booking-delete-actions {
-    flex-direction: column;
-  }
-
-  .booking-delete-actions .delete-button {
-    width: 100%;
-  }
 }

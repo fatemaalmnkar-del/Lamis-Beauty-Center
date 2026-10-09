@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import AdminBooking from "../Components/AdminBooking";
 import { getServices } from "../services/serviceService";
 
 import {
@@ -28,6 +28,7 @@ import "./Booking.css";
 const Booking = () => {
   const user = useSelector((state) => state.auth.user);
 
+  
   const [searchParams] = useSearchParams();
 
   const serviceIdfromURL = searchParams.get("serviceId") || "";
@@ -52,6 +53,7 @@ const Booking = () => {
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [adminBookingsRefresh, setAdminBookingsRefresh] = useState(0);
 
   useAutoDismiss(message, setMessage);
   useAutoDismiss(error, setError);
@@ -145,8 +147,15 @@ const Booking = () => {
 
     try {
       await createBooking(formData);
+    
+      if (user.role === "admin") {
+        setAdminBookingsRefresh((prev) => prev + 1);
+      }
 
+    
+  
       setMessage("Termin erfolgreich gebucht.");
+     
 
       setFormData({
         customerName: "",
@@ -157,7 +166,10 @@ const Booking = () => {
         time: ""
       });
 
-      await fetchBookings();
+        if (user.role !== "admin") {
+          await fetchBookings();
+        }
+          
     } catch (error) {
       console.error(error);
 
@@ -166,7 +178,7 @@ const Booking = () => {
           "Termin konnte nicht gebucht werden."
       );
     }
-  };
+  }
 
   const handleCancel = async (bookingId) => {
     setMessage("");
@@ -203,6 +215,7 @@ const Booking = () => {
       : bookings.filter(
           (booking) => booking.status === bookingFilter
         );
+
 
   if (!user) {
     return (
@@ -293,6 +306,9 @@ const Booking = () => {
 
   return (
     <main className="booking-page">
+     {user?.role === "admin" && (
+        <AdminBooking refreshKey={adminBookingsRefresh} />
+      )}
       <section className="booking-form-container">
         <p className="booking-small-title">
           Terminvereinbarung

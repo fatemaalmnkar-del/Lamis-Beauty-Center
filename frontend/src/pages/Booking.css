@@ -612,7 +612,37 @@
 .cancel-button:hover {
   background-color: #b08a3c;
 }
+/* ===== BOOKING FILTER ===== */
 
+.my-bookings .booking-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.my-bookings .booking-filter-bar button {
+  padding: 9px 16px;
+  border: 1px solid #d8c6da;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #6d3f73;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.my-bookings .booking-filter-bar button:hover {
+  background-color: #f7f0f8;
+  border-color: #6d3f73;
+}
+
+.my-bookings .booking-filter-bar button.active {
+  background-color: #6d3f73;
+  color: #ffffff;
+  border-color: #6d3f73;
+}
 
 /* ===== TABLET ===== */
 
@@ -719,4 +749,13 @@
   .termine-bar h1 {
     font-size: 24px;
   }
+  .my-bookings .booking-filter-bar {
+  gap: 8px;
+}
+
+.my-bookings .booking-filter-bar button {
+  flex: 1 1 calc(50% - 8px);
+  padding: 9px 10px;
+  font-size: 13px;
+}
 }

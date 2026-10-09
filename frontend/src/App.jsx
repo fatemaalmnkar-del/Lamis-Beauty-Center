@@ -83,9 +83,15 @@ function App() {
             </>
           )}
          { user && user.role === "admin" && (
-          <li>
-            <Link to="/admin">Admin-Bereich</Link>
-          </li>
+            <>
+              <li>
+                <Link to="/admin">Admin-Bereich</Link>
+              </li>
+
+              <li>
+                <Link to="/booking">Termine</Link>
+              </li>
+            </>
            )}
           {user && (
           <li>
