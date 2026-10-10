@@ -139,7 +139,7 @@ function App() {
             </div>
             <div className="footer-zeiten">
               <h3>Öffnungszeiten</h3>
-              <p>Montag – Samstag: 10:00 – 18:00</p>
+              <p>Montag – Samstag: 10:30 – 18:00</p>
               <p>Sonntag: Geschlossen</p>
             </div>
            
