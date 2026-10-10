@@ -386,7 +386,7 @@ const About = () => {
                 </strong>
 
                 <p style={{ color: "#8B6F47" }}>
-                  Mo – Sa: 10:00 – 18:00 Uhr
+                  Mo – Sa: 10:30 – 18:00 Uhr
                 </p>
               </div>
             </div>

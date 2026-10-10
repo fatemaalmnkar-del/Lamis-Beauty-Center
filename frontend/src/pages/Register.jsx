@@ -4,6 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import "./Register.css";
 import useAutoDismiss from "../hooks/useAutoDismiss";
+import {
+  FiUser,
+  FiMail,
+  FiLock,
+  FiPhone,
+  FiCalendar
+} from "react-icons/fi";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -58,6 +65,22 @@ const Register = () => {
           und Ihre persönlichen Daten zu verwalten.
         </p>
 
+        <div className="auth-hint">
+          <strong>Hinweis:</strong>
+
+          <p>
+            Merken Sie sich bitte Ihre E-Mail-Adresse und Ihr Passwort.
+          </p>
+
+          <p>
+            Diese Daten benötigen Sie anschließend für die Anmeldung.
+          </p>
+
+          <p>
+            Nach Ablauf Ihrer Anmeldung können Sie sich jederzeit erneut mit denselben Daten einloggen.
+          </p>
+        </div>
+
         {error && (
           <p className="register-error">
             {error}
@@ -66,8 +89,11 @@ const Register = () => {
 
         <form onSubmit={handleSubmit}>
 
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
+          <div className="form-row">
+            <label htmlFor="name">
+              <FiUser className="form-icon" />
+              Name
+            </label>
 
             <input
               type="text"
@@ -75,13 +101,14 @@ const Register = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Name"
+             placeholder="Vor- und Nachname"
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-row">
             <label htmlFor="email">
+              <FiMail className="form-icon" />
               E-Mail-Adresse
             </label>
 
@@ -91,13 +118,14 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="E-Mail-Adresse"
+              placeholder="name@example.com"
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-row">
             <label htmlFor="password">
+              <FiLock className="form-icon" />
               Passwort
             </label>
 
@@ -107,14 +135,15 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Passwort"
+              placeholder="Mindestens 6 Zeichen"
               minLength={6}
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-row">
             <label htmlFor="phone">
+              <FiPhone className="form-icon" />
               Telefonnummer
             </label>
 
@@ -124,13 +153,14 @@ const Register = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="+49123456789"
+              placeholder="+49 123 456789"
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-row">
             <label htmlFor="dataofBirth">
+              <FiCalendar className="form-icon" />
               Geburtsdatum
             </label>
 

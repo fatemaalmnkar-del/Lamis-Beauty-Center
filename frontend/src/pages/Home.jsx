@@ -549,7 +549,7 @@ const Home = () => {
 
       <section className="home-cta">
         <div className="home-cta-content">
-          <p className="section-label">
+          <p className="cta-label">
             IHR TERMIN
           </p>
 
@@ -557,7 +557,7 @@ const Home = () => {
             Bereit für Ihre <span>Behandlung?</span>
           </h2>
 
-          <p>
+          <p className="cta-text">
             Vereinbaren Sie jetzt Ihren persönlichen Termin und lassen Sie sich
             individuell beraten.
           </p>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import "./Login.css";
 import useAutoDismiss from "../hooks/useAutoDismiss";
+import { FiMail, FiLock } from "react-icons/fi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,6 +60,22 @@ const Login = () => {
         Melden Sie sich an, um Ihre Termine und
         persönlichen Daten zu verwalten.
         </p>
+        <div className="auth-hint">
+          <strong>Hinweis:</strong>
+
+          <p>
+            Falls Sie noch kein Konto haben, registrieren Sie sich bitte zuerst.
+          </p>
+
+          <p>
+            Verwenden Sie danach dieselbe E-Mail-Adresse und dasselbe Passwort für die Anmeldung.
+          </p>
+
+          <p>
+            Aus Sicherheitsgründen kann Ihre Anmeldung nach einiger Zeit ablaufen.
+            Melden Sie sich dann einfach erneut an, um Ihre Termine und Ihr Profil weiterhin sehen zu können.
+          </p>
+        </div>
 
         {error && (
         <p className="login-error">
@@ -68,8 +85,9 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
 
-          <div className="form-group">
+          <div className="form-row">
             <label htmlFor="email">
+              <FiMail className="form-icon" />
               E-Mail-Adresse
             </label>
 
@@ -78,13 +96,16 @@ const Login = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-Mail-Adresse"
+              placeholder="name@example.com"
               required
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password"> Passwort</label>
+          <div className="form-row">
+            <label htmlFor="password">
+              <FiLock className="form-icon" />
+              Passwort
+            </label>
 
             <input type="password" id="password"value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Passwort" required />
           </div>
