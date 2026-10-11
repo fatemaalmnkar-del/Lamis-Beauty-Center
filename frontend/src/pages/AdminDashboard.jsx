@@ -291,7 +291,7 @@ if (!user || user.role !== "admin") {
   );
 }
 return (
-    <main className="admin-page">
+    <main className="admin-page" id="admin-top">
 
       <section className="admin-header">
         <p>Verwaltung</p>
@@ -300,8 +300,21 @@ return (
           Verwalten Sie die Behandlungen des Beauty Centers.
         </p>
       </section>
+      <nav className="admin-nav">
+        <a href="#service-form">
+          Behandlung hinzufügen
+        </a>
 
-      <section className="admin-form-container">
+        <a href="#services-list">
+          Behandlungen
+        </a>
+
+        <a href="#gallery-section">
+          Vorher/Nachher
+        </a>
+      </nav>
+
+      <section className="admin-form-container"   id="service-form">
 
         <h2>
           {editingId
@@ -448,7 +461,7 @@ return (
         </form>
       </section>
 
-      <section className="admin-services">
+      <section className="admin-services" id="services-list">
            <div className="behandlung-termine-bar">
              <h2>Behandlungen</h2>
            </div>
@@ -510,7 +523,7 @@ return (
 
 
             
-      <section className="admin-services">
+      <section className="admin-services"   id="gallery-section">
 
         <div className="behandlung-termine-bar">
           <h2>Vorher/Nachher Ergebnisse</h2>
@@ -595,6 +608,9 @@ return (
           ))}
 
         </div>
+        <a href="#admin-top" className="back-to-top">
+          ↑ Nach oben
+        </a>
 
       </section>
 

@@ -57,7 +57,63 @@
   margin: 0 auto 40px;
   text-align: center;
 }
+.admin-nav {
+  max-width: 850px;
+  margin: 0 auto 45px;
 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-nav a {
+  padding: 11px 20px;
+
+  background-color: #ffffff;
+  color: #6d3f73;
+
+  border: 1px solid #d9cedb;
+  border-radius: 25px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: 0.2s;
+}
+
+.admin-nav a:hover {
+  background-color: #6d3f73;
+  color: #ffffff;
+  border-color: #6d3f73;
+}
+#service-form,
+#services-list,
+#gallery-section {
+  scroll-margin-top: 120px;
+}
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+
+  padding: 10px 16px;
+  background: #6d3f73;
+  color: white;
+
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background: #b08a3c;
+}
+html {
+  scroll-behavior: smooth;
+}
 .admin-header > p:first-child {
   margin-bottom: 6px;
   color: #b08a3c;

@@ -266,7 +266,7 @@ const About = () => {
               <p>Microblading</p>
               <p>Powder Brows</p>
               <p>Plasma Pen</p>
-              <p>International Certificate / IAPC</p>
+         
             </div>
 
             <p className="certificates-more">
