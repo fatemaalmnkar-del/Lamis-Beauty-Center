@@ -1,5 +1,3 @@
-/* ===== PAGE ===== */
-
 .booking-page {
   width: 100%;
   min-height: 100vh;
@@ -7,28 +5,19 @@
   background-color: #faf7fb;
 }
 
-
-/* ===== FORM CONTAINER ===== */
-
 .booking-form-container {
   width: 83%;
-  
   margin: 0 auto 60px;
   padding: 40px;
-
   background-color: #ffffff;
-
   border: 1px solid #eadfeb;
   border-radius: 14px;
-
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
 }
 
 .booking-small-title {
   margin-bottom: 6px;
-
   color: #b08a3c;
-
   text-align: center;
   font-size: 14px;
   font-weight: 600;
@@ -37,9 +26,7 @@
 
 .booking-form-container h1 {
   margin-bottom: 10px;
-
   color: #6d3f73;
-
   text-align: center;
   font-size: 34px;
 }
@@ -47,34 +34,23 @@
 .booking-description {
   max-width: 600px;
   margin: 0 auto 30px;
-
   color: #6f6571;
-
   text-align: center;
   font-size: 14px;
   line-height: 1.6;
 }
 
-
-/* ===== SECTION TITLES ===== */
-
 .booking-section-title {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
   gap: 10px;
-
   width: 100%;
-
   margin-top: 28px;
   margin-bottom: 14px;
-
   color: #5a2f61;
-
   font-size: 18px;
   font-weight: 700;
-
   text-align: left;
 }
 
@@ -83,9 +59,6 @@
   font-size: 18px;
   flex-shrink: 0;
 }
-
-
-/* ===== FORM GROUPS ===== */
 
 .booking-form-group {
   width: 100%;
@@ -96,16 +69,11 @@
 .booking-form-group label {
   display: flex;
   align-items: center;
-
   gap: 8px;
-
   margin-bottom: 7px;
-
   color: #514654;
-
   font-size: 14px;
   font-weight: 500;
-
   text-align: left;
 }
 
@@ -120,20 +88,14 @@
   width: 100%;
   max-width: 100%;
   min-width: 0;
-
   padding: 12px 14px;
-
   border: 1px solid #d9cedb;
   border-radius: 8px;
-
   background-color: #ffffff;
   color: #514654;
-
   font-size: 14px;
-
   outline: none;
   box-sizing: border-box;
-
   transition: 0.2s;
 }
 
@@ -274,40 +236,28 @@
   font-size: 13px;
 }
 
-
-/* ===== DATE SELECTION ===== */
-
 .booking-date-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin-bottom: 14px;
 }
-
 .booking-date-month {
   color: #6d3f73;
-
   font-size: 21px;
   font-weight: 600;
-
   text-transform: capitalize;
 }
 
 .date-nav-button {
   width: 38px;
   height: 38px;
-
   border: 1px solid #d8c6da;
   border-radius: 8px;
-
   background-color: #ffffff;
   color: #6d3f73;
-
   font-size: 20px;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -324,31 +274,23 @@
 .booking-date-list {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-
   gap: 10px;
-
   margin-bottom: 26px;
 }
 
 .date-button {
   min-height: 60px;
   padding: 10px 6px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 4px;
-
   border: 1px solid #d8c6da;
   border-radius: 9px;
-
   background-color: #ffffff;
   color: #6d3f73;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -381,15 +323,10 @@
   opacity: 0.6;
 }
 
-
-/* ===== TIME SELECTION ===== */
-
 .booking-times {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-
   gap: 10px;
-
   margin-top: 10px;
   margin-bottom: 28px;
 }
@@ -397,17 +334,12 @@
 .time-button {
   min-height: 48px;
   padding: 11px 10px;
-
   border: 1px solid #d8c6da;
   border-radius: 8px;
-
   background-color: #ffffff;
   color: #6d3f73;
-
   font-size: 14px;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -431,13 +363,9 @@
   opacity: 0.6;
 }
 
-
-/* ===== CUSTOMER DATA ===== */
-
 .customer-data-section {
   margin-top: 30px;
   padding-top: 22px;
-
   border-top: 1px solid #eadfeb;
 }
 
@@ -448,32 +376,21 @@
 .customer-contact-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   gap: 16px;
 }
 
-
-/* ===== MAIN BUTTON ===== */
-
 .booking-button {
   display: block;
-
   width: 100%;
-
   padding: 13px;
-
   border: none;
   border-radius: 8px;
-
   background-color: #6d3f73;
   color: #ffffff;
-
   font-size: 15px;
   text-align: center;
   text-decoration: none;
-
-  cursor: pointer;
-
+  cursor:pointer;
   transition: 0.2s;
 }
 
@@ -481,17 +398,11 @@
   background-color: #b08a3c;
 }
 
-
-/* ===== MESSAGES ===== */
-
 .booking-success,
 .booking-error {
   margin-bottom: 20px;
-
   padding: 10px;
-
   border-radius: 7px;
-
   text-align: center;
   font-size: 14px;
 }
@@ -515,105 +426,73 @@
   text-align: center;
 }
 
-
-/* ===== MY BOOKINGS HEADER ===== */
-
 .termine-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 100px;
-
   margin: 70px 0;
-
   background-color: #6d3f73;
-
   border: 4px solid #b08a3c;
   border-radius: 8px;
 }
-
 .termine-bar h1 {
   color: #bd9123;
-
   font-family: "Poppins", sans-serif;
   font-size: 30px;
-
   text-align: center;
 }
-
-
-/* ===== MY BOOKINGS ===== */
-
 .my-bookings {
   width: 100%;
   max-width: 1100px;
-
   margin: 0 auto;
 }
 
 .bookings-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
   gap: 20px;
 }
 
 .booking-card {
   display: flex;
   flex-direction: column;
-
   height: 100%;
-
   padding: 25px;
-
   background-color: #ffffff;
-
   border: 1px solid #eadfeb;
   border-radius: 10px;
-
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .booking-card h3 {
   min-height: 46px;
   margin-bottom: 15px;
-
   color: #6d3f73;
-
   font-size: 19px;
 }
 
 .booking-card p {
   margin-bottom: 10px;
-
   color: #625866;
-
   font-size: 14px;
 }
 
 .cancel-button {
   margin-top: auto;
-
   padding: 10px 16px;
-
   border: none;
   border-radius: 6px;
-
   background-color: #6d3f73;
   color: #ffffff;
-
   cursor: pointer;
-
   transition: 0.2s;
 }
 
 .cancel-button:hover {
   background-color: #b08a3c;
 }
-/* ===== BOOKING FILTER ===== */
-
 .my-bookings .booking-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -643,116 +522,87 @@
   color: #ffffff;
   border-color: #6d3f73;
 }
-
-/* ===== TABLET ===== */
-
 @media (max-width: 900px) {
   .booking-page {
     padding: 40px 25px;
   }
-
   .booking-form-container {
     max-width: 100%;
   }
-
   .booking-date-list {
     grid-template-columns: repeat(4, 1fr);
   }
-
   .booking-times {
     grid-template-columns: repeat(3, 1fr);
   }
-
   .bookings-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-
-/* ===== MOBILE ===== */
-
 @media (max-width: 600px) {
   .booking-page {
     padding: 30px 15px;
   }
-
   .booking-form-container {
     padding: 28px 20px;
     margin-bottom: 45px;
   }
-
   .booking-form-container h1 {
     font-size: 28px;
   }
-
   .booking-description {
     font-size: 13px;
   }
-
   .booking-section-title {
     font-size: 16px;
     gap: 8px;
   }
-
   .section-icon,
   .label-icon {
     font-size: 16px;
   }
-
   .booking-form-group input,
   .booking-form-group select {
     font-size: 16px;
   }
-
   .custom-select-button,
   .custom-select-option {
     font-size: 14px;
   }
-
   .custom-select-menu {
     max-height: 220px;
   }
-
   .booking-date-month {
     font-size: 18px;
   }
-
   .booking-date-list {
     grid-template-columns: repeat(3, 1fr);
   }
-
   .booking-times {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .customer-contact-row {
     grid-template-columns: 1fr;
   }
-
   .bookings-list {
     grid-template-columns: 1fr;
   }
-
   .booking-card {
     padding: 20px;
   }
-
   .cancel-button {
     width: 100%;
   }
-
   .termine-bar {
     height: 80px;
     margin: 50px 0;
   }
-
   .termine-bar h1 {
     font-size: 24px;
   }
   .my-bookings .booking-filter-bar {
   gap: 8px;
 }
-
 .my-bookings .booking-filter-bar button {
   flex: 1 1 calc(50% - 8px);
   padding: 9px 10px;

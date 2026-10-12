@@ -1,11 +1,6 @@
 .about-page {
   background: #fff;
 }
-
-/* =========================
-   HERO
-========================= */
-
 .about-hero {
   position: relative;
   max-width: 100%;
@@ -14,13 +9,11 @@
   align-items: center;
   overflow: hidden;
 }
-
 .about-hero-image {
   width: 100%;
   height: 650px;
   display: block;
 }
-
 .about-hero-content {
   position: absolute;
   top: 50%;
@@ -43,41 +36,31 @@
   font-size: 48px;
   line-height: 1.1;
 }
-
 .about-hero-content h2 {
   margin: 8px 0 16px;
   color: hsl(293, 29%, 35%);
   font-size: 28px;
 }
-
 .about-intro {
   margin: 0;
   color: #5c4a5f;
   font-size: 19px;
   line-height: 1.6;
 }
-
 .about-description {
   color: #5c4a5f;
   font-size: 16px;
   line-height: 1.7;
 }
-
 .about-owner {
   margin: 0;
   color: #666;
   font-size: 13px;
   line-height: 1.55;
 }
-
 .about-owner strong {
   color: #54276f;
 }
-
-/* =========================
-   ABOUT LAMIS
-========================= */
-
 .about-lamis-info {
   max-width: 100%;
   padding: 20px;
@@ -115,41 +98,32 @@
   font-size: 14px;
   line-height: 1.7;
 }
-
 .about-qualifications {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
-
 .qualification-card {
   min-height: 175px;
   padding: 20px 12px;
-
   text-align: center;
-
   background: linear-gradient(
     180deg,
     #fff 0%,
     #fbf7fc 100%
   );
-
   border: 1px solid #eee3f0;
   border-radius: 14px;
 }
-
 .qualification-icon {
   width: 48px;
   height: 48px;
   margin: 0 auto 14px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
   background: #f4ebf6;
-
   color: #b58a42;
   font-size: 22px;
 }
@@ -160,18 +134,12 @@
   font-size: 15px;
   line-height: 1.2;
 }
-
 .qualification-card p {
   margin: 0;
   color: #79727b;
   font-size: 12px;
   line-height: 1.5;
 }
-
-/* =========================
-   STUDIO
-========================= */
-
 .about-studio {
   max-width: 100%;
   padding: 45px 30px 35px;
@@ -181,15 +149,12 @@
     #fcf9fd 0%,
     #f8f3f9 100%
   );
-
   border-radius: 24px;
 }
-
 .about-studio-header {
   margin-bottom: 28px;
   text-align: center;
 }
-
 .about-studio-header .section-label {
   margin-bottom: 8px;
   color: #b58a42;
@@ -197,37 +162,30 @@
   font-weight: 700;
   letter-spacing: 2px;
 }
-
 .about-studio-header h2 {
   margin: 0 0 12px;
   color: #633b70;
   font-size: 30px;
   font-weight: 600;
 }
-
 .about-studio-header h2 span {
   color: #b58a42;
 }
-
 .about-studio-header p {
   max-width: 650px;
   margin: 0 auto;
-
   color: #6f6872;
   font-size: 14px;
   line-height: 1.7;
 }
-
 .studio-gallery {
   display: grid;
   grid-template-columns: repeat(6, 2fr);
   gap: 14px;
 }
-
 .studio-item {
   overflow: hidden;
 }
-
 .studio-item img {
   width: 100%;
   height: 220px;
@@ -237,17 +195,11 @@
 
   border-radius: 14px;
 }
-
 .studio-item p {
   margin: 9px 2px 0;
   color: #5f5662;
   font-size: 13px;
 }
-
-/* =========================
-   CERTIFICATES
-========================= */
-
 .certificates-section {
   height: 380px;
 
@@ -307,23 +259,18 @@
 
 .certificates-title {
   margin: 0 7px 9px;
-
   color: #522b70;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: 29px;
   font-weight: 500;
   line-height: 1.45;
 }
-
 .certificates-title span {
   color: #b98a35;
 }
-
 .certificates-description {
   max-width: 680px;
   margin: 0 0 15px;
-
   color: #615b65;
   font-size: 13px;
   line-height: 1.5;
@@ -334,34 +281,25 @@
   grid-template-columns: 1fr 1.2fr 0.9fr;
   gap: 6px 20px;
 }
-
 .certificates-list p {
   position: relative;
-
   margin: 0;
   padding-left: 21px;
-
   color: #47424a;
   font-size: 12.5px;
   line-height: 1.35;
 }
-
 .certificates-list p::before {
   content: "✓";
-
   position: absolute;
   top: 0;
   left: 0;
-
   width: 15px;
   height: 15px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
   background: #b98a35;
   color: #fff;
 
@@ -376,84 +314,60 @@
   font-style: italic;
 }
 
-/* =========================
-   MISSION
-========================= */
-
 .about-mission {
   padding: 26px 8% 30px;
-
   text-align: center;
-
   background: #f4ebf6;
 }
-
 .about-mission .section-label {
   margin: 0 0 8px;
-
   color: #b98a35;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 1.8px;
 }
-
 .about-mission h2 {
   margin: 0 0 10px;
-
   color: #54276f;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: 34px;
   font-weight: 500;
   line-height: 1.15;
 }
-
 .about-mission h2 span {
   color: #b98a35;
 }
-
 .mission-description {
   max-width: 720px;
   margin: 0 auto 18px;
-
   color: #666;
   font-size: 13px;
   line-height: 1.5;
 }
-
 .mission-points {
   max-width: 920px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
-
 .mission-card {
   padding: 12px 16px;
-
   background: rgba(255, 255, 255, 0.7);
-
   border: 1px solid rgba(185, 138, 53, 0.3);
   border-radius: 12px;
-
   box-shadow: 0 6px 18px rgba(84, 39, 111, 0.05);
-
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transform 0.25s ease,
+  box-shadow 0.25s ease,
+  border-color 0.25s ease;
 }
 
 .mission-card:hover {
   transform: translateY(-3px);
-
   border-color: rgba(185, 138, 53, 0.55);
-
   box-shadow: 0 10px 24px rgba(84, 39, 111, 0.08);
 }
-
 .mission-icon {
   width: 36px;
   height: 36px;
@@ -470,24 +384,18 @@
 
   font-size: 18px;
 }
-
 .mission-card h3 {
   margin: 0 0 3px;
   color: #54276f;
   font-size: 14px;
   font-weight: 600;
 }
-
 .mission-card p {
   margin: 0;
   color: #777;
   font-size: 12px;
   line-height: 1.35;
 }
-
-/* =========================
-   VISIT
-========================= */
 
 .visit-section {
   height: 290px;
@@ -629,10 +537,6 @@ text-decoration: none;
   object-fit: cover;
   object-position: center 100%;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 900px) {
   .certificates-section {

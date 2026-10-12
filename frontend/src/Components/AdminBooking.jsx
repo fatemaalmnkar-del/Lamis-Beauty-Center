@@ -55,6 +55,7 @@ const handleDateChange = (e) => {
 
   setBookingError("");
   setSelectedDate(value);
+  setDateView("day");
 };
   const bookingStatusLabels = {
     pending: "Bestätigung erforderlich",
@@ -395,11 +396,6 @@ const weekDays =
           </p>
         )}
 
-        {bookingError && (
-          <p className="admin-error">
-            {bookingError}
-          </p>
-        )}
         {filteredBookings.length === 0 && (
           <p className="no-bookings">
             Keine Termine an diesem Tag.
@@ -581,17 +577,7 @@ const weekDays =
                   {bookingError}
                 </p>
               )}
-
-              {selectedDate && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedDate("")}
-                >
-                  Alle Tage
-                </button>
-              )}
             </div>
-
           </div>
           {(dateView === "thisWeek" || dateView === "nextWeek") &&
             weekDays.length > 0 && (

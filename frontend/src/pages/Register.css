@@ -1,53 +1,40 @@
 .register-page {
   width: 100%;
   min-height: calc(100vh - 90px);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 50px 20px;
-
   background-color: #faf7fb;
 }
 
 .register-container {
   width: 100%;
   max-width: 700px;
-
   padding: 40px;
-
   background-color: #ffffff;
-
   border: 1px solid #eadfeb;
   border-radius: 12px;
-
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
 }
 
 .register-small-title {
   margin-bottom: 5px;
-
   color: #b08a3c;
-
   text-align: center;
   font-size: 15px;
 }
 
 .register-container h1 {
   margin-bottom: 10px;
-
   color: #6d3f73;
-
   text-align: center;
   font-size: 34px;
 }
 
 .register-description {
   margin-bottom: 30px;
-
   color: #6f6571;
-
   text-align: center;
   font-size: 14px;
   line-height: 1.6;
@@ -95,19 +82,13 @@
 
 .register-button {
   width: 100%;
-
   padding: 12px;
-
   border: none;
   border-radius: 7px;
-
   background-color: #6d3f73;
   color: #ffffff;
-
   font-size: 15px;
-
   cursor: pointer;
-
   transition: 0.3s;
 }
 
@@ -118,42 +99,33 @@
 .register-error {
   margin-bottom: 20px;
   padding: 10px;
-
   border-radius: 6px;
-
   background-color: #fbecec;
   color: #a33a3a;
-
   text-align: center;
   font-size: 14px;
 }
 
 .login-link {
   margin-top: 22px;
-
   color: #6f6571;
-
   text-align: center;
   font-size: 14px;
 }
 
 .login-link a {
   color: #b08a3c;
-
   text-decoration: none;
   font-weight: 600;
 }
 .auth-hint {
   margin-bottom: 26px;
   padding: 16px 18px;
-
   border: 1px solid #eadfeb;
   border-left: 4px solid #b08a3c;
   border-radius: 10px;
-
   background-color: #fbf8fc;
   color: #625866;
-
   font-size: 13px;
   line-height: 1.6;
 }
@@ -161,7 +133,6 @@
 .auth-hint strong {
   display: block;
   margin-bottom: 6px;
-
   color: #6d3f73;
   font-size: 14px;
 }
@@ -169,9 +140,6 @@
 .auth-hint p {
   margin: 4px 0;
 }
-
-
-/* ===== MOBILE ===== */
 
 @media (max-width: 600px) {
 

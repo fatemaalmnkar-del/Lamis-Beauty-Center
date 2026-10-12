@@ -73,9 +73,12 @@ const loginUser = async (req, res) => {
     if (!isPasswordValid) {
     return res.status(401).json({ message: "E-Mail-Adresse oder Passwort ist falsch."});
     }
-    const token =jwt.sign({ id: user._id ,role:user.role },
-   process.env.JWT_SECRET,
-   { expiresIn: "1h" });
+  const expiresIn = user.role === "admin" ? "2d" : "10d";
+  const token = jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn }
+  );
    res.status(200).json({ message: "Sie haben sich erfolgreich angemeldet", token, user: {
     id: user._id,
     name: user.name, 

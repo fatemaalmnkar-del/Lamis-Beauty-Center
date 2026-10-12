@@ -5,9 +5,6 @@
   background-color: #faf7fb;
 }
 
-
-/* ===== HEADER ===== */
-
 .services-header {
   max-width: 750px;
   margin: 0 auto 45px;
@@ -31,34 +28,25 @@
   font-size: 16px;
   line-height: 1.7;
 }
-
-
-/* ===== CATEGORIES ===== */
+*/
 
 .services-categories {
   max-width: 1100px;
   margin: 0 auto 35px;
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
   gap: 12px;
 }
 
 .services-categories button {
   padding: 10px 18px;
-
   background-color: #ffffff;
   color: #6d3f73;
-
   border: 1px solid #d8c6da;
   border-radius: 25px;
-
   font-size: 14px;
-
   cursor: pointer;
-
   transition: 0.3s;
 }
 
@@ -70,50 +58,29 @@
 .services-categories button.active {
   background-color: #6d3f73;
   color: #ffffff;
-
   border-color: #6d3f73;
-
   box-shadow: 0 4px 12px rgba(109, 63, 115, 0.18);
 }
-
-
-/* ===== SERVICES GRID ===== */
-
 .services-container {
   width: 100%;
   max-width: 1200px;
-
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
   gap: 25px;
-
   align-items: stretch;
 }
 
-
-
-/* ===== SERVICE CARD ===== */
-
 .service-card {
   height: 100%;
-
   display: flex;
   flex-direction: column;
-
   padding: 25px 20px;
-
   background-color: #ffffff;
-
   border: 1px solid #eadfeb;
   border-radius: 12px;
-
   text-align: center;
-
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-
   transition: 0.3s;
 }
 
@@ -122,8 +89,6 @@
   transform: translateY(-5px);
 }
 
-
-/* ===== IMAGE ===== */
 
 .service-image {
   width: 100%;
@@ -136,34 +101,17 @@
   margin-bottom: 15px;
 }
 
-
-
-
-
-/* ===== CARD CONTENT ===== */
-
 .service-card-content {
   display: flex;
   flex-direction: column;
-
   flex: 1;
 }
-
-
-
-
-/* ===== TITLE ===== */
-
 .service-card h2 {
   margin-bottom: 15px;
-
   color: #6d3f73;
-
   font-size: 21px;
 }
 
-
-/* ===== DESCRIPTION ===== */
 
 .service-description {
   flex: 1;
@@ -177,58 +125,34 @@
 }
 
 
-/* ===== CARD FOOTER ===== */
-
 .service-card-footer {
   margin-top: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-
-
-/* ===== PRICE ===== */
-
 .service-price {
   margin-bottom: 10px;
-
   color: #b08a3c;
-
   font-size: 20px;
   font-weight: bold;
 }
 
-
-/* ===== DURATION ===== */
-
 .service-duration {
   margin-bottom: 20px;
-
   color: #817584;
-
   font-size: 14px;
 }
 
-
-/* ===== BUTTON ===== */
-
 .service-button {
   display: inline-block;
-
   padding: 11px 22px;
-
   background-color: #6d3f73;
   color: #ffffff;
-
   border-radius: 7px;
-
   text-decoration: none;
-
   font-size: 14px;
-
   transition: 0.3s;
 }
 
@@ -237,18 +161,12 @@
 }
 
 
-/* ===== LOADING / ERROR ===== */
-
 .services-message {
   margin-top: 80px;
-
   text-align: center;
-
   color: #6d3f73;
-
   font-size: 18px;
 }
-/* ===== TABLET ===== */
 
 @media (max-width: 1024px) {
   .services-page {
@@ -273,8 +191,6 @@
   }
 }
 
-
-/* ===== SMALL TABLET ===== */
 
 @media (max-width: 768px) {
   .services-page {
@@ -308,8 +224,6 @@
   }
 }
 
-
-/* ===== MOBILE ===== */
 
 @media (max-width: 480px) {
   .services-page {

@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllReviews } from "../services/reviewService";
 import "./Reviews.css";
 import { useSelector } from "react-redux";
-import {
-  
-  deleteReview
-} from "../services/reviewService";
+import {deleteReview} from "../services/reviewService";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
