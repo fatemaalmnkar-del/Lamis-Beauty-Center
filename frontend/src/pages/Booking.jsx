@@ -32,6 +32,11 @@ const Booking = () => {
   const [searchParams] = useSearchParams();
 
   const serviceIdfromURL = searchParams.get("serviceId") || "";
+  const dateFromURL =
+  searchParams.get("date") || "";
+
+const timeFromURL =
+  searchParams.get("time") || "";
 
   const [services, setServices] = useState([]);
   const [bookingFilter, setBookingFilter] = useState("all");
@@ -45,8 +50,8 @@ const Booking = () => {
     customerPhone: "",
     customerEmail: "",
     service: serviceIdfromURL,
-    date: "",
-    time: ""
+    date: dateFromURL,
+    time: timeFromURL
   });
 
   const [loading, setLoading] = useState(true);
@@ -307,9 +312,17 @@ const Booking = () => {
   return (
     <main className="booking-page">
      {user?.role === "admin" && (
-        <AdminBooking refreshKey={adminBookingsRefresh} />
+        <AdminBooking refreshKey={adminBookingsRefresh}
+            onSelectSlot={(date, time) => {
+            setFormData((prev) => ({
+              ...prev,
+              date,
+              time
+            }));
+          }}
+        />
       )}
-      <section className="booking-form-container">
+      <section className="booking-form-container"  id="termin-buchen">
         <p className="booking-small-title">
           Terminvereinbarung
         </p>
