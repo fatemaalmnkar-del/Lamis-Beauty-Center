@@ -398,7 +398,7 @@ const weekDays =
 
         {filteredBookings.length === 0 && (
           <p className="no-bookings">
-            Keine Termine an diesem Tag.
+            Keine Termine vorhanden.
           </p>
         )}
 
