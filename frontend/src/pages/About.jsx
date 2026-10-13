@@ -19,7 +19,7 @@ const About = () => {
 
       <section className="about-hero">
         <img
-          src="/images/lamis.png"
+          src="/images/lamisfoto.png"
           alt="Lamis - Fachkosmetikerin"
           className="about-hero-image"
         />
