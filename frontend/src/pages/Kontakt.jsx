@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { useSelector } from "react-redux";
-import './kontakt.css';
+import './Kontakt.css';
 import { Link } from "react-router-dom";
 import {
   FaMapMarkerAlt,
