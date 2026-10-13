@@ -64,19 +64,11 @@ const handleDateChange = (e) => {
     cancelled: "Storniert"
   };
 const filteredBookings = bookings.filter((booking) => {
-  const matchesStatus =
+  return(
     bookingFilter === "all" ||
-    booking.status === bookingFilter;
+    booking.status === bookingFilter
 
-  const bookingDate = new Date(booking.date)
-    .toISOString()
-    .split("T")[0];
-
-  const matchesDate =
-    selectedDate === "" ||
-    bookingDate === selectedDate;
-
-  return matchesStatus && matchesDate;
+  );
 });
 
 const dayBookings = selectedDate
