@@ -52,8 +52,6 @@ const Services = () => {
   return (
     <main className="services-page">
 
-      {/* ===== Header ===== */}
-
       <section className="services-header">
         <p>Unsere Leistungen</p>
 
@@ -64,9 +62,6 @@ const Services = () => {
           und finden Sie die passende Behandlung für Ihre Bedürfnisse.
         </p>
       </section>
-
-
-      {/* ===== Categories ===== */}
 
       <div className="services-categories">
 
@@ -126,9 +121,6 @@ const Services = () => {
         </button>
 
       </div>
-
-
-      {/* ===== Services ===== */}
 
       <section className="services-container">
 

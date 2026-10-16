@@ -214,7 +214,6 @@ const handleTomorrow = () => {
 
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  // إذا بكرا أحد، ننتقل للاثنين
   if (tomorrow.getDay() === 0) {
     tomorrow.setDate(tomorrow.getDate() + 1);
   }

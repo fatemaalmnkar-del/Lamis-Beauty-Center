@@ -395,8 +395,6 @@ const timeFromURL =
             </div>
           </div>
 
-          {/* ===== DATUM ===== */}
-
           <div className="booking-form-group">
             <div className="booking-section-title">
               <FiCalendar className="section-icon" />
@@ -462,8 +460,6 @@ const timeFromURL =
             </div>
           </div>
 
-          {/* ===== UHRZEIT ===== */}
-
           <div className="booking-form-group">
             <div className="booking-section-title">
               <FiClock className="section-icon" />
@@ -500,7 +496,6 @@ const timeFromURL =
             </div>
           </div>
 
-          {/* ===== ADMIN CUSTOMER DATA ===== */}
 
           {user.role === "admin" && (
             <div className="customer-data-section">
@@ -581,8 +576,6 @@ const timeFromURL =
           </button>
         </form>
       </section>
-
-      {/* ===== MY BOOKINGS ===== */}
 
       {user.role !== "admin" && (
         <section className="my-bookings">

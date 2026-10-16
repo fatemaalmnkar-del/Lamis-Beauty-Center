@@ -61,7 +61,6 @@ ${formData.message}
   return (
     <main className="kontakt-page">
 
-      {/* HERO */}
       <section className="kontakt-hero">
         <p className="kontakt-label">LAMIS BEAUTY CENTER</p>
         <h1>Kontakt</h1>
@@ -73,7 +72,7 @@ ${formData.message}
         <div className="kontakt-divider"></div>
       </section>
 
-      {/* KONTAKTINFORMATIONEN */}
+     
       <section className="kontakt-info-section">
         <div className="kontakt-info-card">
           <FaMapMarkerAlt className="kontakt-icon" />
@@ -112,7 +111,6 @@ ${formData.message}
         </div>
       </section>
 
-      {/* KONTAKTFORMULAR */}
       <section className="kontakt-form-section">
 
         <div className="kontakt-form-intro">
@@ -213,7 +211,7 @@ ${formData.message}
         </form>
       </section>
 
-      {/* STANDORT */}
+  
       <section className="kontakt-location">
 
         <div className="kontakt-location-heading">
@@ -237,7 +235,7 @@ ${formData.message}
 
       </section>
 
-      {/* TERMIN CTA */}
+
       <section className="kontakt-booking">
 
         <p className="kontakt-label">IHR BEAUTY-MOMENT</p>

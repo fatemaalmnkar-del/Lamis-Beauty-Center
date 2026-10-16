@@ -27,11 +27,7 @@ function Gallery() {
     loadGalleryImages();
   }, []);
 
-  /*
-    كل صورتين يصيروا زوج:
-    الصورة الأولى = Vorher
-    الصورة الثانية = Nachher
-  */
+
 
   const imagePairs = [];
 
@@ -88,7 +84,7 @@ function Gallery() {
   return (
     <main className="gallery-page">
 
-      {/* ===== Hero ===== */}
+
 
       <section className="gallery-hero">
 
@@ -109,9 +105,6 @@ function Gallery() {
         <div className="gallery-divider"></div>
 
       </section>
-
-
-      {/* ===== Gallery ===== */}
 
       <section className="gallery-section">
 
@@ -139,9 +132,6 @@ function Gallery() {
         )}
 
       </section>
-
-
-      {/* ===== CTA ===== */}
 
       <section className="gallery-cta">
 

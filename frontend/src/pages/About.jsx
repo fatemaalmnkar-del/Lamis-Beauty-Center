@@ -13,9 +13,6 @@ import {
 const About = () => {
   return (
     <main className="about-page">
-      {/* =========================
-          HERO
-      ========================= */}
 
       <section className="about-hero">
         <img
@@ -57,10 +54,6 @@ const About = () => {
           </p>
         </div>
       </section>
-
-      {/* =========================
-          ÜBER LAMIS
-      ========================= */}
 
       <section className="about-lamis-info">
         <div className="about-lamis-text">
@@ -135,10 +128,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* =========================
-          STUDIO
-      ========================= */}
 
       <section className="about-studio">
         <div className="about-studio-header">
@@ -216,10 +205,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* =========================
-          CERTIFICATES
-      ========================= */}
-
       <section className="certificates-section">
         <div className="certificates-left">
           <img
@@ -275,10 +260,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* =========================
-          MISSION
-      ========================= */}
 
       <section className="about-mission">
         <p className="section-label">
@@ -336,10 +317,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* =========================
-          VISIT
-      ========================= */}
 
       <section className="visit-section">
         <div className="visit-content">

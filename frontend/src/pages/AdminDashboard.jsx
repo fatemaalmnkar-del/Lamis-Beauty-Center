@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import {getServices,createService,updateService,deleteService} from "../services/serviceService";
-
 import {getGalleryImages, createGalleryImage,deleteGalleryImage} from "../services/galleryService";
 
 import useAutoDismiss from "../hooks/useAutoDismiss";
@@ -11,33 +10,19 @@ import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const user = useSelector((state) => state.auth.user);
-
   const [services, setServices] = useState([]);
-
-
   const [galleryImages, setGalleryImages] = useState([]);
   const [galleryImageFile, setGalleryImageFile] = useState(null);
-
-
-
-
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
   useAutoDismiss(message, setMessage);
   useAutoDismiss(error, setError);
 
-
-
   const [galleryMessage, setGalleryMessage] = useState("");
   const [galleryError, setGalleryError] = useState("");
   useAutoDismiss(galleryMessage, setGalleryMessage);
   useAutoDismiss(galleryError, setGalleryError);
-
-
-
- 
-
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -48,13 +33,6 @@ const AdminDashboard = () => {
  const [imageFile, setImageFile] = useState(null);
 
   const [editingId, setEditingId] = useState(null);
-
-  
-
-
-
-
-
   const fetchServices = async () => {
     try {
       const response = await getServices();
@@ -70,19 +48,13 @@ useEffect(() => {
   const loadInitialData = async () => {
     try {
       const servicesResponse = await getServices();
-
       const galleryResponse = await getGalleryImages();
-    
-
       setServices(servicesResponse.data);
-  
       setGalleryImages(galleryResponse.galleryImages);
-      
     } catch (error) {
       console.error(error);
     }
   };
-
   loadInitialData();
 }, []);
 
@@ -92,13 +64,7 @@ useEffect(() => {
       [e.target.name]: e.target.value
     });
   };
-
-
-
-
-
-
-  const handleImageChange = (e) => {
+ const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
@@ -205,7 +171,6 @@ useEffect(() => {
     setImageFile(null);
   };
 
-
 const handleGalleryImageChange = (e) => {
   setGalleryImageFile(e.target.files[0]);
 };
@@ -244,7 +209,6 @@ const handleGallerySubmit = async (e) => {
   }
 };
 
-
 const handleDeleteGalleryImage = async (imageId) => {
   const confirmed = window.confirm(
     "Möchten Sie dieses Bild wirklich löschen?"
@@ -274,11 +238,6 @@ const handleDeleteGalleryImage = async (imageId) => {
     );
   }
 };
-
-
-
-
-
 
 
 if (!user || user.role !== "admin") {
@@ -613,12 +572,6 @@ return (
         </a>
 
       </section>
-
-      
-
-      
-      
-      
 
     </main>
   );

@@ -22,9 +22,6 @@ const Home = () => {
   const token = localStorage.getItem("token");
   const user = useSelector((state) => state.auth.user);
 
-  /* =========================
-     REVIEWS
-  ========================= */
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -39,9 +36,7 @@ const Home = () => {
     fetchReviews();
   }, []);
 
-  /* =========================
-     SERVICES
-  ========================= */
+
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -59,9 +54,7 @@ const Home = () => {
     fetchServices();
   }, []);
 
-  /* =========================
-     CREATE REVIEW
-  ========================= */
+  
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -97,9 +90,7 @@ const Home = () => {
     }
   };
 
-  /* =========================
-     DELETE REVIEW
-  ========================= */
+
 
   const handleDeleteReview = async (reviewId) => {
     try {
@@ -120,9 +111,7 @@ const Home = () => {
 
   return (
     <main>
-      {/* =========================
-          HERO
-      ========================= */}
+      
 
       <section className="home-hero">
         <img
@@ -167,9 +156,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================
-          WELCOME
-      ========================= */}
 
       <section className="welcome-section">
         <div className="welcome-content">
@@ -199,9 +185,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================
-          TREATMENTS
-      ========================= */}
 
       <section className="treatments-section">
         <div className="treatments-header">
@@ -301,10 +284,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================
-          RESULTS
-      ========================= */}
-
       <section className="results-section">
         <div className="results-header">
           <p className="section-label">
@@ -391,9 +370,6 @@ const Home = () => {
         </a>
       </section>
 
-      {/* =========================
-          REVIEWS
-      ========================= */}
 
       <section className="reviews-section">
         <div className="reviews-header">
@@ -543,9 +519,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =========================
-          CTA
-      ========================= */}
+      
 
       <section className="home-cta">
         <div className="home-cta-content">

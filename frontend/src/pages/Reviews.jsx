@@ -86,8 +86,7 @@ function Reviews() {
                     >
                     Löschen
                     </button>
-                )}
-
+            )}
           </div>
         ))}
       </div>
