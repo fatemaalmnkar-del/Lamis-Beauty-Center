@@ -18,6 +18,7 @@ const Home = () => {
 
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState("");
+  const [reviewMenuOpen, setReviewMenuOpen] = useState(false);
 
   const token = localStorage.getItem("token");
   const user = useSelector((state) => state.auth.user);
@@ -79,6 +80,7 @@ const Home = () => {
       setComment("");
       setRating(0);
       setSelectedService("");
+      setReviewMenuOpen(false);
       setShowReviewForm(false);
     } catch (error) {
       console.error(error);
@@ -420,27 +422,69 @@ const Home = () => {
                 </button>
               ))}
             </div>
+<div
+  className="review-dropdown"
+  onBlur={(e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setReviewMenuOpen(false);
+    }
+  }}
+  onKeyDown={(e) => {
+    if (e.key === "Escape") {
+      setReviewMenuOpen(false);
+      e.currentTarget.querySelector("button")?.focus();
+    }
+  }}
+>
+  <button
+    type="button"
+    className="review-dropdown-toggle"
+    aria-label="Behandlung für die Bewertung auswählen"
+    aria-expanded={reviewMenuOpen}
+    aria-controls="review-service-options"
+    onClick={() => setReviewMenuOpen((prev) => !prev)}
+  >
+    <span>
+      {services.find((service) => service._id === selectedService)
+        ?.title || "Allgemeine Bewertung"}
+    </span>
 
-            <select
-              value={selectedService}
-              onChange={(e) =>
-                setSelectedService(e.target.value)
-              }
-              className="review-service-select"
-            >
-              <option value="">
-                Allgemeine Bewertung
-              </option>
+    <span aria-hidden="true">
+      {reviewMenuOpen ? "▲" : "▼"}
+    </span>
+  </button>
 
-              {services.map((service) => (
-                <option
-                  key={service._id}
-                  value={service._id}
-                >
-                  {service.title}
-                </option>
-              ))}
-            </select>
+  {reviewMenuOpen && (
+    <div
+      id="review-service-options"
+      className="review-dropdown-menu"
+    >
+      {[{ _id: "", title: "Allgemeine Bewertung" }, ...services].map(
+        (service) => (
+          <button
+            type="button"
+            key={service._id || "general"}
+            className={`review-dropdown-option ${
+              selectedService === service._id ? "active" : ""
+            }`}
+            aria-pressed={selectedService === service._id}
+            onClick={(e) => {
+              setSelectedService(service._id);
+              e.currentTarget
+                .closest(".review-dropdown")
+                .querySelector(".review-dropdown-toggle")
+                .focus();
+              setReviewMenuOpen(false);
+            }}
+          >
+            {service.title}
+          </button>
+        )
+      )}
+    </div>
+  )}
+</div>
+      
 
             <textarea
               placeholder="Schreiben Sie Ihre Erfahrung..."
